@@ -4,10 +4,12 @@ import sys
 import re
 #####################################################
 # global instance
+from webbrowser import browser
+
 from selenium import webdriver
 
 driver = webdriver.Firefox()
-driver.get("http:/https://www.taobao.com/")  # 访问指定URL
+driver.get("https://www.taobao.com/")  # 访问指定URL
 driver.find_elemuent_by_xpath(".//*[@id='TPL_username_1']") #填充表单用户名
 driver.find_elemuent_by_xpath(".//*[@id='TPL_password_1']")
 driver.find_elemuent_by_xpath(".//*[@id='J_SubmitStatic']").click()  # 表单提交
