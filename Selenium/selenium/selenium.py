@@ -14,6 +14,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+from __builtin__ import unicode
+
 __docformat__ = "restructuredtext en"
 
 import httplib
@@ -190,7 +192,7 @@ class selenium(object):
         try:
             self.sessionId = result
         except ValueError:
-            raise Exception, result
+            raise Exception(result)
         
     def stop(self):
         self.do_command("testComplete", [])
@@ -214,7 +216,7 @@ class selenium(object):
             response = conn.getresponse()
             data = unicode(response.read(), "UTF-8")
             if (not data.startswith('OK')):
-                raise Exception, data
+                raise Exception(data)
             return data
         finally:
             conn.close()
@@ -263,7 +265,7 @@ class selenium(object):
             return True
         if ("false" == boolstr):
             return False
-        raise ValueError, "result is neither 'true' nor 'false': " + boolstr
+        raise ValueError("result is neither 'true' nor 'false': " + boolstr)
 
     def get_boolean_array(self, verb, args):
         boolarr = self.get_string_array(verb, args)
@@ -274,7 +276,7 @@ class selenium(object):
             if ("false" == boolstr):
                 boolarr[i] = False
                 continue
-            raise ValueError, "result is neither 'true' nor 'false': " + boolarr[i]
+            raise ValueError("result is neither 'true' nor 'false': " + boolarr[i])
         return boolarr
     
     
