@@ -15,8 +15,10 @@ aa = 'h\ni'
 print(aa)  # \n 换行
 
 # format() 函数格式：print('{}{}{}'.format(a,b,c))
+print('{}网址：{}'.format('刺鸟','www.ciniao.com'))  #输出字符串
+print('{} {}'.format(1,4))                           #输出数值
 # 立方表
 for x in range(1, 11):
-    print('{0:1d} {1:3d} {2:4d}'.format(x, x * x, x * x * x))   #d表示的double数据类型
+    print('{0:1d} {1:3d} {2:4d}'.format(x, x * x, x * x * x))   #d表示的double数据类型（双精度）
 
 
