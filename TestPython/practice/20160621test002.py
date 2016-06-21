@@ -25,11 +25,25 @@ table={'mike':11,'pink':12,'Taobao':13,'lol':14}
 for name,number in table.items():
     print ('{0:10} {1:20d} '.format(name,number,))
 
-#input()函数支持用户输入数字或者表达式,不支持输入字符串.返回的是数字类型的数值.
-#raw_input()函数捕获的是用户的原始输入,返回为字符串.如果需要用输入的数字计算,则需要使用int()函数转换一下.
 
 #range函数使用方法
 range(4)       #range()函数内只有一个参数，则表示会产生从0开始计数的整数列表
 range(1,6)     #当传入两个参数时，则将第一个参数做为起始位，第二个参数为结束位
 range(0,6,1)   #填入三个参数，第三个参数是步进值（步进值默认为1）
 range(-4,4,-1) #range函数的参数和结果也并非一定要是正数或是递增的
+
+#input()函数支持用户输入数字或者表达式,不支持输入字符串.返回的是数字类型的数值.
+#raw_input()函数捕获的是用户的原始输入,返回为字符串.如果需要用输入的数字计算,则需要使用int()函数转换一下.
+
+#python数字金字塔
+number=input(raw_input('please enter a number:'''))
+def fun(n):
+    nstr=''
+    for i in range(n):
+        nstr+=str(n)+ ''
+
+    return nstr
+for n in range(1,number+1):
+    s=fun(n)
+    print(s).center(number * 2 + 1)
+
