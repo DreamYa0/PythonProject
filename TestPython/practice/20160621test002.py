@@ -19,6 +19,13 @@ print('{}网址：{}'.format('刺鸟','www.ciniao.com'))  #输出字符串
 print('{} {}'.format(1,4))                           #输出数值
 # 立方表
 for x in range(1, 11):
-    print('{0:1d} {1:3d} {2:4d}'.format(x, x * x, x * x * x))   #d表示的double数据类型（双精度）
+    print('{0:1d} {1:3d} {2:4d}'.format(x, x * x, x * x * x))   #d为格式标识符，表示的double数据类型（双精度）
+    # 选项 ':' 和格式标识符可以跟着字段名进行更好的格式化。保留到小数点后某位
+table={'mike':11,'pink':12,'Taobao':13,'lol':14}
+for name,number in table.items():
+    print ('{0:10} {1:20d} '.format(name,number,))
+
+#input()函数支持用户输入数字或者表达式,不支持输入字符串.返回的是数字类型的数值.
+#raw_input()函数捕获的是用户的原始输入,返回为字符串.如果需要用输入的数字计算,则需要使用int()函数转换一下.
 
 

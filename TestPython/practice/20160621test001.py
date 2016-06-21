@@ -6,7 +6,6 @@ import sys;x = 'roob';sys.stdout.write(x + '\n')
 #Number（数字）String（字符串）List（列表）Tuple（元组）Sets（集合）Dictionary（字典）
 
 
-
 #列表：加号（+）是列表连接运算符，星号（*）是重复操作
 
 list=[1,2,3,4,]
@@ -25,7 +24,9 @@ print(a)
 #元组
 
 i=('ab','cd','ef')
-print (i[0:2])                        #i(0)=(5)；print (i)  修改元组的元素是非法的操作
+print (i[0:2])
+
+#i(0)=(5)；print (i)  修改元组的元素是非法的操作
 
 #字符串
 
