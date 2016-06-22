@@ -38,9 +38,11 @@ range(-4, 4, -1)  # range函数的参数和结果也并非一定要是正数或�
 
 number = input('please enter a number:''')
 number = int(number)
-#或者合并为number=int(input('please enter a number:'''))
 
-def x(n) :
+
+# 或者合并为number=int(input('please enter a number:'''))
+
+def x(n):
     b = ' '
     for i in range(n):
         b += str(n) + ' '
