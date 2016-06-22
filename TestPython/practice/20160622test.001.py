@@ -1,9 +1,9 @@
-'''
+"""
 数据类型转换
 int(x)   将X转换为整数
 str(x)   将x转换为字符串
 repr(x)  将对象X转换为表达式字符串
-touple(s)将序列s转换为一个元组
+tuple(s)将序列s转换为一个元组
 list(s)  将序列s转换为一个列表
 set(s)   转变为可变集合
 dict(d)  创建一个字典，d 必须是一个序列 (key,value)元组
@@ -13,8 +13,7 @@ ord(x)   将一个字符转换为它的整数值
 float(x) 将x转换到一个浮点数。
 complex(x) 将x转换到一个复数，实数部分为 x，虚数部分为 0。
 complex(x, y) 将 x 和 y 转换到一个复数，实数部分为 x，虚数部分为 y。x 和 y 是数字表达式。
-'''
-
+"""
 
 '''
 算术运算符
@@ -57,18 +56,18 @@ not	not x	布尔"非" - 如果 x 为 True，返回 False 。如果 x 为 False�
 '''
 a = 10
 b = 20
-if (a and b):
-    print('变量为ture')
+if a and b:
+    print('变量为true')
 else:
     print('变量有一个为false')
-if (a or b):
-    print('变量都为ture，或者其中有一个为ture')
+if a or b:
+    print('变量都为true，或者其中有一个为true')
 else:
     print('变量都为false')
 if not (a and b):
     print('其中一个变量为false或者全部为false')
 else:
-    print('变量都为ture')
+    print('变量都为true')
 
 '''
 身份运算符
@@ -82,4 +81,4 @@ if a is not b:
 else:
     print('4 - a 和 b 有相同的标识')
 
-
+# 在交互模式中，最后被输出的表达式结果被赋值给变量 _
