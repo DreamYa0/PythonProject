@@ -39,7 +39,7 @@ range(-4,4,-1) #range函数的参数和结果也并非一定要是正数或是�
 number=input('please enter a number:''')
 number = int(number)
 def fun(n):
-    nstr=''
+    nstr=' '
     for i in range(n):
         nstr += str(n)+ ' '
 
