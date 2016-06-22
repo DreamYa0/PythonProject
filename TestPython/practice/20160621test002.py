@@ -36,14 +36,15 @@ range(-4,4,-1) #range函数的参数和结果也并非一定要是正数或是�
 #raw_input()函数捕获的是用户的原始输入,返回为字符串.如果需要用输入的数字计算,则需要使用int()函数转换一下.
 
 #python数字金字塔
-number=input(raw_input('please enter a number:'''))
+number=input('please enter a number:''')
+number = int(number)
 def fun(n):
     nstr=''
     for i in range(n):
-        nstr+=str(n)+ ''
+        nstr += str(n)+ ' '
 
     return nstr
-for n in range(1,number+1):
+for n in range(1, (number + 1)):
     s=fun(n)
-    print(s).center(number * 2 + 1)
+    print(s.center(number * 2 +  1))
 
