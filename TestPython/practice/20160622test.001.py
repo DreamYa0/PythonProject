@@ -20,14 +20,14 @@ ord(x)   将一个字符转换为它的整数值
 '''
 a = 14
 b = 10
-c1 = a-b
+c1 = a - b
 print('a-b:', c1)
 c2 = a + b
 print('a+b:', c2)
 c3 = a / b
 print('a/b:', c3)
 c4 = a % b
-print ('a%b:', c4)
+print('a%b:', c4)
 c5 = a ** b
 print('a**b:', c5)
 c6 = a // b
@@ -60,7 +60,21 @@ if (a or b):
     print('变量都为ture，或者其中有一个为ture')
 else:
     print('变量都为false')
-if not(a and b):
+if not (a and b):
     print('其中一个变量为false或者全部为false')
 else:
     print('变量都为ture')
+
+'''
+身份运算符
+is	is是判断两个标识符是不是引用自一个对象	x is y, 如果 id(x) 等于 id(y) , is 返回结果 1
+is not	is not是判断两个标识符是不是引用自不同对象	x is not y, 如果 id(x) 不等于 id(y). is not 返回结果 1
+'''
+a = 10
+b = 5
+if a is not b:
+    print("4 - a 和 b 没有相同的标识")
+else:
+    print('4 - a 和 b 有相同的标识')
+
+
