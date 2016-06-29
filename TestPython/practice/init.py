@@ -11,3 +11,4 @@ str = 'this is bad boy!'
 sub = 'i'
 print('i出现的次数', str.count(sub, 0, 4))
 print(str1)
+
