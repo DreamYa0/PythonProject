@@ -14,7 +14,21 @@ def sum(a, b):
     c = a + b
     print(c)
     return c;
+
+
 # 调用sum函数
 c = sum(2, 3)
 c = sum(5, 6)
 
+
+# 关于return
+def cmp(x, y):
+    if x < y:
+        return -1
+    if x == y:
+        return 0
+    return 1
+
+
+f = cmp(6, 6)
+print(f)
