@@ -1,6 +1,6 @@
 # 猜数字游戏
-game = 9
-number = 0
+game = 2
+number = 8
 while game != number:
     game = int(input('请输入您的数字'))
 
