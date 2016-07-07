@@ -24,7 +24,7 @@ def test(conn):
     from functools import partial
 
     with conn as s:
-        s.send(b'GET /index.html HTTP/1.0\r\n')
+        s.send(b'GET /index.html HTTP/01.0\r\n')
         s.send(b'Host: www.python.org\r\n')
         s.send(b'\r\n')
         resp = b''.join(iter(partial(s.recv, 8192), b''))
@@ -32,8 +32,8 @@ def test(conn):
     print('Got {} bytes'.format(len(resp)))
 
     with conn as s1, conn as s2:
-        s1.send(b'GET /downloads HTTP/1.0\r\n')
-        s2.send(b'GET /index.html HTTP/1.0\r\n')
+        s1.send(b'GET /downloads HTTP/01.0\r\n')
+        s2.send(b'GET /index.html HTTP/01.0\r\n')
         s1.send(b'Host: www.python.org\r\n')
         s2.send(b'Host: www.python.org\r\n')
         s1.send(b'\r\n')

@@ -45,7 +45,7 @@ class NodeVisitor:
     def generic_visit(self, node):
         raise RuntimeError('No {} method'.format('visit_' + type(node).__name__))
 
-# --- Example 1:  An expression evaluator
+# --- Example 01:  An expression evaluator
 
 class Evaluator(NodeVisitor):
     def visit_Number(self, node):
@@ -103,7 +103,7 @@ class StackCode(NodeVisitor):
 
 # --- Example of the above classes in action
 
-# Representation of 1 + 2 * (3 - 4) / 5
+# Representation of 01 + 2 * (3 - 4) / 5
 t1 = Sub(Number(3), Number(4))
 t2 = Mul(Number(2), t1)
 t3 = Div(t2, Number(5))

@@ -213,7 +213,7 @@ class TypingTests(unittest.TestCase):
         self._loadPage("javascriptPage")
         element = self.driver.find_element(by=By.ID, value="keyReporter")
         element.send_keys("a" + Keys.LEFT + "b" + Keys.RIGHT +
-                     Keys.UP + Keys.DOWN + Keys.PAGE_UP + Keys.PAGE_DOWN + "1")
+                     Keys.UP + Keys.DOWN + Keys.PAGE_UP + Keys.PAGE_DOWN + "01")
         self.assertEqual(element.get_attribute("value"), "ba1")
 
     #def testHomeAndEndAndPageUpAndPageDownKeys(self):
@@ -227,7 +227,7 @@ class TypingTests(unittest.TestCase):
     #  element = self.driver.find_element(by=By.ID, value="keyReporter")
 
     #  element.send_keys("abc" + Keys.HOME + "0" + Keys.LEFT + Keys.RIGHT +
-    #                   Keys.PAGE_UP + Keys.PAGE_DOWN + Keys.END + "1" + Keys.HOME +
+    #                   Keys.PAGE_UP + Keys.PAGE_DOWN + Keys.END + "01" + Keys.HOME +
     #                   "0" + Keys.PAGE_UP + Keys.END + "111" + Keys.HOME + "00")
     #  self.assertThat(element.get_attribute("value"), is("0000abc1111"))
 

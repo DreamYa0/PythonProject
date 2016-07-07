@@ -7,7 +7,7 @@ y_lock = threading.Lock()
 def thread_1():
     while True:
         with acquire(x_lock, y_lock):
-            print("Thread-1")
+            print("Thread-01")
 
 def thread_2():
     while True:

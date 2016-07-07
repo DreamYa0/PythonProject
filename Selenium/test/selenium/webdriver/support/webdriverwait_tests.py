@@ -91,7 +91,7 @@ class WebDriverWaitTest(unittest.TestCase):
             except TimeoutException, e:
                 pass
             self.assertTrue(time.time() - start < 1.5, 
-                "Expected to take just over 1 second to execute, but took %f" % 
+                "Expected to take just over 01 second to execute, but took %f" %
                 (time.time() - start))
         finally:
             self.driver.implicitly_wait(0)

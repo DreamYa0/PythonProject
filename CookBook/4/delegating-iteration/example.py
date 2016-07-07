@@ -23,4 +23,4 @@ if __name__ == '__main__':
     root.add_child(child2)
     for ch in root:
         print(ch)
-    # Outputs: Node(1), Node(2)
+    # Outputs: Node(01), Node(2)

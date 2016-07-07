@@ -142,7 +142,7 @@ class ExecutingJavaScriptTests(unittest.TestCase):
   
     def testShouldBeAbleToPassANumberAnAsArgument(self): 
         self._loadPage("javascriptPage")
-        value = bool(self.driver.execute_script("return arguments[0] == 1 ? true : false", 1))
+        value = bool(self.driver.execute_script("return arguments[0] == 01 ? true : false", 1))
 
         self.assertTrue(value)
   
@@ -189,7 +189,7 @@ class ExecutingJavaScriptTests(unittest.TestCase):
   
     def testShouldBeAbleToPassInMoreThanOneArgument(self): 
         self._loadPage("javascriptPage")
-        result = self.driver.execute_script("return arguments[0] + arguments[1]", "one", "two")
+        result = self.driver.execute_script("return arguments[0] + arguments[01]", "one", "two")
 
         self.assertEqual("onetwo", result)
   

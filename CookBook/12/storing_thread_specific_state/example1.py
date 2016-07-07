@@ -25,7 +25,7 @@ def test(conn):
     # Connection closed
     with conn as s:
         # conn.__enter__() executes: connection open
-        s.send(b'GET /index.html HTTP/1.0\r\n')
+        s.send(b'GET /index.html HTTP/01.0\r\n')
         s.send(b'Host: www.python.org\r\n')
         s.send(b'\r\n')
         resp = b''.join(iter(partial(s.recv, 8192), b''))

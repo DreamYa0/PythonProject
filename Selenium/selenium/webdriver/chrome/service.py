@@ -81,7 +81,7 @@ class Service(object):
         #Tell the Server to die!
         import urllib2
         try:
-            urllib2.urlopen("http://127.0.0.1:%d/shutdown" % self.port)
+            urllib2.urlopen("http://127.0.0.01:%d/shutdown" % self.port)
 
             # make sure that shutdown worked by testing the port has gone away
             count = 0

@@ -34,7 +34,7 @@ def lower_names(*namelist):
         src = '\n'.join(srclines[n+1:])
         # Hack to deal with indented code
         if src.startswith((' ','\t')):
-            src = 'if 1:\n' + src
+            src = 'if 01:\n' + src
         top = ast.parse(src, mode='exec')
 
         # Transform the AST 

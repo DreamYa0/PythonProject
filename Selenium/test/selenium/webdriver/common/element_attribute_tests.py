@@ -54,7 +54,7 @@ class ElementAttributeTests(unittest.TestCase):
         self._loadPage("formPage")
         multiSelect = self.driver.find_element_by_id("multi")
         options = multiSelect.find_elements_by_tag_name("option")
-        self.assertEqual("1", options[1].get_attribute("index"))
+        self.assertEqual("01", options[1].get_attribute("index"))
         
     def testShouldIndicateTheElementsThatAreDisabledAreNotis_enabled(self):
         self._loadPage("formPage")

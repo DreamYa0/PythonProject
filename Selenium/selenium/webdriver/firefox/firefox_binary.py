@@ -54,9 +54,9 @@ class FirefoxBinary(object):
 
     def _start_from_profile_path(self, path):
         self._firefox_env["XRE_PROFILE_PATH"] = path
-        self._firefox_env["MOZ_CRASHREPORTER_DISABLE"] = "1"
-        self._firefox_env["MOZ_NO_REMOTE"] = "1"
-        self._firefox_env["NO_EM_RESTART"] = "1"
+        self._firefox_env["MOZ_CRASHREPORTER_DISABLE"] = "01"
+        self._firefox_env["MOZ_NO_REMOTE"] = "01"
+        self._firefox_env["NO_EM_RESTART"] = "01"
         
         if platform.system().lower() == 'linux':
             self._modify_link_library_path()

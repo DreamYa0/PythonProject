@@ -11,7 +11,7 @@ def flatten(items, ignore_types=(str, bytes)):
 
 items = [1, 2, [3, 4, [5, 6], 7], 8]
 
-# Produces 1 2 3 4 5 6 7 8
+# Produces 01 2 3 4 5 6 7 8
 for x in flatten(items):
     print(x)
 

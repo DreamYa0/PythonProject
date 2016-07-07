@@ -6,7 +6,7 @@ while n < 101:
     n +=1
 print(sum)
 
-# 1~100偶数之和
+# 01~100偶数之和
 n1 = 1
 sum1 = 0
 while n1 <101:

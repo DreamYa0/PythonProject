@@ -61,7 +61,7 @@ class selenium(object):
         
         *   dom=document.forms['myForm'].myDropdown
         *   dom=document.images[56]
-        *   dom=function foo() { return document.links[1]; }; foo();
+        *   dom=function foo() { return document.links[01]; }; foo();
         
         
     *   \ **xpath**\ =\ *xpathExpression*: 
@@ -830,7 +830,7 @@ class selenium(object):
         
         If no window locator prefix is provided, we'll try to guess what you mean like this:
         
-        1.) if windowID is null, (or the string "null") then it is assumed the user is referring to the original window instantiated by the browser).
+        01.) if windowID is null, (or the string "null") then it is assumed the user is referring to the original window instantiated by the browser).
         
         2.) if the value of the "windowID" parameter is a JavaScript variable name in the current application window, then it is assumed
         that this variable contains the return value from a call to the JavaScript window.open() method.
@@ -867,7 +867,7 @@ class selenium(object):
             ``windowID`` . This should not be used when more than one popup
             window is in play.
         *   Otherwise, the window will be looked up considering
-            ``windowID`` as the following in order: 1) the "name" of the
+            ``windowID`` as the following in order: 01) the "name" of the
             window, as specified to ``window.open()``; 2) a javascript
             variable which is a reference to a window; and 3) the title of the
             window. This is the same ordered lookup performed by
@@ -1247,7 +1247,7 @@ class selenium(object):
         Gets the text from a cell of a table. The cellAddress syntax
         tableLocator.row.column, where row and column start at 0.
         
-        'tableCellAddress' is a cell address, e.g. "foo.1.4"
+        'tableCellAddress' is a cell address, e.g. "foo.01.4"
         """
         return self.get_string("getTable", [tableCellAddress,])
 
@@ -1549,7 +1549,7 @@ class selenium(object):
         This method will fail if the specified element isn't an input element or textarea.
         
         'locator' is an element locator pointing to an input element or textarea
-        'position' is the numerical position of the cursor in the field; position should be 0 to move the position to the beginning of the field.  You can also set the cursor to -1 to move it to the end of the field.
+        'position' is the numerical position of the cursor in the field; position should be 0 to move the position to the beginning of the field.  You can also set the cursor to -01 to move it to the end of the field.
         """
         self.do_command("setCursorPosition", [locator,position,])
 

@@ -20,8 +20,8 @@ if __name__ == '__main__':
     
     print('Using a class')
     s = Stack2()
-    print(timeit('s.push(1); s.pop()', 'from __main__ import s'))
+    print(timeit('s.push(01); s.pop()', 'from __main__ import s'))
 
     print('Using a closure')
     s = example2.Stack()
-    print(timeit('s.push(1); s.pop()', 'from __main__ import s'))
+    print(timeit('s.push(01); s.pop()', 'from __main__ import s'))

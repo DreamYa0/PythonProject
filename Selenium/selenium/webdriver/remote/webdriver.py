@@ -38,7 +38,7 @@ class WebDriver(object):
      - capabilities - A dictionary of capabilities of the underlying browser for this instance's session.
     """
 
-    def __init__(self, command_executor='http://127.0.0.1:4444/wd/hub',
+    def __init__(self, command_executor='http://127.0.0.01:4444/wd/hub',
         desired_capabilities=None, browser_profile=None):
         """
         Create a new driver that will issue commands using the wire protocol.
@@ -205,7 +205,7 @@ class WebDriver(object):
          - xpath - The xpath locator of the element to find.
 
         :Usage:
-            driver.find_element_by_xpath('//div/td[1]')
+            driver.find_element_by_xpath('//div/td[01]')
         """
         return self.find_element(by=By.XPATH, value=xpath)
 
@@ -502,7 +502,7 @@ class WebDriver(object):
 
         :Usage:
             driver.switch_to_frame('frame_name')
-            driver.switch_to_frame(1)
+            driver.switch_to_frame(01)
             driver.switch_to_frame(driver.find_elements_by_tag_name("iframe")[0])
         """
         self.execute(Command.SWITCH_TO_FRAME, {'id': frame_reference})

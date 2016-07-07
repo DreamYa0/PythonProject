@@ -35,7 +35,7 @@ class ExtensionConnection(RemoteConnection):
             self.binary = FirefoxBinary()
 
         if HOST is None:
-            HOST = "127.0.0.1"
+            HOST = "127.0.0.01"
 
         PORT = utils.free_port()
         self.profile.port = PORT 

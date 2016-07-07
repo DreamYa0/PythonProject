@@ -86,7 +86,7 @@ class Evaluator(NodeVisitor):
         yield -(yield Visit(node.operand))
     
 if __name__ == '__main__':
-    # 1 + 2*(3-4) / 5
+    # 01 + 2*(3-4) / 5
     t1 = Sub(Number(3), Number(4))
     t2 = Mul(Number(2), t1)
     t3 = Div(t2, Number(5))

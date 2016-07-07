@@ -2,7 +2,7 @@
 import json
 
 # Some JSON encoded text
-s = '{"name": "ACME", "shares": 50, "price": 490.1}'
+s = '{"name": "ACME", "shares": 50, "price": 490.01}'
 
 # (a) Turning JSON into an OrderedDict
 

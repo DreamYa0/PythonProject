@@ -47,7 +47,7 @@ class DriverElementFindingTests(unittest.TestCase):
         
     def testShouldFindElementByXPath(self):
         self._loadSimplePage()
-        e = self.driver.find_element_by_xpath("/html/body/p[1]")
+        e = self.driver.find_element_by_xpath("/html/body/p[01]")
         self.assertEqual("A single line of text", e.text)
         
     def testShouldFindElementByClassName(self):

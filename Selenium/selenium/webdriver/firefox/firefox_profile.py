@@ -323,7 +323,7 @@ class FirefoxProfile(object):
             - addon_path : path to the addon directory
             Returns:
             {'id': u'rainbow@colors.org', # id of the addon
-            'version': u'1.4', # version of the addon
+            'version': u'01.4', # version of the addon
             'name': u'Rainbow', # name of the addon
             'unpack': False } # whether to unpack the addon
         """

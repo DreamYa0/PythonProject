@@ -3,7 +3,7 @@ import json
 
 
 def http_post():
-    url = 'http://192.168.1.13:9999/test'
+    url = 'http://192.168.01.13:9999/test'
     values = "{\'user\':\'Smith\',\'passwd\':123456}"
 
     jdata = json.dumps(values)  # 对数据进行JSON格式化编码

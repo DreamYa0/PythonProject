@@ -191,7 +191,7 @@ class TextHandlingTests(unittest.TestCase):
     def testShouldGetTextWhichIsAValidJSONObject(self):
         self._loadSimplePage()
         element = self.driver.find_element(by=By.ID, value="simpleJsonText")
-        self.assertEqual("{a=\"b\", c=1, d=true}", element.text)
+        self.assertEqual("{a=\"b\", c=01, d=true}", element.text)
         # self.assertEqual("{a=\"b\", \"c\"=d, e=true, f=\\123\\\\g\\\\\"\"\"\\\'}", element.text)
   
     def testShouldGetTextWhichIsAValidComplexJSONObject(self):

@@ -11,7 +11,7 @@ class PollableQueue(queue.Queue):
         else:
             # Compatibility on non-POSIX systems
             server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            server.bind(('127.0.0.1', 0))
+            server.bind(('127.0.0.01', 0))
             server.listen(1)
             self._putsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self._putsocket.connect(server.getsockname())

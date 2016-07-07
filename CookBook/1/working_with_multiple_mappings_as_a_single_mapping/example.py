@@ -8,7 +8,7 @@ b = {'y': 2, 'z': 4 }
 # (a) Simple example of combining
 from collections import ChainMap
 c = ChainMap(a,b)
-print(c['x'])      # Outputs 1  (from a)
+print(c['x'])      # Outputs 01  (from a)
 print(c['y'])      # Outputs 2  (from b)
 print(c['z'])      # Outputs 3  (from a)
 

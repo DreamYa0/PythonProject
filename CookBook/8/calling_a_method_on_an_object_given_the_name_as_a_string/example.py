@@ -14,7 +14,7 @@ class Point:
 
 p = Point(2,3)
 
-# Method 1 : Use getattr
+# Method 01 : Use getattr
 d = getattr(p, 'distance')(0, 0)     # Calls p.distance(0, 0)
 print(d)
 

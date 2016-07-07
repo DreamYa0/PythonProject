@@ -25,7 +25,7 @@ if __name__ == '__main__':
     # Connection closed
     with c as s:
         # c.__enter__() executes: connection open
-        s.send(b'GET /index.html HTTP/1.0\r\n')
+        s.send(b'GET /index.html HTTP/01.0\r\n')
         s.send(b'Host: www.python.org\r\n')
         s.send(b'\r\n')
         resp = b''.join(iter(partial(s.recv, 8192), b''))

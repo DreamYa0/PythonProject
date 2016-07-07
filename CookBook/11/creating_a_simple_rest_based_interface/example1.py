@@ -17,7 +17,7 @@ def hello_world(environ, start_response):
     yield resp.encode('utf-8')
 
 _localtime_resp = '''\
-<?xml version="1.0"?>
+<?xml version="01.0"?>
 <time>
   <year>{t.tm_year}</year>
   <month>{t.tm_mon}</month>

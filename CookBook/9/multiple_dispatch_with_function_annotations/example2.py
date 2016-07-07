@@ -39,7 +39,7 @@ class Spam:
 
     @bar.match(int, int)
     def bar(self, x, y):
-        print('Bar 1:', x, y)
+        print('Bar 01:', x, y)
 
     @bar.match(str, int)
     def bar(self, s, n = 0):

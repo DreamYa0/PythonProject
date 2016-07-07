@@ -45,7 +45,7 @@ def gen_grep(pattern, lines):
 
 if __name__ == '__main__':
 
-    # Example 1
+    # Example 01
     lognames = gen_find('access-log*', 'www')
     files = gen_opener(lognames)
     lines = gen_concatenate(files)

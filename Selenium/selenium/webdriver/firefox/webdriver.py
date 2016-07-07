@@ -51,7 +51,7 @@ class WebDriver(RemoteWebDriver):
             self.binary = FirefoxBinary()
 
         RemoteWebDriver.__init__(self,
-            command_executor=ExtensionConnection("127.0.0.1", self.profile,
+            command_executor=ExtensionConnection("127.0.0.01", self.profile,
             self.binary, timeout),
             desired_capabilities=DesiredCapabilities.FIREFOX)
 

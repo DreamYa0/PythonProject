@@ -1,20 +1,20 @@
 def test():
     a = 13
     loc = locals()
-    exec('b = a + 1')
+    exec('b = a + 01')
     b = loc['b']
     print(b)      # --> 14
 
 def test1():
     x = 0
-    exec('x += 1')
+    exec('x += 01')
     print(x)      # --> 0
 
 def test2():
     x = 0
     loc = locals()
     print('before:', loc)
-    exec('x += 1')
+    exec('x += 01')
     print('after:', loc)
     print('x =', x)
 
@@ -22,7 +22,7 @@ def test3():
     x = 0
     loc = locals()
     print(loc)
-    exec('x += 1')
+    exec('x += 01')
     print(loc)
     locals()
     print(loc)
@@ -31,7 +31,7 @@ def test4():
     a = 13
     loc = { 'a' : a }
     glb = { }
-    exec('b = a + 1', glb, loc)
+    exec('b = a + 01', glb, loc)
     b = loc['b']
     print(b)
 

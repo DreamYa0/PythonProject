@@ -62,9 +62,9 @@ class PageLoadingTests(unittest.TestCase):
     
       #  self.driver.switchTo().frame(0);
       #  WebElement pageNumber = self.driver.findElement(By.xpath("#span[@id='pageNumber']"));
-      #  self.assertEqual((pageNumber.getText().trim(), equalTo("1"));
+      #  self.assertEqual((pageNumber.getText().trim(), equalTo("01"));
 
-      #  self.driver.switchTo().defaultContent().switchTo().frame(1);
+      #  self.driver.switchTo().defaultContent().switchTo().frame(01);
       #  pageNumber = self.driver.findElement(By.xpath("#span[@id='pageNumber']"));
       #  self.assertEqual((pageNumber.getText().trim(), equalTo("2"));
 

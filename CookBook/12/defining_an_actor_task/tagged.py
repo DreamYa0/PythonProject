@@ -17,7 +17,7 @@ class TaggedActor(Actor):
 if __name__ == '__main__':
     a = TaggedActor()
     a.start()
-    a.send(('A', 1))      # Invokes do_A(1)
+    a.send(('A', 1))      # Invokes do_A(01)
     a.send(('B', 2, 3))   # Invokes do_B(2,3)
     a.close()
     a.join()

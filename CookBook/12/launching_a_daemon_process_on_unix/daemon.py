@@ -18,7 +18,7 @@ def daemonize(pidfile, *, stdin='/dev/null',
         if os.fork() > 0:
             raise SystemExit(0)   # Parent exit
     except OSError as e:
-        raise RuntimeError('fork #1 failed.')
+        raise RuntimeError('fork #01 failed.')
     
     os.chdir('/')
     os.umask(0)

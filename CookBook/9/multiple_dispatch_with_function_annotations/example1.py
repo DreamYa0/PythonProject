@@ -87,7 +87,7 @@ class MultipleMeta(type):
 # Some example classes that use multiple dispatch
 class Spam(metaclass=MultipleMeta):
     def bar(self, x:int, y:int):
-        print('Bar 1:', x, y)
+        print('Bar 01:', x, y)
     def bar(self, s:str, n:int = 0):
         print('Bar 2:', s, n)
 

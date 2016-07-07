@@ -10,7 +10,7 @@ def thread_1():
     while True:
         with acquire(x_lock):
             with acquire(y_lock):
-                print("Thread-1")
+                print("Thread-01")
                 time.sleep(1)
 
 def thread_2():

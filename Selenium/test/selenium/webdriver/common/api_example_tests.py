@@ -207,7 +207,7 @@ class ApiExampleTest (unittest.TestCase):
     def testExecuteScriptWithMultipleArgs(self):
         self._loadPage("xhtmlTest")
         result = self.driver.execute_script(
-            "return arguments[0] + arguments[1]", 1, 2)
+            "return arguments[0] + arguments[01]", 1, 2)
         self.assertEquals(3, result)
 
     def testExecuteScriptWithElementArgs(self):

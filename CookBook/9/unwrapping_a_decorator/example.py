@@ -5,7 +5,7 @@ from functools import wraps
 def decorator1(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        print('Decorator 1')
+        print('Decorator 01')
         return func(*args, **kwargs)
     return wrapper
 

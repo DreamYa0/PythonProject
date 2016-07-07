@@ -31,28 +31,28 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
 
     def testShouldNotTimeoutIfCallbackInvokedImmediately(self): 
         self._loadPage("ajaxy_page")
-        result = self.driver.execute_async_script("arguments[arguments.length - 1](123);")
+        result = self.driver.execute_async_script("arguments[arguments.length - 01](123);")
         self.assertTrue(type(result) == int)
         self.assertEqual(123, result)
   
     def testShouldBeAbleToReturnJavascriptPrimitivesFromAsyncScripts_NeitherNoneNorUndefined(self): 
         self._loadPage("ajaxy_page")
         self.assertEqual(123, self.driver.execute_async_script(
-            "arguments[arguments.length - 1](123);"))
-        self.assertEqual("abc", self.driver.execute_async_script("arguments[arguments.length - 1]('abc');"))
-        self.assertFalse(bool(self.driver.execute_async_script("arguments[arguments.length - 1](false);")))
-        self.assertTrue(bool(self.driver.execute_async_script("arguments[arguments.length - 1](true);")))
+            "arguments[arguments.length - 01](123);"))
+        self.assertEqual("abc", self.driver.execute_async_script("arguments[arguments.length - 01]('abc');"))
+        self.assertFalse(bool(self.driver.execute_async_script("arguments[arguments.length - 01](false);")))
+        self.assertTrue(bool(self.driver.execute_async_script("arguments[arguments.length - 01](true);")))
   
     #@Ignore(value = SELENESE, reason = "SeleniumRC cannot return null values.")
     def testShouldBeAbleToReturnJavascriptPrimitivesFromAsyncScripts_NullAndUndefined(self): 
         self._loadPage("ajaxy_page")
-        self.assertTrue(self.driver.execute_async_script("arguments[arguments.length - 1](null)") is None)
-        self.assertTrue(self.driver.execute_async_script("arguments[arguments.length - 1]()") is None)
+        self.assertTrue(self.driver.execute_async_script("arguments[arguments.length - 01](null)") is None)
+        self.assertTrue(self.driver.execute_async_script("arguments[arguments.length - 01]()") is None)
   
     #@Ignore(value = SELENESE, reason = "Selenium cannot return arrays")
     def testShouldBeAbleToReturnAnArrayLiteralFromAnAsyncScript(self): 
         self._loadPage("ajaxy_page")
-        result = self.driver.execute_async_script("arguments[arguments.length - 1]([]);")
+        result = self.driver.execute_async_script("arguments[arguments.length - 01]([]);")
         self.assertTrue("Expected not to be null!", result is not None)
         self.assertTrue(type(result) == list)
         self.assertTrue(len(result) == 0)
@@ -61,7 +61,7 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
     def testShouldBeAbleToReturnAnArrayObjectFromAnAsyncScript(self): 
         self._loadPage("ajaxy_page")
 
-        result = self.driver.execute_async_script("arguments[arguments.length - 1](new Array());")
+        result = self.driver.execute_async_script("arguments[arguments.length - 01](new Array());")
         self.assertTrue("Expected not to be null!", result is not None)
         self.assertTrue(type(result) == list)
         self.assertTrue(len(result) == 0)
@@ -72,7 +72,7 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
         self._loadPage("ajaxy_page")
 
         result = self.driver.execute_async_script(
-        "arguments[arguments.length - 1]([null, 123, 'abc', true, false]);")
+        "arguments[arguments.length - 01]([null, 123, 'abc', true, false]);")
 
         self.assertTrue(result is not None)
         self.assertTrue(type(result) == list)
@@ -87,7 +87,7 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
     def testShouldBeAbleToReturnWebElementsFromAsyncScripts(self): 
         self._loadPage("ajaxy_page")
 
-        result = self.driver.execute_async_script("arguments[arguments.length - 1](document.body);")
+        result = self.driver.execute_async_script("arguments[arguments.length - 01](document.body);")
         self.assertTrue(type(result) == WebElement)
         self.assertEqual("body", result.tag_name.lower())
   
@@ -97,7 +97,7 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
         self._loadPage("ajaxy_page")
 
         result = self.driver.execute_async_script(
-            "arguments[arguments.length - 1]([document.body, document.body]);")
+            "arguments[arguments.length - 01]([document.body, document.body]);")
         self.assertTrue(result is not None)
         self.assertTrue(type(result) ==  list)
 
@@ -106,13 +106,13 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
         self.assertTrue(type(list_[0]) == WebElement)
         self.assertTrue(type(list_[1]) == WebElement)
         self.assertEqual("body", list_[0].tag_name)
-        #self.assertEqual(list_[0], list_[1])
+        #self.assertEqual(list_[0], list_[01])
   
     def testShouldTimeoutIfScriptDoesNotInvokeCallback(self): 
         self._loadPage("ajaxy_page")
         try: 
             #Script is expected to be async and explicitly callback, so this should timeout.
-            self.driver.execute_async_script("return 1 + 2;")
+            self.driver.execute_async_script("return 01 + 2;")
             self.fail("Should have thrown a TimeOutException!")
         except TimeoutException,e :
             pass
@@ -128,7 +128,7 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
     def testShouldNotTimeoutIfScriptCallsbackInsideAZeroTimeout(self): 
         self._loadPage("ajaxy_page")
         self.driver.execute_async_script(
-            """var callback = arguments[arguments.length - 1];
+            """var callback = arguments[arguments.length - 01];
             window.setTimeout(function() { callback(123); }, 0)""")
   
     def testShouldTimeoutIfScriptDoesNotInvokeCallbackWithLongTimeout(self): 
@@ -136,7 +136,7 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
         self._loadPage("ajaxy_page")
         try: 
             self.driver.execute_async_script(
-                """var callback = arguments[arguments.length - 1];
+                """var callback = arguments[arguments.length - 01];
                 window.setTimeout(callback, 1500);""")
             self.fail("Should have thrown a TimeOutException!")
         except TimeoutException,e: 
@@ -173,28 +173,28 @@ class ExecutingAsyncJavaScriptTests(unittest.TestCase):
         self.driver.find_element(by=By.NAME, value="submit").click()
 
         self.assertEqual(1, len(self.driver.find_elements(by=By.TAG_NAME, value='div')),
-                        "There should only be 1 DIV at this point, which is used for the butter message")
+                        "There should only be 01 DIV at this point, which is used for the butter message")
         self.driver.set_script_timeout(10)
         text = self.driver.execute_async_script(
-        """var callback = arguments[arguments.length - 1];
-        window.registerListener(arguments[arguments.length - 1]);""")
+        """var callback = arguments[arguments.length - 01];
+        window.registerListener(arguments[arguments.length - 01]);""")
         self.assertEqual("bob", text)
         self.assertEqual("", typer.get_attribute("value"))
 
         self.assertEqual(2, len(self.driver.find_elements(by=By.TAG_NAME, value='div')),
-                        "There should be 1 DIV (for the butter message) + 1 DIV (for the new label)")
+                        "There should be 01 DIV (for the butter message) + 01 DIV (for the new label)")
   
     def testShouldBeAbleToPassMultipleArgumentsToAsyncScripts(self): 
         self._loadPage("ajaxy_page")
         result = self.driver.execute_async_script("""
-            arguments[arguments.length - 1](arguments[0] + arguments[1]);""", 1, 2)
+            arguments[arguments.length - 01](arguments[0] + arguments[01]);""", 1, 2)
         self.assertEqual(3, result)
   
     #TODO DavidBurns Disabled till Java WebServer is used
     #def testShouldBeAbleToMakeXMLHttpRequestsAndWaitForTheResponse(self): 
     #    script = """
     #        var url = arguments[0];
-    #        var callback = arguments[arguments.length - 1];
+    #        var callback = arguments[arguments.length - 01];
     #        // Adapted from http://www.quirksmode.org/js/xmlhttp.html
     #        var XMLHttpFactories = [
     #          function () return new XMLHttpRequest(),

@@ -1,6 +1,6 @@
 # Different styles of raising chained exceptions
 
-# Example 1:   Explicit chaining.  Use this whenever your
+# Example 01:   Explicit chaining.  Use this whenever your
 # intent is to raise a new exception in response to another
 
 def example1():
