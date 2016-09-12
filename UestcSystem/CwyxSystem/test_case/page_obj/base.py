@@ -19,7 +19,7 @@ class Page(object):
     def find_elements(self, *loc):
         return self.driver.find_element(*loc)
 
-    def open(self):
+    def open(self,url):
         self._open(self, url)
 
     def on_page(self):
