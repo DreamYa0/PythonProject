@@ -1,6 +1,5 @@
 # coding:utf-8
-
-from Tools.scripts.treesync import raw_input
+from tools.py3k_support import raw_input
 
 db = {}
 
