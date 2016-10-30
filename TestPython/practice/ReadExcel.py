@@ -16,7 +16,6 @@ def excel_table_byindex(file='E:\\pjz\\DubboInterfaceTest\\Testcases\\TestcaseTe
     data = open_excel(file)
     table = data.sheets()[by_index]
     nrows = table.nrows  # 行数
-    ncols = table.ncols  # 列数
     colnames = table.row_values(colnameindex)  # 某一行数据
     list = []
     for rownum in range(1, nrows):
