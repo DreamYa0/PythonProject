@@ -54,3 +54,5 @@ ENV/
 .spyderproject
 .ropeproject
 .gitignore
+/.idea/misc.xml
+/.idea/PythonProject.iml
