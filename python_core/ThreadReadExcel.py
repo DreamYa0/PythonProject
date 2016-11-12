@@ -95,7 +95,6 @@ class ExcelProcess(object):
                            'expect': row_values[9].encode('utf8').replace("\n", "")}
                 case_list.append(tmpCase)
             return case_list
-
         else:
             raise IOError(u'ExcelProcess: __get_by_xlrd: Excel表中的列名不正确或者顺序错误!'.encode('utf8'))
 
