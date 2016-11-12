@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import os, socket, errno, types, tempfile
-
 
 class NetworkError(IOError):
     pass
