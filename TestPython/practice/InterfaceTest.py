@@ -8,3 +8,5 @@ url2 = urllib.request.Request(url+'?'+data)  # 用.Request来发送POST请求，
 response = urllib.request.urlopen(url2)  # 用.urlopen打开上一步返回的结果，得到请求后的响应内容
 apicontent = response.read()  # 将响应内容用read()读取出来
 print(apicontent)  # 打印读取到的内容
+
+
