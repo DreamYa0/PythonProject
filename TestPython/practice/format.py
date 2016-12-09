@@ -53,4 +53,3 @@ def x(n):
 for n in range(1, (number + 1)):
     s = x(n)
     print(s.center(number * 2 + 1))
-
