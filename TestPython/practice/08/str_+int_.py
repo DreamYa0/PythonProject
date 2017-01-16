@@ -6,5 +6,9 @@ c = str(a) + b
 print(c)
 d = "1111"
 e = a + int(d)
+
+A = '男'
+B = '女'
+print(A+B)
 # How to print multiply values
 print("c is %s,e is %i" % (c, e))
