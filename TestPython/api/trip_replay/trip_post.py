@@ -4,7 +4,6 @@ import ApiMethod
 tripUrl = "api/vi/trip"
 # 功能描述：获取查询时间范围内终端轨迹详细信息
 type = "post"
-cookies =
 
 # 成功查询轨迹
 def tripSuccuss():
