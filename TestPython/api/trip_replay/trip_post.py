@@ -2,7 +2,7 @@
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
 
-tripUrl = "api/vi/trip"
+tripUrl = "/trip"
 # 功能描述：获取查询时间范围内终端轨迹详细信息
 type = "post"
 cookie = Mycookies.Cookies
@@ -58,10 +58,11 @@ def tripNoID():
 
 # 开始时间字段缺失
 def tripNoST():
-    data={"end_time": 1478102399, "id": "898602B12616C0613882"}
-    return ApiMethod.testMethod(tripUrl,type,data)
+    data = {"end_time": 1478102399, "id": "898602B12616C0613882"}
+    return ApiMethod.testMethod(tripUrl, type, data)
+
 
 # 结束字段缺失
 def tripNoET():
-    data = {"start_time": 1478016000,"id": "898602B12616C0613882"}
-    return ApiMethod.testMethod(tripUrl,type,data)
+    data = {"start_time": 1478016000, "id": "898602B12616C0613882"}
+    return ApiMethod.testMethod(tripUrl, type, data)

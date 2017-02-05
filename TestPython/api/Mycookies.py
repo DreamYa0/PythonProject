@@ -5,8 +5,6 @@
 import requests
 import json
 
-cookieUrl = "http://www-alpha.mycloudhawk.com/login"
-data = {'username':'zhouyang@supeq.com','password':'123456'}
-header = {'Content-Type':'application/x-www-form-urlencoded'}
-# 也可以不要header
-Cookies = requests.post(url=cookieUrl,data = data,headers = header).cookies
+cookieUrl = "http://192.168.3.149:8080/api/v1/login"
+data = {'username': 'zhouyang@supeq.com', 'password': '123456'}
+Cookies = requests.post(url=cookieUrl, data=json.dumps(data)).cookies
