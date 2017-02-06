@@ -8,6 +8,12 @@ from TestPython.api.login import login
 from TestPython.api.login import logout
 from TestPython.api.resetPassword import email
 from TestPython.api.resetPassword import reset
+from TestPython.api.users import userManagement
+from TestPython.api.users import Adduser
+from TestPython.api.users import Adituser
+from TestPython.api.users import DeleteUser
+from TestPython.api.Timeline import timeline
+from TestPython.api.report_Dashboard import Dashboard
 
 
 class tripApiTest(unittest.TestCase):
@@ -217,7 +223,8 @@ class resetApiTest(unittest.TestCase):
     def test_resetPwdSmall(self):
         result = reset.resetPwdSmall()
         self.assertEqual(result["status"], 128)
-        self.assertEqual(result["message"], 'enter a password more than 6 numbers or letters in length, try again please.')
+        self.assertEqual(result["message"],
+                         'enter a password more than 6 numbers or letters in length, try again please.')
 
     def test_resetPwdboundaryS(self):
         result = reset.resetPwdboundaryS()
@@ -233,6 +240,541 @@ class resetApiTest(unittest.TestCase):
         result = reset.resetPwdBig()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class userManagementApiTest(unittest.TestCase):
+    """获取子账号"""
+
+    def test_userSuccess(self):
+        result = userManagement.userSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_userNoCookie(self):
+        result = userManagement.userNoCookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+
+class AdduserApiTest(unittest.TestCase):
+    """新增子账号"""
+
+    def test_AdduserNoCookie(self):
+        result = Adduser.AdduserNoCookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_AdduserSuccess(self):
+        result = Adduser.AdduserSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdduserENone(self):
+        result = Adduser.AdduserENone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserFNNONE(self):
+        result = Adduser.AdduserFNNONE()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserLNNone(self):
+        result = Adduser.AdduserLNNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserATNone(self):
+        result = Adduser.AdduserATNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserMNone(self):
+        result = Adduser.AdduserMNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserPwdNone(self):
+        result = Adduser.AdduserPwdNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserRIdNone(self):
+        result = Adduser.AdduserRIdNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserTidsNone(self):
+        result = Adduser.AdduserTidsNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserEEmpty(self):
+        result = Adduser.AdduserEEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserFNEmpty(self):
+        result = Adduser.AdduserFNEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserLNEmpty(self):
+        result = Adduser.AdduserLNEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserATEmpty(self):
+        result = Adduser.AdduserATEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserMEmpty(self):
+        result = Adduser.AdduserMEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserPwdEmpty(self):
+        result = Adduser.AdduserPwdEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserRIdEmpty(self):
+        result = Adduser.AdduserRIdEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserTidsEmpty(self):
+        result = Adduser.AdduserTidsEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserNoEmail(self):
+        result = Adduser.AdduserNoEmail()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserNoFN(self):
+        result = Adduser.AdduserNoFN()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserNoLN(self):
+        result = Adduser.AdduserNoLN()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserNoAT(self):
+        result = Adduser.AdduserNoAT()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserNoM(self):
+        result = Adduser.AdduserNoM()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserNoPwd(self):
+        result = Adduser.AdduserNoPwd()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserNoRId(self):
+        result = Adduser.AdduserNoRId()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserNoTids(self):
+        result = Adduser.AdduserNoTids()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserAEmailError(self):
+        result = Adduser.AdduserAEmailError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserUEmailError(self):
+        result = Adduser.AdduserUEmailError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserEFormError(self):
+        result = Adduser.AdduserEFormError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserFNBig(self):
+        result = Adduser.AdduserFNBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserLNBig(self):
+        result = Adduser.AdduserLNBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserMEBig(self):
+        result = Adduser.AdduserMEBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserPwdBig(self):
+        result = Adduser.AdduserPwdBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserPwdSmall(self):
+        result = Adduser.AdduserPwdSmall()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserRIdError(self):
+        result = Adduser.AdduserRIdError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class AdituserApiTest(unittest.TestCase):
+    """修改子账号"""
+
+    def test_AdituserNoCookie(self):
+        result = Adituser.AdituserNoCookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_AdituserENone(self):
+        result = Adituser.AdituserENone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserFNNONE(self):
+        result = Adituser.AdituserFNNONE()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserLNNone(self):
+        result = Adituser.AdituserLNNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserATNone(self):
+        result = Adituser.AdituserATNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserMNone(self):
+        result = Adituser.AdituserMNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserPwdNone(self):
+        result = Adituser.AdituserPwdNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserRIdNone(self):
+        result = Adituser.AdituserRIdNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserTidsNone(self):
+        result = Adituser.AdituserTidsNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserEEmpty(self):
+        result = Adituser.AdituserEEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserFNEmpty(self):
+        result = Adituser.AdituserFNEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserLNEmpty(self):
+        result = Adituser.AdituserLNEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserATEmpty(self):
+        result = Adituser.AdituserATEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserMEmpty(self):
+        result = Adituser.AdituserMEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserPwdEmpty(self):
+        result = Adituser.AdituserPwdEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserRIdEmpty(self):
+        result = Adituser.AdituserRIdEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserTidsEmpty(self):
+        result = Adituser.AdituserTidsEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserNoEmail(self):
+        result = Adituser.AdituserNoEmail()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserNoFN(self):
+        result = Adituser.AdituserNoFN()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserNoLN(self):
+        result = Adituser.AdituserNoLN()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserNoAT(self):
+        result = Adituser.AdituserNoAT()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserNoM(self):
+        result = Adituser.AdituserNoM()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserNoPwd(self):
+        result = Adituser.AdituserNoPwd()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserNoRId(self):
+        result = Adituser.AdituserNoRId()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserNoTids(self):
+        result = Adituser.AdituserNoTids()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserAEmailError(self):
+        result = Adituser.AdituserAEmailError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserUEmailError(self):
+        result = Adituser.AdituserUEmailError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserEFormError(self):
+        result = Adituser.AdituserEFormError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserFNBig(self):
+        result = Adituser.AdituserFNBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserLNBig(self):
+        result = Adituser.AdituserLNBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserMEBig(self):
+        result = Adituser.AdituserMEBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserPwdBig(self):
+        result = Adituser.AdituserPwdBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserPwdSmall(self):
+        result = Adituser.AdituserPwdSmall()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserRIdError(self):
+        result = Adituser.AdituserRIdError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdituserESuccess(self):
+        result = Adituser.AdituserESuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdituserFNSuccess(self):
+        result = Adituser.AdituserFNSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdituserLNSuccess(self):
+        result = Adituser.AdituserLNSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdituserATSuccess(self):
+        result = Adituser.AdituserATSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdituserMSuccess(self):
+        result = Adituser.AdituserMSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdituserPwdSuccess(self):
+        result = Adituser.AdituserPwdSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdituserRIdSuccess(self):
+        result = Adituser.AdituserRIdSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdituserTidsSuccess(self):
+        result = Adituser.AdituserTidsSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+
+class DeleteUserApiTest(unittest.TestCase):
+    """删除子账号"""
+
+    def test_deleteUserSuccess(self):
+        result = DeleteUser.deleteUserSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_deleteUserNocookie(self):
+        result = DeleteUser.deleteUserNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+
+class timelineApiTest(unittest.TestCase):
+    """轨迹时间轴查询"""
+
+    def test_timelineNoCookie(self):
+        result = timeline.timelineNoCookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_timelineSuccessA(self):
+        result = timeline.timelineSuccessA()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_timelineSuccessB(self):
+        result = timeline.timelineSuccessB()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_timelineIdsNone(self):
+        result = timeline.timelineIdsNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineSTNone(self):
+        result = timeline.timelineSTNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineETNone(self):
+        result = timeline.timelineETNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineIdsEmpty(self):
+        result = timeline.timelineIdsEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineSTEmpty(self):
+        result = timeline.timelineSTEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineETEmpty(self):
+        result = timeline.timelineETEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineNoIds(self):
+        result = timeline.timelineNoIds()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineNoST(self):
+        result = timeline.timelineNoST()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineNoET(self):
+        result = timeline.timelineNoET()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class DashboardApiTest(unittest.TestCase):
+    """获取各报表前7数据"""
+
+    def test_mileageSuccess(self):
+        result = Dashboard.mileageSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def driving_timeSuccess(self):
+        result = Dashboard.driving_timeSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def fuelSuccess(self):
+        result = Dashboard.fuelSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def speedSuccess(self):
+        result = Dashboard.speedSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def temperatureSuccess(self):
+        result = Dashboard.temperatureSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def visitSuccess(self):
+        result = Dashboard.visitSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def maintenceSuccess(self):
+        result = Dashboard.maintenceSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def IFIASuccess(self):
+        result = Dashboard.IFIASuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def NOcookie(self):
+        result = Dashboard.NOcookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
 
 if __name__ == '__main__':
     unittest.main()
