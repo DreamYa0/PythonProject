@@ -14,6 +14,13 @@ from TestPython.api.users import Adituser
 from TestPython.api.users import DeleteUser
 from TestPython.api.Timeline import timeline
 from TestPython.api.report_Dashboard import Dashboard
+from TestPython.api.users import user_id
+from TestPython.api.role import permissions
+from TestPython.api.role import userrole
+from TestPython.api.role import Addrole
+from TestPython.api.role import role_id
+from TestPython.api.role import Aditrole
+from TestPython.api.role import deleterole
 
 
 class tripApiTest(unittest.TestCase):
@@ -118,6 +125,16 @@ class loginApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
+    def test_loginPwdSmall(self):
+        result = login.loginPwdSmall()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_loginPwdBig(self):
+        result = login.loginPwdBig()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
 
 class logoutApiTest(unittest.TestCase):
     """登出"""
@@ -143,8 +160,8 @@ class emailApiTest(unittest.TestCase):
 
     def test_resetUnregistered(self):
         result = email.resetUnregistered()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
+        self.assertEqual(result["status"], 218)
+        self.assertEqual(result["message"], 'Mailbox not activated.')
 
     def test_resetNone(self):
         result = email.resetNone()
@@ -179,6 +196,11 @@ class resetApiTest(unittest.TestCase):
         result = reset.resetSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_resetInvalid(self):
+        result = reset.resetInvalid()
+        self.assertEqual(result["status"], 219)
+        self.assertEqual(result["message"], 'Link failure.')
 
     def test_resetWrongCF(self):
         result = reset.resetWrongCF()
@@ -243,7 +265,7 @@ class resetApiTest(unittest.TestCase):
 
 
 class userManagementApiTest(unittest.TestCase):
-    """获取子账号"""
+    """获取全部子账号列表"""
 
     def test_userSuccess(self):
         result = userManagement.userSuccess()
@@ -435,6 +457,20 @@ class AdduserApiTest(unittest.TestCase):
         self.assertEqual(result["message"], 'Invalid request data format.')
 
 
+class user_idApiTest(unittest.TestCase):
+    """获取单个子账号详情"""
+
+    def oneuserSuccess(self):
+        result = user_id.oneuserSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def oneuserNocookie(self):
+        result = user_id.oneuserNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+
 class AdituserApiTest(unittest.TestCase):
     """修改子账号"""
 
@@ -465,11 +501,6 @@ class AdituserApiTest(unittest.TestCase):
 
     def test_AdituserMNone(self):
         result = Adituser.AdituserMNone()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserPwdNone(self):
-        result = Adituser.AdituserPwdNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -508,11 +539,6 @@ class AdituserApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserPwdEmpty(self):
-        result = Adituser.AdituserPwdEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
     def test_AdituserRIdEmpty(self):
         result = Adituser.AdituserRIdEmpty()
         self.assertEqual(result["status"], 400)
@@ -520,46 +546,6 @@ class AdituserApiTest(unittest.TestCase):
 
     def test_AdituserTidsEmpty(self):
         result = Adituser.AdituserTidsEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserNoEmail(self):
-        result = Adituser.AdituserNoEmail()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserNoFN(self):
-        result = Adituser.AdituserNoFN()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserNoLN(self):
-        result = Adituser.AdituserNoLN()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserNoAT(self):
-        result = Adituser.AdituserNoAT()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserNoM(self):
-        result = Adituser.AdituserNoM()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserNoPwd(self):
-        result = Adituser.AdituserNoPwd()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserNoRId(self):
-        result = Adituser.AdituserNoRId()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserNoTids(self):
-        result = Adituser.AdituserNoTids()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -593,16 +579,6 @@ class AdituserApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserPwdBig(self):
-        result = Adituser.AdituserPwdBig()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdituserPwdSmall(self):
-        result = Adituser.AdituserPwdSmall()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
     def test_AdituserRIdError(self):
         result = Adituser.AdituserRIdError()
         self.assertEqual(result["status"], 400)
@@ -630,11 +606,6 @@ class AdituserApiTest(unittest.TestCase):
 
     def test_AdituserMSuccess(self):
         result = Adituser.AdituserMSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def test_AdituserPwdSuccess(self):
-        result = Adituser.AdituserPwdSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
@@ -774,6 +745,155 @@ class DashboardApiTest(unittest.TestCase):
         result = Dashboard.NOcookie()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
+
+
+class permissionsApiTest(unittest.TestCase):
+    """获取角色所有权限"""
+
+    def test_roleSuccess(self):
+        result = permissions.roleSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_roleNocookie(self):
+        result = permissions.roleNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+
+class userroleApiTest(unittest.TestCase):
+    """获取权限子账号信息"""
+
+    def test_userroleSuccess(self):
+        result = userrole.userroleSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_userroleNocookie(self):
+        result = userrole.userroleNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+
+class AddroleApiTest(unittest.TestCase):
+    """创建子角色"""
+
+    def test_addroleSuccess(self):
+        result = Addrole.addroleSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_addroleNocookie(self):
+        result = Addrole.addroleNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_addroleOnly(self):
+        result = Addrole.addroleOnly()
+        self.assertEqual(result["status"], 918)
+        self.assertEqual(result["message"], 'Name repetition.')
+
+    def test_addroleNMEmpty(self):
+        result = Addrole.addroleNMEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_addrolePMSEmpty(self):
+        result = Addrole.addrolePMSEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_addroleNMNone(self):
+        result = Addrole.addroleNMNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_addrolePMSNone(self):
+        result = Addrole.addrolePMSNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_addroleNoNM(self):
+        result = Addrole.addroleNoNM()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_addroleNoPMS(self):
+        result = Addrole.addroleNoPMS()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class role_idApiTest(unittest.TestCase):
+    """获取单个子角色信息"""
+
+    def test_oneroleSuccess(self):
+        result = role_id.oneroleSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_oneroleNocookie(self):
+        result = role_id.oneroleNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+
+class AditroleApiTest(unittest.TestCase):
+    """修改子角色"""
+
+    def test_roleNocookie(self):
+        result = Aditrole.roleNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_rolenameSuccess(self):
+        result = Aditrole.rolenameSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_rolePMSSuccess(self):
+        result = Aditrole.rolePMSSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_rolePMSNothing(self):
+        result = Aditrole.rolePMSNothing()
+        self.assertEqual(result["status"], 404)
+        self.assertEqual(result["message"], 'Not found.')
+
+    def test_rolenameNone(self):
+        result = Aditrole.rolenameNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_rolePMSNone(self):
+        result = Aditrole.rolePMSNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_rolenameEmpty(self):
+        result = Aditrole.rolenameEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_rolePMSEmpty(self):
+        result = Aditrole.rolePMSEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class deleteroleApiTest(unittest.TestCase):
+    """删除子角色"""
+
+    def test_roleNocookie(self):
+        result = deleterole.roleNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_roleDeleteSuccess(self):
+        result = deleterole.roleDeleteSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
 
 
 if __name__ == '__main__':

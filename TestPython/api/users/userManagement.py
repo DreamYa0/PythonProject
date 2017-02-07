@@ -2,7 +2,7 @@
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
 
-userUrl = "/api/v1/admin/user"
+userUrl = "/api/v1/users"
 type = "get"
 cookie = Mycookies.Cookies
 
