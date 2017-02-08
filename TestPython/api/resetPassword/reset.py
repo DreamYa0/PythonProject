@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 
-resetUrl = "/api/v1/reset/password"
+resetUrl = "/api/v1/password"
 type = "put"
 
 
 # 重置密码成功
 def resetSuccess():
+    data = {"confirmation": "11rN09OGPJgHwLFF68JLHiqmL886FWrtx4xKvRdd92NISCvHjXzQKL1gFyl25gqA", "password": "111111"}
+    return ApiMethod.testMethod(resetUrl, type, data)
+
+
+# 激活码失效
+def resetInvalid():
     data = {"confirmation": "11rN09OGPJgHwLFF68JLHiqmL886FWrtx4xKvRdd92NISCvHjXzQKL1gFyl25gqA", "password": "111111"}
     return ApiMethod.testMethod(resetUrl, type, data)
 

@@ -21,6 +21,11 @@ from TestPython.api.role import Addrole
 from TestPython.api.role import role_id
 from TestPython.api.role import Aditrole
 from TestPython.api.role import deleterole
+from TestPython.api.POI_GEO import pois
+from TestPython.api.POI_GEO import Addpoi
+from TestPython.api.POI_GEO import AditPOI
+from TestPython.api.POI_GEO import deletepoi
+from TestPython.api.notification import notification
 
 
 class tripApiTest(unittest.TestCase):
@@ -894,6 +899,297 @@ class deleteroleApiTest(unittest.TestCase):
         result = deleterole.roleDeleteSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
+
+
+class poisApiTest(unittest.TestCase):
+    """获取poi列表"""
+
+    def test_poisNocookie(self):
+        result = pois.poisNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_poisSuccess(self):
+        result = pois.poisSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_poisNoPage(self):
+        result = pois.poisNoPage()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_poisEmpty(self):
+        result = pois.poisEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_poisNone(self):
+        result = pois.poisNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class AddpoiApiTest(unittest.TestCase):
+    """添加poi"""
+
+    def test_AddpoiNocookie(self):
+        result = Addpoi.AddpoiNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_AddpoiSuccess(self):
+        result = Addpoi.AddpoiSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AddpoiNameEmpty(self):
+        result = Addpoi.AddpoiNameEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiARSEmpty(self):
+        result = Addpoi.AddpoiARSEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiPathEmpty(self):
+        result = Addpoi.AddpoiPathEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiREmpty(self):
+        result = Addpoi.AddpoiREmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiLtEmpty(self):
+        result = Addpoi.AddpoiLtEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiLgEmpty(self):
+        result = Addpoi.AddpoiLgEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiEAEmpty(self):
+        result = Addpoi.AddpoiEAEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiOAEmpty(self):
+        result = Addpoi.AddpoiOAEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoitidsEmpty(self):
+        result = Addpoi.AddpoitidsEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNameNone(self):
+        result = Addpoi.AddpoiNameNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiARSNone(self):
+        result = Addpoi.AddpoiARSNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiPathNone(self):
+        result = Addpoi.AddpoiPathNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiRNone(self):
+        result = Addpoi.AddpoiRNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiLtNone(self):
+        result = Addpoi.AddpoiLtNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiLgNone(self):
+        result = Addpoi.AddpoiLgNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiEANone(self):
+        result = Addpoi.AddpoiEANone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiOANone(self):
+        result = Addpoi.AddpoiOANone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoitidsNone(self):
+        result = Addpoi.AddpoitidsNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoname(self):
+        result = Addpoi.AddpoiNoname()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoaddress(self):
+        result = Addpoi.AddpoiNoaddress()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoAP(self):
+        result = Addpoi.AddpoiNoAP()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoR(self):
+        result = Addpoi.AddpoiNoR()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoLT(self):
+        result = Addpoi.AddpoiNoLT()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoLG(self):
+        result = Addpoi.AddpoiNoLG()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoaEA(self):
+        result = Addpoi.AddpoiNoaEA()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoOA(self):
+        result = Addpoi.AddpoiNoOA()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiNoTids(self):
+        result = Addpoi.AddpoiNoTids()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class AditPOIApiTest(unittest.TestCase):
+    """修改poi"""
+
+    def test_AditpoiNocookie(self):
+        result = AditPOI.AditpoiNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_AditpoiNameSuccess(self):
+        result = AditPOI.AditpoiNameSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AditpoiAPSuccess(self):
+        result = AditPOI.AditpoiAPSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AditpoiEASuccess(self):
+        result = AditPOI.AditpoiEASuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AditpoiOASuccess(self):
+        result = AditPOI.AditpoiOASuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AditpoiTidsSuccess(self):
+        result = AditPOI.AditpoiTidsSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AditpoiNameEmpty(self):
+        result = AditPOI.AditpoiNameEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiPathEmpty(self):
+        result = AditPOI.AditpoiPathEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiEAEmpty(self):
+        result = AditPOI.AditpoiEAEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiOAEmpty(self):
+        result = AditPOI.AditpoiOAEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoitidsEmpty(self):
+        result = AditPOI.AditpoitidsEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiNameNone(self):
+        result = AditPOI.AditpoiNameNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiPathNone(self):
+        result = AditPOI.AditpoiPathNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiEANone(self):
+        result = AditPOI.AditpoiEANone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiOANone(self):
+        result = AditPOI.AditpoiOANone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoitidsNone(self):
+        result = AditPOI.AditpoitidsNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class deletepoiApiTest(unittest.TestCase):
+    """删除poi"""
+
+    def test_deletePoiNocookie(self):
+        result = deletepoi.deletePoiNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_deletePoiSuccess(self):
+        result = deletepoi.deletePoiSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+
+class notificationApiTest(unittest.TestCase):
+    """"获取提醒标签列表"""
+
+    def test_notificationNocookie(self):
+        result = notification.notificationNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_notificationSuccess(self):
+        result = notification.notificationSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
 
 
 if __name__ == '__main__':

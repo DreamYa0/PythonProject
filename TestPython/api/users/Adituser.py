@@ -10,7 +10,7 @@ cookie = Mycookies.Cookies
 # 无权限修改子账号
 def AdituserNoCookie():
     data = {"email": "309794415@qq.com", "first_name": "ying", "last_name": "tao", "week": [0, 1, 2, 3, 4, 5, 6],
-            "phone": "123456", "role_id": "531", "tids": ["3E428007AF", "3728800381"]}
+            "phone": "123456", "role_id": "531", "tids": ["898602B12616C0613882", "89860042191586153394"]}
     return ApiMethod.testMethod(userUrl, type, data)
 
 
@@ -136,7 +136,7 @@ def AdituserMEBig():
 
 # 角色id不存在
 def AdituserRIdError():
-    data = {"tids": ["3E428007AF", "3728800381"]}
+    data = {"tids": ["898602B12616C0613882", "89860042191586153394"]}
     return ApiMethod.testMethod(userUrl, type, data, cookie)
 
 
@@ -178,5 +178,5 @@ def AdituserRIdSuccess():
 
 # tids修改成功
 def AdituserTidsSuccess():
-    data = {"tids": ["3E428007AF"]}
+    data = {"tids": ["898602B12616C0613882"]}
     return ApiMethod.testMethod(userUrl, type, data, cookie)

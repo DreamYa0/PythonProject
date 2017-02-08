@@ -37,13 +37,13 @@ def loginPwdNone():
 
 # 用户名为空
 def loginUserEmpty():
-    data = {"username":"", "password": "123456"}
+    data = {"username": "", "password": "123456"}
     return ApiMethod.testMethod(loginUrl, type, data)
 
 
 # 密码为空
 def loginPwdEmpty():
-    data = {"username":"zhouyang@supeq.com", "password": ""}
+    data = {"username": "zhouyang@supeq.com", "password": ""}
     return ApiMethod.testMethod(loginUrl, type, data)
 
 
@@ -56,4 +56,16 @@ def loginNoUser():
 # 密码字段缺失
 def loginNoPwd():
     data = {"username": "zhouyang@supeq.com"}
+    return ApiMethod.testMethod(loginUrl, type, data)
+
+
+# 密码小于6位
+def loginPwdSmall():
+    data = {"username": "zhouyang@supeq.com", "password": "12345"}
+    return ApiMethod.testMethod(loginUrl, type, data)
+
+
+# 密码大于20位
+def loginPwdBig():
+    data = {"username": "zhouyang@supeq.com", "password": "111111111111111111111"}
     return ApiMethod.testMethod(loginUrl, type, data)

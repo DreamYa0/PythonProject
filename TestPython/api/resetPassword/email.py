@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 
-resetUrl = "/api/v1/reset/password"
+resetUrl = "/api/v1/password"
 type = "get"
 
 
