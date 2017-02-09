@@ -10,7 +10,7 @@ from TestPython.api.resetPassword import email
 from TestPython.api.resetPassword import reset
 from TestPython.api.users import userManagement
 from TestPython.api.users import Adduser
-from TestPython.api.users import Adituser
+from TestPython.api.users import Edituser
 from TestPython.api.users import DeleteUser
 from TestPython.api.Timeline import timeline
 from TestPython.api.report_Dashboard import Dashboard
@@ -19,12 +19,16 @@ from TestPython.api.role import permissions
 from TestPython.api.role import userrole
 from TestPython.api.role import Addrole
 from TestPython.api.role import role_id
-from TestPython.api.role import Aditrole
+from TestPython.api.role import Editrole
 from TestPython.api.role import deleterole
 from TestPython.api.POI_GEO import pois
 from TestPython.api.POI_GEO import Addpoi
-from TestPython.api.POI_GEO import AditPOI
+from TestPython.api.POI_GEO import EditPOI
 from TestPython.api.POI_GEO import deletepoi
+from TestPython.api.POI_GEO import GEO
+from TestPython.api.POI_GEO import Addgeo
+from TestPython.api.POI_GEO import Editgeo
+from TestPython.api.POI_GEO import deletegeo
 from TestPython.api.notification import notification
 
 
@@ -130,13 +134,24 @@ class loginApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_loginPwdSmall(self):
-        result = login.loginPwdSmall()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
+    def test_loginPwdLess(self):
+        result = login.loginPwdLess()
+        self.assertEqual(result["status"], 128)
+        self.assertEqual(result["message"],
+                         'enter a password more than 6 numbers or letters in length, try again please.')
 
-    def test_loginPwdBig(self):
-        result = login.loginPwdBig()
+    def test_loginPwdMax(self):
+        result = login.loginPwdMax()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_loginPwdMin(self):
+        result = login.loginPwdMin()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_loginPwdOut(self):
+        result = login.loginPwdOut()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -247,24 +262,29 @@ class resetApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_resetPwdSmall(self):
-        result = reset.resetPwdSmall()
+    def test_resetPwdless(self):
+        result = reset.resetPwdless()
         self.assertEqual(result["status"], 128)
         self.assertEqual(result["message"],
                          'enter a password more than 6 numbers or letters in length, try again please.')
 
-    def test_resetPwdboundaryS(self):
-        result = reset.resetPwdboundaryS()
+    def test_resetPwdMin(self):
+        result = reset.resetPwdMin()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_PwdboundaryB(self):
-        result = reset.resetPwdboundaryB()
+    def test_resetPwdMax(self):
+        result = reset.resetPwdMax()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_resetPwdBig(self):
-        result = reset.resetPwdBig()
+    def test_resetPwdOut(self):
+        result = reset.resetPwdOut()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_resetPwdInt(self):
+        result = reset.resetPwdInt()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -476,151 +496,151 @@ class user_idApiTest(unittest.TestCase):
         self.assertEqual(result["message"], 'Authenticated failed.')
 
 
-class AdituserApiTest(unittest.TestCase):
+class EdituserApiTest(unittest.TestCase):
     """修改子账号"""
 
-    def test_AdituserNoCookie(self):
-        result = Adituser.AdituserNoCookie()
+    def test_EdituserNoCookie(self):
+        result = Edituser.EdituserNoCookie()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
 
-    def test_AdituserENone(self):
-        result = Adituser.AdituserENone()
+    def test_EdituserENone(self):
+        result = Edituser.EdituserENone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserFNNONE(self):
-        result = Adituser.AdituserFNNONE()
+    def test_EdituserFNNONE(self):
+        result = Edituser.EdituserFNNONE()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserLNNone(self):
-        result = Adituser.AdituserLNNone()
+    def test_EdituserLNNone(self):
+        result = Edituser.EdituserLNNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserATNone(self):
-        result = Adituser.AdituserATNone()
+    def test_EdituserATNone(self):
+        result = Edituser.EdituserATNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserMNone(self):
-        result = Adituser.AdituserMNone()
+    def test_EdituserMNone(self):
+        result = Edituser.EdituserMNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserRIdNone(self):
-        result = Adituser.AdituserRIdNone()
+    def test_EdituserRIdNone(self):
+        result = Edituser.EdituserRIdNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserTidsNone(self):
-        result = Adituser.AdituserTidsNone()
+    def test_EdituserTidsNone(self):
+        result = Edituser.EdituserTidsNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserEEmpty(self):
-        result = Adituser.AdituserEEmpty()
+    def test_EdituserEEmpty(self):
+        result = Edituser.EdituserEEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserFNEmpty(self):
-        result = Adituser.AdituserFNEmpty()
+    def test_EdituserFNEmpty(self):
+        result = Edituser.EdituserFNEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserLNEmpty(self):
-        result = Adituser.AdituserLNEmpty()
+    def test_EdituserLNEmpty(self):
+        result = Edituser.EdituserLNEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserATEmpty(self):
-        result = Adituser.AdituserATEmpty()
+    def test_EdituserATEmpty(self):
+        result = Edituser.EdituserATEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserMEmpty(self):
-        result = Adituser.AdituserMEmpty()
+    def test_EdituserMEmpty(self):
+        result = Edituser.EdituserMEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserRIdEmpty(self):
-        result = Adituser.AdituserRIdEmpty()
+    def test_EdituserRIdEmpty(self):
+        result = Edituser.EdituserRIdEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserTidsEmpty(self):
-        result = Adituser.AdituserTidsEmpty()
+    def test_EdituserTidsEmpty(self):
+        result = Edituser.EdituserTidsEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserAEmailError(self):
-        result = Adituser.AdituserAEmailError()
+    def test_EdituserAEmailError(self):
+        result = Edituser.EdituserAEmailError()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserUEmailError(self):
-        result = Adituser.AdituserUEmailError()
+    def test_EdituserUEmailError(self):
+        result = Edituser.EdituserUEmailError()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserEFormError(self):
-        result = Adituser.AdituserEFormError()
+    def test_EdituserEFormError(self):
+        result = Edituser.EdituserEFormError()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserFNBig(self):
-        result = Adituser.AdituserFNBig()
+    def test_EdituseFNMax(self):
+        result = Edituser.EdituseFNMax()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserLNBig(self):
-        result = Adituser.AdituserLNBig()
+    def test_EdituserLNMax(self):
+        result = Edituser.EdituserLNMax()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserMEBig(self):
-        result = Adituser.AdituserMEBig()
+    def test_EdituserMEMax(self):
+        result = Edituser.EdituserMEMax()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserRIdError(self):
-        result = Adituser.AdituserRIdError()
+    def test_EdituserRIdError(self):
+        result = Edituser.EdituserRIdError()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdituserESuccess(self):
-        result = Adituser.AdituserESuccess()
+    def test_EdituserESuccess(self):
+        result = Edituser.EdituserESuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_AdituserFNSuccess(self):
-        result = Adituser.AdituserFNSuccess()
+    def test_EdituserFNSuccess(self):
+        result = Edituser.EdituserFNSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_AdituserLNSuccess(self):
-        result = Adituser.AdituserLNSuccess()
+    def test_EdituserLNSuccess(self):
+        result = Edituser.EdituserLNSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_AdituserATSuccess(self):
-        result = Adituser.AdituserATSuccess()
+    def test_EdituserATSuccess(self):
+        result = Edituser.EdituserATSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_AdituserMSuccess(self):
-        result = Adituser.AdituserMSuccess()
+    def test_EdituserMSuccess(self):
+        result = Edituser.EdituserMSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_AdituserRIdSuccess(self):
-        result = Adituser.AdituserRIdSuccess()
+    def test_EdituserRIdSuccess(self):
+        result = Edituser.EdituserRIdSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_AdituserTidsSuccess(self):
-        result = Adituser.AdituserTidsSuccess()
+    def test_EdituserTidsSuccess(self):
+        result = Edituser.EdituserTidsSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
@@ -699,6 +719,16 @@ class timelineApiTest(unittest.TestCase):
 
     def test_timelineNoET(self):
         result = timeline.timelineNoET()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineSTStr(self):
+        result = timeline.timelineSTStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineETStr(self):
+        result = timeline.timelineETStr()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -843,46 +873,46 @@ class role_idApiTest(unittest.TestCase):
         self.assertEqual(result["message"], 'Authenticated failed.')
 
 
-class AditroleApiTest(unittest.TestCase):
+class EditroleApiTest(unittest.TestCase):
     """修改子角色"""
 
     def test_roleNocookie(self):
-        result = Aditrole.roleNocookie()
+        result = Editrole.roleNocookie()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
 
     def test_rolenameSuccess(self):
-        result = Aditrole.rolenameSuccess()
+        result = Editrole.rolenameSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
     def test_rolePMSSuccess(self):
-        result = Aditrole.rolePMSSuccess()
+        result = Editrole.rolePMSSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
     def test_rolePMSNothing(self):
-        result = Aditrole.rolePMSNothing()
+        result = Editrole.rolePMSNothing()
         self.assertEqual(result["status"], 404)
         self.assertEqual(result["message"], 'Not found.')
 
     def test_rolenameNone(self):
-        result = Aditrole.rolenameNone()
+        result = Editrole.rolenameNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_rolePMSNone(self):
-        result = Aditrole.rolePMSNone()
+        result = Editrole.rolePMSNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_rolenameEmpty(self):
-        result = Aditrole.rolenameEmpty()
+        result = Editrole.rolenameEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_rolePMSEmpty(self):
-        result = Aditrole.rolePMSEmpty()
+        result = Editrole.rolePMSEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -919,13 +949,48 @@ class poisApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
+    def test_poisNoPSiza(self):
+        result = pois.poisNoPSiza()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
     def test_poisEmpty(self):
         result = pois.poisEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
+    def test_poisPSizaEmpty(self):
+        result = pois.poisPSizaEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
     def test_poisNone(self):
         result = pois.poisNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_poisPSizaNone(self):
+        result = pois.poisPSizaNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_poisStr(self):
+        result = pois.poisStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_poisPSStr(self):
+        result = pois.poisPSStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_poisPageNoExist(self):
+        result = pois.poisPageNoExist()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_poisPSizeNoExist(self):
+        result = pois.poisPSizeNoExist()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -940,6 +1005,11 @@ class AddpoiApiTest(unittest.TestCase):
 
     def test_AddpoiSuccess(self):
         result = Addpoi.AddpoiSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AddpoiSuccessNoalert(self):
+        result = Addpoi.AddpoiSuccessNoalert()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
@@ -1078,87 +1148,137 @@ class AddpoiApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
+    def test_AddpoiNameInt(self):
+        result = Addpoi.AddpoiNameInt()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
 
-class AditPOIApiTest(unittest.TestCase):
+    def test_AddpoiRStr(self):
+        result = Addpoi.AddpoiRStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiLtStr(self):
+        result = Addpoi.AddpoiLtStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiLgStr(self):
+        result = Addpoi.AddpoiLgStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiEAStr(self):
+        result = Addpoi.AddpoiEAStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AddpoiOAStr(self):
+        result = Addpoi.AddpoiOAStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class EditPOIApiTest(unittest.TestCase):
     """修改poi"""
 
     def test_AditpoiNocookie(self):
-        result = AditPOI.AditpoiNocookie()
+        result = EditPOI.AditpoiNocookie()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
 
     def test_AditpoiNameSuccess(self):
-        result = AditPOI.AditpoiNameSuccess()
+        result = EditPOI.AditpoiNameSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
     def test_AditpoiAPSuccess(self):
-        result = AditPOI.AditpoiAPSuccess()
+        result = EditPOI.AditpoiAPSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
     def test_AditpoiEASuccess(self):
-        result = AditPOI.AditpoiEASuccess()
+        result = EditPOI.AditpoiEASuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
     def test_AditpoiOASuccess(self):
-        result = AditPOI.AditpoiOASuccess()
+        result = EditPOI.AditpoiOASuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
     def test_AditpoiTidsSuccess(self):
-        result = AditPOI.AditpoiTidsSuccess()
+        result = EditPOI.AditpoiTidsSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
     def test_AditpoiNameEmpty(self):
-        result = AditPOI.AditpoiNameEmpty()
+        result = EditPOI.AditpoiNameEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoiPathEmpty(self):
-        result = AditPOI.AditpoiPathEmpty()
+        result = EditPOI.AditpoiPathEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoiEAEmpty(self):
-        result = AditPOI.AditpoiEAEmpty()
+        result = EditPOI.AditpoiEAEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoiOAEmpty(self):
-        result = AditPOI.AditpoiOAEmpty()
+        result = EditPOI.AditpoiOAEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoitidsEmpty(self):
-        result = AditPOI.AditpoitidsEmpty()
+        result = EditPOI.AditpoitidsEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoiNameNone(self):
-        result = AditPOI.AditpoiNameNone()
+        result = EditPOI.AditpoiNameNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoiPathNone(self):
-        result = AditPOI.AditpoiPathNone()
+        result = EditPOI.AditpoiPathNone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoiEANone(self):
-        result = AditPOI.AditpoiEANone()
+        result = EditPOI.AditpoiEANone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoiOANone(self):
-        result = AditPOI.AditpoiOANone()
+        result = EditPOI.AditpoiOANone()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
     def test_AditpoitidsNone(self):
-        result = AditPOI.AditpoitidsNone()
+        result = EditPOI.AditpoitidsNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiNameInt(self):
+        result = EditPOI.AditpoiNameInt()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiEAStr(self):
+        result = EditPOI.AditpoiEAStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiOAStr(self):
+        result = EditPOI.AditpoiOAStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AditpoiTidsNoExist(self):
+        result = EditPOI.AditpoiTidsNoExist()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -1177,6 +1297,512 @@ class deletepoiApiTest(unittest.TestCase):
         self.assertEqual(result["message"], 'Operation is successful.')
 
 
+class GEOApiTest(unittest.TestCase):
+    """获取围栏列表"""
+
+    def test_geoNocookie(self):
+        result = GEO.geoNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_geoSuccess(self):
+        result = GEO.geoSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_geoNoPage(self):
+        result = GEO.geoNoPage()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_geoNoPSiza(self):
+        result = GEO.geoNoPSiza()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_geoEmpty(self):
+        result = GEO.geoEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_geoPSizaEmpty(self):
+        result = GEO.geoPSizaEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_geoNone(self):
+        result = GEO.geoNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_geoPSizaNone(self):
+        result = GEO.geoPSizaNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_geoStr(self):
+        result = GEO.geoStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_geoPSStr(self):
+        result = GEO.geoPSStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
+class AddgeoApiTest(unittest.TestCase):
+    """新增围栏"""
+
+    def test_geoNocookie(self):
+        result = Addgeo.geoNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_geoCircleSuccess(self):
+        result = Addgeo.geoCircleSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_geoPolygonSuccess(self):
+        result = Addgeo.geoPolygonSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_geoNameRepeat(self):
+        result = Addgeo.geoNameRepeat()
+        self.assertEqual(result['status'], 918)
+        self.assertEqual(result['message'], 'Name has existed.')
+
+    def test_geoNameMin(self):
+        result = Addgeo.geoNameMin()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_geoNameMax(self):
+        result = Addgeo.geoNameMax()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_geoNameOut(self):
+        result = Addgeo.geoNameOut()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoNameEmpty(self):
+        result = Addgeo.geoNameEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoNameNone(self):
+        result = Addgeo.geoNameNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoNameInt(self):
+        result = Addgeo.geoNameInt()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoNameNo(self):
+        result = Addgeo.geoNameNo()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoShapeNoExist(self):
+        result = Addgeo.geoShapeNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoShapeStr(self):
+        result = Addgeo.geoShapeStr()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoShapeEmpty(self):
+        result = Addgeo.geoShapeEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoShapeNone(self):
+        result = Addgeo.geoShapeNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoShapeIncorrect(self):
+        result = Addgeo.geoShapeIncorrect()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoShapeNo(self):
+        result = Addgeo.geoShapeNo()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoPolygonEmpty(self):
+        result = Addgeo.geoPolygonEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoCicleEmpty(self):
+        result = Addgeo.geoCicleEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoPolygonNone(self):
+        result = Addgeo.geoPolygonNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoCicleNone(self):
+        result = Addgeo.geoCicleNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoTypeInvalid(self):
+        result = Addgeo.geoTypeInvalid()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoTypeNo(self):
+        result = Addgeo.geoTypeNo()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoEnterAlert0(self):
+        result = Addgeo.geoEnterAlert0()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_geoEnterAlertNoExist(self):
+        result = Addgeo.geoEnterAlertNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoEnterAlertStr(self):
+        result = Addgeo.geoEnterAlertStr()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoEnterAlertEmpty(self):
+        result = Addgeo.geoEnterAlertEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoEnterAlertNone(self):
+        result = Addgeo.geoEnterAlertNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoEnterAlertNo(self):
+        result = Addgeo.geoEnterAlertNo()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoOutAlert0(self):
+        result = Addgeo.geoOutAlert0()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_geoOutAlertNoExist(self):
+        result = Addgeo.geoOutAlertNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoOutAlertStr(self):
+        result = Addgeo.geoOutAlertStr()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoOutAlertEmpty(self):
+        result = Addgeo.geoOutAlertEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoOutAlertNone(self):
+        result = Addgeo.geoOutAlertNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoOutAlertNo(self):
+        result = Addgeo.geoOutAlertNo()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoSchedule2(self):
+        result = Addgeo.geoSchedule2()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_geoSchedule3(self):
+        result = Addgeo.geoSchedule3()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_geoSchedule4(self):
+        result = Addgeo.geoSchedule4()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_geoScheduleEmpty(self):
+        result = Addgeo.geoScheduleEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoScheduleNone(self):
+        result = Addgeo.geoScheduleNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoScheduleNo(self):
+        result = Addgeo.geoScheduleNo()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoTidNoNotifications(self):
+        result = Addgeo.geoTidNoNotifications()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoTidStr(self):
+        result = Addgeo.geoTidStr()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoTidEmpty(self):
+        result = Addgeo.geoTidEmpty()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_geoTidNoExist(self):
+        result = Addgeo.geoTidNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoTidNone(self):
+        result = Addgeo.geoTidNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_geoTidNo(self):
+        result = Addgeo.geoTidNo()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+
+class EditgeoApiTest(unittest.TestCase):
+    """编辑围栏"""
+
+    def test_regionEditFail(self):
+        result = Editgeo.regionEditFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_regionEditNoParam(self):
+        result = Editgeo.regionEditNoParam()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditNameMin(self):
+        result = Editgeo.regionEditNameMin()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditNameRepeat(self):
+        result = Editgeo.regionEditNameRepeat()
+        self.assertEqual(result['status'], 918)
+        self.assertEqual(result['message'], 'Name has existed.')
+
+    def test_regionEditNameMax(self):
+        result = Editgeo.regionEditNameMax()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditNameOut(self):
+        result = Editgeo.regionEditNameOut()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditNameEmpty(self):
+        result = Editgeo.regionEditNameEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditNameNone(self):
+        result = Editgeo.regionEditNameNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditNameInt(self):
+        result = Editgeo.regionEditNameInt()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditShapeNoExist(self):
+        result = Editgeo.regionEditShapeNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditShapeStr(self):
+        result = Editgeo.regionEditShapeStr()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditShapeEmpty(self):
+        result = Editgeo.regionEditShapeEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditShapeNone(self):
+        result = Editgeo.regionEditShapeNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditShapeIncorrect(self):
+        result = Editgeo.regionEditShapeIncorrect()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditPolygonEmpty(self):
+        result = Editgeo.regionEditPolygonEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditCicleEmpty(self):
+        result = Editgeo.regionEditCicleEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditPolygonNone(self):
+        result = Editgeo.regionEditPolygonNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditCicleNone(self):
+        result = Editgeo.regionEditCicleNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditTypeInvalid(self):
+        result = Editgeo.regionEditTypeInvalid()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditEnterAlert0(self):
+        result = Editgeo.regionEditEnterAlert0()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditEnterAlertNoExist(self):
+        result = Editgeo.regionEditEnterAlertNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditEnterAlertStr(self):
+        result = Editgeo.regionEditEnterAlertStr()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditEnterAlertEmpty(self):
+        result = Editgeo.regionEditEnterAlertEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditEnterAlertNone(self):
+        result = Editgeo.regionEditEnterAlertNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditOutAlert0(self):
+        result = Editgeo.regionEditOutAlert0()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditOutAlertNoExist(self):
+        result = Editgeo.regionEditOutAlertNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditOutAlertStr(self):
+        result = Editgeo.regionEditOutAlertStr()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditOutAlertEmpty(self):
+        result = Editgeo.regionEditOutAlertEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditOutAlertNone(self):
+        result = Editgeo.regionEditOutAlertNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditSchedule2(self):
+        result = Editgeo.regionEditSchedule2()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditSchedule3(self):
+        result = Editgeo.regionEditSchedule3()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditSchedule4(self):
+        result = Editgeo.regionEditSchedule4()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditScheduleEmpty(self):
+        result = Editgeo.regionEditScheduleEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditScheduleNone(self):
+        result = Editgeo.regionEditScheduleNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditTidNoNotifications(self):
+        result = Editgeo.regionEditTidNoNotifications()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditTidStr(self):
+        result = Editgeo.regionEditTidStr()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditTidEmpty(self):
+        result = Editgeo.regionEditTidEmpty()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_regionEditTidNoExist(self):
+        result = Editgeo.regionEditTidNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_regionEditTidNone(self):
+        result = Editgeo.regionEditTidNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+
+class deletegeoApiTest(unittest.TestCase):
+    """删除围栏"""
+
+    def test_deletegeoNocookie(self):
+        result = deletegeo.deletegeoNocookie()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_deletegeoSuccess(self):
+        result = deletegeo.deletegeoSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+
 class notificationApiTest(unittest.TestCase):
     """"获取提醒标签列表"""
 
@@ -1189,7 +1815,6 @@ class notificationApiTest(unittest.TestCase):
         result = notification.notificationSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
-
 
 
 if __name__ == '__main__':

@@ -25,6 +25,15 @@ def AddpoiSuccess():
     return ApiMethod.testMethod(poisUrl, type, data, cookie)
 
 
+# 创建poi不开启提醒
+def AddpoiSuccessNoalert():
+    data = {"name": "111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
+            "avatar_path": "/static/icons/poi/default.png",
+            "radius": 500, "latitude": 81976019, "longitude": 405988769, "enter_alert": 0, "out_alert": 0,
+            "tids": ["898602B12616C0613882"]}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
 # 名称为空
 def AddpoiNameEmpty():
     data = {"name": "", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
@@ -258,9 +267,63 @@ def AddpoiNoOA():
     return ApiMethod.testMethod(poisUrl, type, data, cookie)
 
 
-# poi关联的终端
+# poi关联的终端字段缺失
 def AddpoiNoTids():
     data = {"name": "111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
             "avatar_path": "/static/icons/poi/default.png",
             "radius": 500, "latitude": 81976019, "longitude": 405988769, "enter_alert": 1, "out_alert": 1}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# name值为int类型
+def AddpoiNameInt():
+    data = {"name": 111, "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
+            "avatar_path": "/static/icons/poi/default.png",
+            "radius": 500, "latitude": 81976019, "longitude": 405988769, "enter_alert": 1, "out_alert": 1,
+            "tids": ["898602B12616C0613882"]}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 半径为字符串类型
+def AddpoiRStr():
+    data = {"name": "111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
+            "avatar_path": "/static/icons/poi/default.png",
+            "radius": "500", "latitude": 81976019, "longitude": 405988769, "enter_alert": 1, "out_alert": 1,
+            "tids": ["898602B12616C0613882"]}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 纬度为字符串类型
+def AddpoiLtStr():
+    data = {"name": "111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
+            "avatar_path": "/static/icons/poi/default.png",
+            "radius": 500, "latitude": "81976019", "longitude": 405988769, "enter_alert": 1, "out_alert": 1,
+            "tids": ["898602B12616C0613882"]}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 经度为字符串类型
+def AddpoiLgStr():
+    data = {"name": "111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
+            "avatar_path": "/static/icons/poi/default.png",
+            "radius": 500, "latitude": 81976019, "longitude": "405988769", "enter_alert": 1, "out_alert": 1,
+            "tids": ["898602B12616C0613882"]}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 进入提醒为字符串类型
+def AddpoiEAStr():
+    data = {"name": "111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
+            "avatar_path": "/static/icons/poi/default.png",
+            "radius": 500, "latitude": 81976019, "longitude": 405988769, "enter_alert": "1", "out_alert": 1,
+            "tids": ["898602B12616C0613882"]}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 离开提醒为字符串类型
+def AddpoiOAStr():
+    data = {"name": "111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
+            "avatar_path": "/static/icons/poi/default.png",
+            "radius": 500, "latitude": 81976019, "longitude": 405988769, "enter_alert": 1, "out_alert": "1",
+            "tids": ["898602B12616C0613882"]}
     return ApiMethod.testMethod(poisUrl, type, data, cookie)

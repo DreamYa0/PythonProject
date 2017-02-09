@@ -25,7 +25,7 @@ def loginNoActive():
 
 # 用户名为none
 def loginUserNone():
-    data = {"username": None, "password": 123456}
+    data = {"username": None, "password": "123456"}
     return ApiMethod.testMethod(loginUrl, type, data)
 
 
@@ -60,12 +60,24 @@ def loginNoPwd():
 
 
 # 密码小于6位
-def loginPwdSmall():
+def loginPwdLess():
     data = {"username": "zhouyang@supeq.com", "password": "12345"}
     return ApiMethod.testMethod(loginUrl, type, data)
 
 
+# 密码等于20位
+def loginPwdMax():
+    data = {"username": "zhouyang@supeq.com", "password": "11111111111111111111"}
+    return ApiMethod.testMethod(loginUrl, type, data)
+
+
+# 密码等于6位
+def loginPwdMin():
+    data = {"username": "zhouyang@supeq.com", "password": "123456"}
+    return ApiMethod.testMethod(loginUrl, type, data)
+
+
 # 密码大于20位
-def loginPwdBig():
+def loginPwdOut():
     data = {"username": "zhouyang@supeq.com", "password": "111111111111111111111"}
     return ApiMethod.testMethod(loginUrl, type, data)

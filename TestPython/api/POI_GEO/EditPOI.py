@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
+from TestPython.api.POI_GEO import pois
 
-poisUrl = " /api/v1/pois/523"
+poi_id = str(pois.poisSuccess()['data'][0]['id'])
+poisUrl = " /api/v1/pois/" + poi_id
 type = "put"
 cookie = Mycookies.Cookies
 
@@ -102,4 +104,28 @@ def AditpoiOANone():
 # tid为None
 def AditpoitidsNone():
     data = {"tids": None}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 修改Poi名称为int类型
+def AditpoiNameInt():
+    data = {"name": 555}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 修改进入提醒值为字符串
+def AditpoiEAStr():
+    data = {"enter_alert": "1"}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 修改离开提醒值为字符串
+def AditpoiOAStr():
+    data = {"out_alert": "1"}
+    return ApiMethod.testMethod(poisUrl, type, data, cookie)
+
+
+# 修改为不存在的关联终端
+def AditpoiTidsNoExist():
+    data = {"tids": ["89302720396911547656"]}
     return ApiMethod.testMethod(poisUrl, type, data, cookie)

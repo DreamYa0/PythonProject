@@ -66,26 +66,33 @@ def resetNoPwd():
 
 
 # 密码值为一位
-def resetPwdSmall():
+def resetPwdless():
     data = {"confirmation": "11rN09OGPJgHwLFF68JLHiqmL886FWrtx4xKvRdd92NISCvHjXzQKL1gFyl25gqA", "password": "1"}
     return ApiMethod.testMethod(resetUrl, type, data)
 
 
 # 密码值为6位
-def resetPwdboundaryS():
+def resetPwdMin():
     data = {"confirmation": "11rN09OGPJgHwLFF68JLHiqmL886FWrtx4xKvRdd92NISCvHjXzQKL1gFyl25gqA", "password": "111111"}
     return ApiMethod.testMethod(resetUrl, type, data)
 
 
 # 密码值为20位
-def resetPwdboundaryB():
+def resetPwdMax():
     data = {"confirmation": "11rN09OGPJgHwLFF68JLHiqmL886FWrtx4xKvRdd92NISCvHjXzQKL1gFyl25gqA",
             "password": "11111111111111111111"}
     return ApiMethod.testMethod(resetUrl, type, data)
 
 
 # 密码值为21位
-def resetPwdBig():
+def resetPwdOut():
     data = {"confirmation": "11rN09OGPJgHwLFF68JLHiqmL886FWrtx4xKvRdd92NISCvHjXzQKL1gFyl25gqA",
             "password": "111111111111111111111"}
+    return ApiMethod.testMethod(resetUrl, type, data)
+
+
+# 密码为int类型
+def resetPwdInt():
+    data = {"confirmation": "11rN09OGPJgHwLFF68JLHiqmL886FWrtx4xKvRdd92NISCvHjXzQKL1gFyl25gqA",
+            "password": 111111}
     return ApiMethod.testMethod(resetUrl, type, data)

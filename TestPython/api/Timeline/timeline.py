@@ -77,3 +77,15 @@ def timelineNoST():
 def timelineNoET():
     data = {"ids": "898602B12616C0613882,89860042191586153394", "start_time": 1478016000, }
     return ApiMethod.testMethod(timelineUrl, type, data, cookie)
+
+
+# 开始时间值为字符串
+def timelineSTStr():
+    data = {"ids": "898602B12616C0613882", "start_time": "1478016000", "end_time": 1478102399}
+    return ApiMethod.testMethod(timelineUrl, type, data, cookie)
+
+
+# 结束时间值为字符串
+def timelineETStr():
+    data = {"ids": "898602B12616C0613882", "start_time": 1478016000, "end_time": "1478102399"}
+    return ApiMethod.testMethod(timelineUrl, type, data, cookie)
