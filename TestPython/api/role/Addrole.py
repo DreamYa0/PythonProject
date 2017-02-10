@@ -59,3 +59,15 @@ def addroleNoNM():
 def addroleNoPMS():
     data = {"name": "lala"}
     return ApiMethod.testMethod(roleUrl, type, data, cookie)
+
+
+# name为int类型
+def addroleNMInt():
+    data = {"name": 456, "permissions": [6, 1, 4, 3, 5, 2]}
+    return ApiMethod.testMethod(roleUrl, type, data, cookie)
+
+
+# 权限为字符串
+def addrolePMSStr():
+    data = {"name": "lala", "permissions": "[6, 1, 4, 3, 5, 2]"}
+    return ApiMethod.testMethod(roleUrl, type, data, cookie)

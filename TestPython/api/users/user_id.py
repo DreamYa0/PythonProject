@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
+from TestPython.api.users import userManagement
 
-userUrl = "/api/v1/users/309794415@qq.com"
+
+user_id=str(userManagement.userSuccess()['data'][0]['id'])
+userUrl = "/api/v1/users/"+user_id
 type = "get"
 cookie = Mycookies.Cookies
 

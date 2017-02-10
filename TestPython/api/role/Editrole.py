@@ -3,9 +3,8 @@ from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
 from TestPython.api.role import userrole
 
-
-role_id=str(userrole.userroleSuccess()['data'][0]['id'])
-roleUrl = "/api/v1/roles/"+role_id
+role_id = str(userrole.userroleSuccess()['data'][0]['id'])
+roleUrl = "/api/v1/roles/" + role_id
 type = "put"
 cookie = Mycookies.Cookies
 
@@ -55,4 +54,16 @@ def rolenameEmpty():
 # 角色权限为空
 def rolePMSEmpty():
     data = {"permissions": ""}
+    return ApiMethod.testMethod(roleUrl, type, data, cookie)
+
+
+# 修改name为Int类型
+def rolenameInt():
+    data = {"name": 789}
+    return ApiMethod.testMethod(roleUrl, type, data, cookie)
+
+
+# 修改权限为字符串
+def rolePMSStr():
+    data = {"permissions": "[1,2,3]"}
     return ApiMethod.testMethod(roleUrl, type, data, cookie)

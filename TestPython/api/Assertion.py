@@ -451,30 +451,55 @@ class AdduserApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdduserFNBig(self):
-        result = Adduser.AdduserFNBig()
+    def test_AdduserFNOut(self):
+        result = Adduser.AdduserFNOut()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdduserLNBig(self):
-        result = Adduser.AdduserLNBig()
+    def test_AdduserLNOut(self):
+        result = Adduser.AdduserLNOut()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdduserMEBig(self):
-        result = Adduser.AdduserMEBig()
+    def test_AdduserMEOut(self):
+        result = Adduser.AdduserMEOut()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdduserPwdBig(self):
-        result = Adduser.AdduserPwdBig()
+    def test_AdduserPwdOut(self):
+        result = Adduser.AdduserPwdOut()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdduserPwdSmall(self):
-        result = Adduser.AdduserPwdSmall()
+    def test_AdduserPwdLess(self):
+        result = Adduser.AdduserPwdLess()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_AdduserFNMax(self):
+        result = Adduser.AdduserFNMax()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdduserLNMax(self):
+        result = Adduser.AdduserLNMax()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdduserMEMax(self):
+        result = Adduser.AdduserMEMax()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdduserPwdMax(self):
+        result = Adduser.AdduserPwdMax()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_AdduserPwdMin(self):
+        result = Adduser.AdduserPwdMin()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
 
     def test_AdduserRIdError(self):
         result = Adduser.AdduserRIdError()
@@ -858,6 +883,16 @@ class AddroleApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
+    def test_addroleNMInt(self):
+        result = Addrole.addroleNMInt()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_addrolePMSStr(self):
+        result = Addrole.addrolePMSStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
 
 class role_idApiTest(unittest.TestCase):
     """获取单个子角色信息"""
@@ -913,6 +948,16 @@ class EditroleApiTest(unittest.TestCase):
 
     def test_rolePMSEmpty(self):
         result = Editrole.rolePMSEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_rolenameInt(self):
+        result = Editrole.rolenameInt()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_rolePMSStr(self):
+        result = Editrole.rolePMSStr()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
