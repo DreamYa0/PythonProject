@@ -11,7 +11,7 @@ def loginSuccess():
     return ApiMethod.testMethod(loginUrl, type, data)
 
 
-# 用户名或密码不存在
+# 用户名或密码错误
 def loginUserErrorOrPwdError():
     data = {"username": "498194@qq.com", "password": "123456"}
     return ApiMethod.testMethod(loginUrl, type, data)
@@ -56,28 +56,4 @@ def loginNoUser():
 # 密码字段缺失
 def loginNoPwd():
     data = {"username": "zhouyang@supeq.com"}
-    return ApiMethod.testMethod(loginUrl, type, data)
-
-
-# 密码小于6位
-def loginPwdLess():
-    data = {"username": "zhouyang@supeq.com", "password": "12345"}
-    return ApiMethod.testMethod(loginUrl, type, data)
-
-
-# 密码等于20位
-def loginPwdMax():
-    data = {"username": "zhouyang@supeq.com", "password": "11111111111111111111"}
-    return ApiMethod.testMethod(loginUrl, type, data)
-
-
-# 密码等于6位
-def loginPwdMin():
-    data = {"username": "zhouyang@supeq.com", "password": "123456"}
-    return ApiMethod.testMethod(loginUrl, type, data)
-
-
-# 密码大于20位
-def loginPwdOut():
-    data = {"username": "zhouyang@supeq.com", "password": "111111111111111111111"}
     return ApiMethod.testMethod(loginUrl, type, data)

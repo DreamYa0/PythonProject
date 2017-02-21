@@ -1,14 +1,8 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 
-resetUrl = "/api/v1/password"
+resetUrl = "/api/v1/reset/password"
 type = "get"
-
-
-# 正确的邮箱
-def resetSuccess():
-    data = {"email": "zhouyang@supeq.com"}
-    return ApiMethod.testMethod(resetUrl, type, data)
 
 
 # 已注册未激活的邮箱
@@ -44,3 +38,9 @@ def resetNotfound():
 # 字段缺失
 def resetNoEmail():
     return ApiMethod.testMethod(resetUrl, type)
+
+
+# 正确的邮箱
+def resetSuccess():
+    data = {"email": "zhouyang@supeq.com"}
+    return ApiMethod.testMethod(resetUrl, type, data)

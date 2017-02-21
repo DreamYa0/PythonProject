@@ -23,7 +23,7 @@ def rolenameSuccess():
 
 # 修改角色权限
 def rolePMSSuccess():
-    data = {"permissions": [6, 3, 5, 2]}
+    data = {"permissions": [1, 3, 5, 2]}
     return ApiMethod.testMethod(roleUrl, type, data, cookie)
 
 

@@ -5,6 +5,7 @@ from TestPython.api.users import userManagement
 
 
 user_id=str(userManagement.userSuccess()['data'][0]['id'])
+print(user_id)
 userUrl = "/api/v1/users/"+user_id
 type = "get"
 cookie = Mycookies.Cookies

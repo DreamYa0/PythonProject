@@ -27,7 +27,7 @@ def AddpoiSuccess():
 
 # 创建poi不开启提醒
 def AddpoiSuccessNoalert():
-    data = {"name": "111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
+    data = {"name": "1111", "address": "中国四川省成都市青羊区青羊宫商圈牧电巷59号 邮政编码: 610041",
             "avatar_path": "/static/icons/poi/default.png",
             "radius": 500, "latitude": 81976019, "longitude": 405988769, "enter_alert": 0, "out_alert": 0,
             "tids": ["898602B12616C0613882"]}

@@ -24,7 +24,7 @@ def geoNocookie():
 # 修改圆形围栏
 def geoCircleSuccess():
     data = {
-        'name': 'test',
+        'name': 'test1',
         'shape': 0,
         'circle': {'radius': 156.20, 'latitude': 110199299.03028621, 'longitude': 374528575.6587982},
         'enter_alert': 1,
@@ -38,7 +38,7 @@ def geoCircleSuccess():
 # 修改多边形围栏
 def geoPolygonSuccess():
     data = {
-        'name': 'w02e',
+        'name': 'w02e1',
         'shape': 1,
         'polygon': [
             {'latitude': 80495565.29416555, 'longitude': 408793862.3428345},
@@ -57,7 +57,7 @@ def geoPolygonSuccess():
 # name名字重复
 def geoNameRepeat():
     data = {
-        'name': 'test',
+        'name': 'test1',
         'shape': 0,
         'circle': {'radius': 156.20, 'latitude': 110199299.03028621, 'longitude': 374528575.6587982},
         'enter_alert': 1,

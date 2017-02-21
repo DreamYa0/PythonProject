@@ -21,3 +21,4 @@ def testMethod(url, type, data=None, cookie=None):
         return requests.put(url=base_url + url, data=json.dumps(data), cookies=cookie).json()
     elif type == "delete":
         return requests.delete(url=base_url + url, cookies=cookie).json()
+
