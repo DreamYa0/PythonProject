@@ -8,11 +8,11 @@ import xlrd
 # import json
 
 
-def open_excel(file='e:/ch-test.xlsx'):         # 构造函数，打开文件
-    try:
+def open_excel(file='e:/ch-test.xlsx'):      # 构造函数，打开文件
+    try:                                        # try/except 捕获异常并处理
         data = xlrd.open_workbook(file)         # 尝试打开文件读取数据
         return data
-    except Exception as e:
+    except Exception as e:                     # 所有异常都是基类Exception的成员,e:异常处理代码段
         print(str(e))
 
 

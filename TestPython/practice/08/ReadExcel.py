@@ -11,8 +11,8 @@ def open_excel(file='E:\\pjz\\DubboInterfaceTest\\Testcases\\TestcaseTemplate.xl
     try:
         data = xlrd.open_workbook(file)
         return data
-    except Exception, e:
-        print str(e)
+    except Exception as e:
+        print(str(e))
 
 
 # 根据索引获取Excel表格中的数据   参数:file：Excel文件路径     colnameindex：表头列名所在行的所以  ，by_index：表的索引
@@ -55,7 +55,7 @@ def excel_table_byname(file='E:\\pjz\\DubboInterfaceTest\\Testcases\\TestcaseTem
 def main():
     tables = excel_table_byindex()
     for row in tables:
-        print json.dumps(row[u'\u53c2\u6570'])
+        print(json.dumps(row[u'\u53c2\u6570']))
 
 
 if __name__ == "__main__":

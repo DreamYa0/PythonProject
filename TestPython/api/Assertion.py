@@ -10,11 +10,11 @@ from TestPython.api.resetPassword import email
 from TestPython.api.resetPassword import reset
 from TestPython.api.users import userManagement
 from TestPython.api.users import Adduser
-# from TestPython.api.users import Edituser
-# from TestPython.api.users import DeleteUser
-from TestPython.api.Timeline import timeline
-from TestPython.api.report_Dashboard import Dashboard
-# from TestPython.api.users import user_id
+from TestPython.api.users import Edituser
+from TestPython.api.users import DeleteUser
+# from TestPython.api.Timeline import timeline
+# from TestPython.api.report_Dashboard import Dashboard
+from TestPython.api.users import user_id
 from TestPython.api.role import permissions
 from TestPython.api.role import userrole
 from TestPython.api.role import Addrole
@@ -476,304 +476,304 @@ class userManagementApiTest(unittest.TestCase):
         self.assertEqual(result["message"], 'Authenticated failed.')
 
 
-# class user_idApiTest(unittest.TestCase):
-#     """获取单个子账号详情"""
-#
-#     def oneuserSuccess(self):
-#         result = user_id.oneuserSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def oneuserNocookie(self):
-#         result = user_id.oneuserNocookie()
-#         self.assertEqual(result["status"], 401)
-#         self.assertEqual(result["message"], 'Authenticated failed.')
-#
-#
-# class EdituserApiTest(unittest.TestCase):
-#     """修改子账号"""
-#
-#     def test_EdituserNoCookie(self):
-#         result = Edituser.EdituserNoCookie()
-#         self.assertEqual(result["status"], 401)
-#         self.assertEqual(result["message"], 'Authenticated failed.')
-#
-#     def test_EdituserENone(self):
-#         result = Edituser.EdituserENone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserFNNONE(self):
-#         result = Edituser.EdituserFNNONE()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserLNNone(self):
-#         result = Edituser.EdituserLNNone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserATNone(self):
-#         result = Edituser.EdituserATNone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserMNone(self):
-#         result = Edituser.EdituserMNone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserRIdNone(self):
-#         result = Edituser.EdituserRIdNone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserTidsNone(self):
-#         result = Edituser.EdituserTidsNone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserEEmpty(self):
-#         result = Edituser.EdituserEEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserFNEmpty(self):
-#         result = Edituser.EdituserFNEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserLNEmpty(self):
-#         result = Edituser.EdituserLNEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserATEmpty(self):
-#         result = Edituser.EdituserATEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserMEmpty(self):
-#         result = Edituser.EdituserMEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserRIdEmpty(self):
-#         result = Edituser.EdituserRIdEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserTidsEmpty(self):
-#         result = Edituser.EdituserTidsEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserAEmailError(self):
-#         result = Edituser.EdituserAEmailError()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserUEmailError(self):
-#         result = Edituser.EdituserUEmailError()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserEFormError(self):
-#         result = Edituser.EdituserEFormError()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituseFNMax(self):
-#         result = Edituser.EdituseFNMax()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserLNMax(self):
-#         result = Edituser.EdituserLNMax()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserMEMax(self):
-#         result = Edituser.EdituserMEMax()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserRIdError(self):
-#         result = Edituser.EdituserRIdError()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_EdituserESuccess(self):
-#         result = Edituser.EdituserESuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_EdituserFNSuccess(self):
-#         result = Edituser.EdituserFNSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_EdituserLNSuccess(self):
-#         result = Edituser.EdituserLNSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_EdituserATSuccess(self):
-#         result = Edituser.EdituserATSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_EdituserMSuccess(self):
-#         result = Edituser.EdituserMSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_EdituserRIdSuccess(self):
-#         result = Edituser.EdituserRIdSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_EdituserTidsSuccess(self):
-#         result = Edituser.EdituserTidsSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#
-# class DeleteUserApiTest(unittest.TestCase):
-#     """删除子账号"""
-#
-#     def test_deleteUserSuccess(self):
-#         result = DeleteUser.deleteUserSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_deleteUserNocookie(self):
-#         result = DeleteUser.deleteUserNocookie()
-#         self.assertEqual(result["status"], 401)
-#         self.assertEqual(result["message"], 'Authenticated failed.')
+class user_idApiTest(unittest.TestCase):
+    """获取单个子账号详情"""
 
+    def oneuserSuccess(self):
+        result = user_id.oneuserSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
 
-class timelineApiTest(unittest.TestCase):
-    """轨迹时间轴查询"""
-
-    def test_timelineNoCookie(self):
-        result = timeline.timelineNoCookie()
+    def oneuserNocookie(self):
+        result = user_id.oneuserNocookie()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
 
-    def test_timelineSuccessA(self):
-        result = timeline.timelineSuccessA()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_timelineSuccessB(self):
-        result = timeline.timelineSuccessB()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
+class EdituserApiTest(unittest.TestCase):
+    """修改子账号"""
 
-    def test_timelineIdsNone(self):
-        result = timeline.timelineIdsNone()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineSTNone(self):
-        result = timeline.timelineSTNone()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineETNone(self):
-        result = timeline.timelineETNone()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineIdsEmpty(self):
-        result = timeline.timelineIdsEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineSTEmpty(self):
-        result = timeline.timelineSTEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineETEmpty(self):
-        result = timeline.timelineETEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineNoIds(self):
-        result = timeline.timelineNoIds()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineNoST(self):
-        result = timeline.timelineNoST()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineNoET(self):
-        result = timeline.timelineNoET()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineSTStr(self):
-        result = timeline.timelineSTStr()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_timelineETStr(self):
-        result = timeline.timelineETStr()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-
-class DashboardApiTest(unittest.TestCase):
-    """获取各报表前7数据"""
-
-    def test_mileageSuccess(self):
-        result = Dashboard.mileageSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def driving_timeSuccess(self):
-        result = Dashboard.driving_timeSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def fuelSuccess(self):
-        result = Dashboard.fuelSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def speedSuccess(self):
-        result = Dashboard.speedSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def temperatureSuccess(self):
-        result = Dashboard.temperatureSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def visitSuccess(self):
-        result = Dashboard.visitSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def maintenceSuccess(self):
-        result = Dashboard.maintenceSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def IFIASuccess(self):
-        result = Dashboard.IFIASuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def NOcookie(self):
-        result = Dashboard.NOcookie()
+    def test_EdituserNoCookie(self):
+        result = Edituser.EdituserNoCookie()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_EdituserENone(self):
+        result = Edituser.EdituserENone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserFNNONE(self):
+        result = Edituser.EdituserFNNONE()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserLNNone(self):
+        result = Edituser.EdituserLNNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserATNone(self):
+        result = Edituser.EdituserATNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserMNone(self):
+        result = Edituser.EdituserMNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserRIdNone(self):
+        result = Edituser.EdituserRIdNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserTidsNone(self):
+        result = Edituser.EdituserTidsNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserEEmpty(self):
+        result = Edituser.EdituserEEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserFNEmpty(self):
+        result = Edituser.EdituserFNEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserLNEmpty(self):
+        result = Edituser.EdituserLNEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserATEmpty(self):
+        result = Edituser.EdituserATEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserMEmpty(self):
+        result = Edituser.EdituserMEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserRIdEmpty(self):
+        result = Edituser.EdituserRIdEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserTidsEmpty(self):
+        result = Edituser.EdituserTidsEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserAEmailError(self):
+        result = Edituser.EdituserAEmailError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserUEmailError(self):
+        result = Edituser.EdituserUEmailError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserEFormError(self):
+        result = Edituser.EdituserEFormError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituseFNMax(self):
+        result = Edituser.EdituseFNMax()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserLNMax(self):
+        result = Edituser.EdituserLNMax()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserMEMax(self):
+        result = Edituser.EdituserMEMax()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserRIdError(self):
+        result = Edituser.EdituserRIdError()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_EdituserESuccess(self):
+        result = Edituser.EdituserESuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_EdituserFNSuccess(self):
+        result = Edituser.EdituserFNSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_EdituserLNSuccess(self):
+        result = Edituser.EdituserLNSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_EdituserATSuccess(self):
+        result = Edituser.EdituserATSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_EdituserMSuccess(self):
+        result = Edituser.EdituserMSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_EdituserRIdSuccess(self):
+        result = Edituser.EdituserRIdSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_EdituserTidsSuccess(self):
+        result = Edituser.EdituserTidsSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+
+class DeleteUserApiTest(unittest.TestCase):
+    """删除子账号"""
+
+    def test_deleteUserSuccess(self):
+        result = DeleteUser.deleteUserSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_deleteUserNocookie(self):
+        result = DeleteUser.deleteUserNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+
+# class timelineApiTest(unittest.TestCase):
+#     """轨迹时间轴查询"""
+#
+#     def test_timelineNoCookie(self):
+#         result = timeline.timelineNoCookie()
+#         self.assertEqual(result["status"], 401)
+#         self.assertEqual(result["message"], 'Authenticated failed.')
+#
+#     def test_timelineSuccessA(self):
+#         result = timeline.timelineSuccessA()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def test_timelineSuccessB(self):
+#         result = timeline.timelineSuccessB()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def test_timelineIdsNone(self):
+#         result = timeline.timelineIdsNone()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineSTNone(self):
+#         result = timeline.timelineSTNone()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineETNone(self):
+#         result = timeline.timelineETNone()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineIdsEmpty(self):
+#         result = timeline.timelineIdsEmpty()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineSTEmpty(self):
+#         result = timeline.timelineSTEmpty()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineETEmpty(self):
+#         result = timeline.timelineETEmpty()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineNoIds(self):
+#         result = timeline.timelineNoIds()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineNoST(self):
+#         result = timeline.timelineNoST()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineNoET(self):
+#         result = timeline.timelineNoET()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineSTStr(self):
+#         result = timeline.timelineSTStr()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#     def test_timelineETStr(self):
+#         result = timeline.timelineETStr()
+#         self.assertEqual(result["status"], 400)
+#         self.assertEqual(result["message"], 'Invalid request data format.')
+#
+#
+# class DashboardApiTest(unittest.TestCase):
+#     """获取各报表前7数据"""
+#
+#     def test_mileageSuccess(self):
+#         result = Dashboard.mileageSuccess()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def driving_timeSuccess(self):
+#         result = Dashboard.driving_timeSuccess()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def fuelSuccess(self):
+#         result = Dashboard.fuelSuccess()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def speedSuccess(self):
+#         result = Dashboard.speedSuccess()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def temperatureSuccess(self):
+#         result = Dashboard.temperatureSuccess()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def visitSuccess(self):
+#         result = Dashboard.visitSuccess()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def maintenceSuccess(self):
+#         result = Dashboard.maintenceSuccess()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def IFIASuccess(self):
+#         result = Dashboard.IFIASuccess()
+#         self.assertEqual(result["status"], 200)
+#         self.assertEqual(result["message"], 'Operation is successful.')
+#
+#     def NOcookie(self):
+#         result = Dashboard.NOcookie()
+#         self.assertEqual(result["status"], 401)
+#         self.assertEqual(result["message"], 'Authenticated failed.')
 
 
 class permissionsApiTest(unittest.TestCase):
