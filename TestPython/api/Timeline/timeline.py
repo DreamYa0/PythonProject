@@ -2,7 +2,7 @@
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
 
-timelineUrl = "/api/v1/timeline"
+timelineUrl = "/api/v1/trip/timeline"
 type = "post"
 cookie = Mycookies.Cookies
 

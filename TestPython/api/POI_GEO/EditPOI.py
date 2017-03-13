@@ -26,7 +26,7 @@ def EditPOINameSuccess():
 
 # 修改头像信息
 def EditPOIAPSuccess():
-    data = {"avatar_path": "/static/icons/poi/default.1478767996762.png", }
+    data = {"avatar_path": "/static/icons/poi/FB9t9h1i1479277994.png", }
     return ApiMethod.testMethod(poisUrl, type, data, cookie)
 
 

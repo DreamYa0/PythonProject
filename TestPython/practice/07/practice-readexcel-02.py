@@ -3,8 +3,8 @@
 Author:monica
 """
 
-
 import xlrd
+
 
 def read_excel():
     # 打开文件
@@ -33,6 +33,7 @@ def read_excel():
 
     # 获取单元格内容的数据类型
     print(sheet1.cell(1, 0).ctype)
+
 
 if __name__ == '__main__':
     read_excel()

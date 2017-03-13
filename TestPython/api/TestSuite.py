@@ -249,7 +249,7 @@ def Suite():
     suite.addTest(Assertion.EditPOIApiTest("test_EditPOIEAStr"))
     suite.addTest(Assertion.EditPOIApiTest("test_EditPOIOAStr"))
 
-    #删除poi
+    # 删除poi
     suite.addTest(Assertion.deletepoiApiTest("test_deletePoiNocookie"))
     suite.addTest(Assertion.deletepoiApiTest("test_deletePoiSuccess"))
 

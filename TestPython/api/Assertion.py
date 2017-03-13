@@ -820,7 +820,7 @@ class AddroleApiTest(unittest.TestCase):
     def test_addroleOnly(self):
         result = Addrole.addroleOnly()
         self.assertEqual(result["status"], 918)
-        self.assertEqual(result["message"], 'Name repetition.')
+        self.assertEqual(result["message"], 'Name has existed.')
 
     def test_addroleNMEmpty(self):
         result = Addrole.addroleNMEmpty()

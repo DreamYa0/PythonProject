@@ -17,7 +17,7 @@ def AdduserNoCookie():
 
 # 成功新增子账号
 def AdduserSuccess():
-    data = {"email": "49819@qq.com", "first_name": "ying", "last_name": "tao", "week": "1111111",
+    data = {"email": "49810000@qq.com", "first_name": "ying", "last_name": "tao", "week": "1111111",
             "phone": "123456", "password": "123456", "role_id": 1079,
             "tids": ["898602B12616C0613882", "89860042191586153394"]}
     return ApiMethod.testMethod(userUrl, type, data, cookie)
