@@ -3,8 +3,8 @@ from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
 from TestPython.api.POI_GEO import GEO
 
-geo_id = str(GEO.geoSuccess()['data'][0]['id'])
-regionEditUrl = "/api/v1/regions/" + geo_id
+# geo_id = str(GEO.geoSuccess()['data'][0]['id'])
+regionEditUrl = "/api/v1/regions/1735"
 type = "put"
 cookie = Mycookies.Cookies
 

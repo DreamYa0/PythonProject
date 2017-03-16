@@ -72,3 +72,10 @@ class readExcel(object):
         for i in range(1, self.getRows):
             TextMessage.append(self.getSheet.cell_value(i, 5))
         return TextMessage
+
+    @property
+    def gettoken(self):
+        Texttoken = []
+        for i in range(1, self.getRows):
+            Texttoken.append(self.getSheet.cell_value(i, 6))
+        return Texttoken
