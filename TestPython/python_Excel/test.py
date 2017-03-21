@@ -25,30 +25,44 @@ row = excel.getRows
 class testLoginApi(unittest.TestCase):
     def test_LoginApi(self):
 
-        for i in range(0, row - 1):
+        # for i in range(0, row - 1):
+        #     if token[i] == 0:
+        #         api = testApi(method[i], url[i], data[i], Cookies.Cookies)
+        #         results = api.getCode()
+        #         http_status_code = results.status_code
+        #         if http_status_code == 200:
+        #             apicode = results.json()['status']
+        #             apijson = results.json()['message']
+        #             if apicode != int(code[i]) or apijson != massage[i]:
+        #                 print('{}、{}:测试失败.json数据为:{}'.format(i + 1, name[i], apijson))
+        #         else:
+        #             print(results)
+        #
+        #     else:
+        #         api = testApi(method[i], url[i], data[i])
+        #         results = api.getCode()
+        #         http_status_code = results.status_code
+        #         if http_status_code == 200:
+        #             apicode = results.json()['status']
+        #             apijson = results.json()['message']
+        #             if apicode != int(code[i]) or apijson != massage[i]:
+        #                 print('{}、{}:测试失败.json数据为:{}'.format(i + 1, name[i], apijson))
+        #         else:
+        #             print(results)
+
+        for i in range(0,row-1):
             if token[i] == 0:
                 api = testApi(method[i], url[i], data[i], Cookies.Cookies)
-                results = api.getCode()
-                http_status_code = results.status_code
-                if http_status_code == 200:
-                    apicode = results.json()['status']
-                    apijson = results.json()['message']
-                    if apicode != int(code[i]) or apijson != massage[i]:
-                        print('{}、{}:测试失败.json数据为:{}'.format(i + 1, name[i], apijson))
-                else:
-                    print(results)
-
+                apicode=api.getCode()
+                apijson=api.getJson()
+                if apicode != int(code[i]) or apijson != massage[i]:
+                    print('{}、{}:测试失败.json数据为:{}'.format(i + 1, name[i], apijson))
             else:
                 api = testApi(method[i], url[i], data[i])
-                results = api.getCode()
-                http_status_code = results.status_code
-                if http_status_code == 200:
-                    apicode = results.json()['status']
-                    apijson = results.json()['message']
-                    if apicode != int(code[i]) or apijson != massage[i]:
-                        print('{}、{}:测试失败.json数据为:{}'.format(i + 1, name[i], apijson))
-                else:
-                    print(results)
+                apicode = api.getCode()
+                apijson = api.getJson()
+                if apicode != int(code[i]) or apijson != massage[i]:
+                    print('{}、{}:测试失败.json数据为:{}'.format(i + 1, name[i], apijson))
 
 
 if __name__ == '__main__':

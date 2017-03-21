@@ -14,10 +14,13 @@ class testApi(object):
         self.url = url
         self.data = data
         self.cookies = cookies
+        self.query = None
 
     @property
     def testApi(self):
         try:
+            if self.query:
+                return self.query
             r = None
             url = self.url
             data = json.loads(self.data)
@@ -29,14 +32,15 @@ class testApi(object):
                 r = requests.put(url, json=data,cookies=self.cookies)
             elif self.method == 'delete':
                 r = requests.delete(url, json=data,cookies=self.cookies)
+            self.query = r
             return r
         except Exception as e:
             print(e.args)
 
     def getCode(self):
-        # 获取访问接口的状态码
-        results = self.testApi
-        return results
+        # 获取http的状态码
+        code = self.testApi.json()['status']
+        return code
 
     def getJson(self):
         # 获取返回信息的json数据
