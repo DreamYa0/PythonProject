@@ -35,9 +35,8 @@ class testApi(object):
 
     def getCode(self):
         # 获取访问接口的状态码
-        if self.testApi.status_code == 200:
-            result = self.testApi.json()['status']
-            return result
+        results = self.testApi
+        return results
 
     def getJson(self):
         # 获取返回信息的json数据

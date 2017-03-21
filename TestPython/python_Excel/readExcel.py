@@ -8,10 +8,10 @@ import xlrd
 
 
 class readExcel(object):
-    def __init__(self, path):
+    def __init__(self, path: object):
         self.path = path
 
-    @property
+    @property  # 把方法变成属性可以直接进行调用
     def getSheet(self):
         # 获取索引
         xl = xlrd.open_workbook(self.path)
