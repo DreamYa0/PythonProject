@@ -22,6 +22,7 @@ token = excel.gettoken
 row = excel.getRows
 
 
+# 登录
 class testLoginApi(unittest.TestCase):
     def test_LoginApi(self):
 
@@ -50,11 +51,11 @@ class testLoginApi(unittest.TestCase):
         #         else:
         #             print(results)
 
-        for i in range(0,row-1):
-            if token[i] == 0:
+        for i in range(0, 10):
+            if token[i] == 1:
                 api = testApi(method[i], url[i], data[i], Cookies.Cookies)
-                apicode=api.getCode()
-                apijson=api.getJson()
+                apicode = api.getCode()
+                apijson = api.getJson()
                 if apicode != int(code[i]) or apijson != massage[i]:
                     print('{}、{}:测试失败.json数据为:{}'.format(i + 1, name[i], apijson))
             else:
@@ -63,6 +64,24 @@ class testLoginApi(unittest.TestCase):
                 apijson = api.getJson()
                 if apicode != int(code[i]) or apijson != massage[i]:
                     print('{}、{}:测试失败.json数据为:{}'.format(i + 1, name[i], apijson))
+
+
+# 子账户增删查改
+class testUsersApi(unittest.TestCase):
+    def test_UsersApi(self):
+        for i in range(11, row - 1):
+            if token[i] == 1:
+                api = testApi(method[i], url[i], data[i], Cookies.Cookies)
+                apicode = api.getCode()
+                apijson = api.getJson()
+                if apicode != int(code[i]) or apijson != massage[i]:
+                    print('{}、{}:测试失败.message为:{}'.format(i + 1, name[i], apijson))
+            else:
+                api = testApi(method[i], url[i], data[i])
+                apicode = api.getCode()
+                apijson = api.getJson()
+                if apicode != int(code[i]) or apijson != massage[i]:
+                    print('{}、{}:测试失败.message为:{}'.format(i + 1, name[i], apijson))
 
 
 if __name__ == '__main__':

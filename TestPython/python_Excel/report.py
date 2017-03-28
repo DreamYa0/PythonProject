@@ -14,5 +14,6 @@ if __name__ == '__main__':
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title='CloudHawk接口测试报告', description='CloudHawk的登录登出，子账户，角色，poi，围栏，重置密码接口测试报告')
     suite = unittest.TestSuite()
     suite.addTest(test.testLoginApi("test_LoginApi"))
+    suite.addTest(test.testUsersApi("test_UsersApi"))
     runner.run(suite)
     fp.close()

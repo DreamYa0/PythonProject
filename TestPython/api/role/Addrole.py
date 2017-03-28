@@ -51,7 +51,7 @@ def addrolePMSNone():
 
 # name字段缺失
 def addroleNoNM():
-    data = {"permissions": ""}
+    data = {"permissions": [1,2]}
     return ApiMethod.testMethod(roleUrl, type, data, cookie)
 
 
