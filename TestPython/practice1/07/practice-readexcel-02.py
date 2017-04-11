@@ -8,7 +8,7 @@ import xlrd
 
 def read_excel():
     # 打开文件
-    workbook = xlrd.open_workbook('e:/ch-test.xlsx')
+    workbook = xlrd.open_workbook('e:/test1.xls')
     # 获取所有sheet
     print(workbook.sheet_names())
     sheet1_name = workbook.sheet_names()[1]

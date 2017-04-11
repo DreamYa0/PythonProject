@@ -36,12 +36,12 @@ class testApi(object):
         except Exception as e:
             print(e.args)
 
-    # def getCode(self):
-    #     # 获取http的状态码
-    #     code = self.testApi.json()['status']
-    #     return code
-    #
-    # def getJson(self):
-    #     # 获取返回信息的json数据
-    #     json_data = self.testApi.json()['message']
-    #     return json_data
+    def getCode(self):
+        # 获取http的状态码
+        code = self.testApi.json()['status']
+        return code
+
+    def getJson(self):
+        # 获取返回信息的json数据
+        json_data = self.testApi.json()['message']
+        return json_data
