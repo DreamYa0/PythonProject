@@ -8,7 +8,7 @@ from TestPython.python_Excel.readExcel import readExcel
 from TestPython.python_Excel.testApi import testApi
 import unittest
 import logging
-from TestPython.python_Excel import monica
+from TestPython.python_Excel import asserttool
 import json
 from TestPython.python_Excel import test
 
@@ -24,7 +24,7 @@ message = test.testLoginApi().message
 
 class TestLogin:
     def test0(self):
-        monica.Monica(result[0], code[0], message[0])
+        asserttool.Asserttool(result[0], code[0], message[0])
 
     def test1(self):
         pass

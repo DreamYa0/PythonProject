@@ -10,7 +10,6 @@ import unittest
 import logging
 from TestPython.python_Excel import Cookies
 import json
-from TestPython.python_Excel import Readsheet
 
 logging.basicConfig(level=logging.INFO)
 excel = readExcel('e:/ch-test.xlsx')

@@ -5,6 +5,6 @@ Author:Monica
 """
 
 
-def Monica(result, code, message):
+def Asserttool(result, code, message):
     assert result['status'] == code
     assert result['message'] == message
