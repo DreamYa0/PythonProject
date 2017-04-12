@@ -19,33 +19,35 @@ excel = readExcel('e:/ch-test.xlsx')
 # 模块名
 class testLoginApi:
     def __init__(self):
-        self.sheet1 = excel.getSheet[0]
-        excel.getName = self.sheet1
+        self.sheet0 = excel.getSheet[0]
+        excel.getName = self.sheet0
         self.name = excel.getName
-        excel.getUrl = self.sheet1
+        excel.getUrl = self.sheet0
         self.url = excel.getUrl
-        excel.getData = self.sheet1
+        excel.getData = self.sheet0
         self.data = excel.getData
-        excel.getMethod = self.sheet1
+        excel.getMethod = self.sheet0
         self.method = excel.getMethod
-        excel.getCode = self.sheet1
+        excel.getCode = self.sheet0
         self.code = excel.getCode
-        excel.getMessage = self.sheet1
+        excel.getMessage = self.sheet0
         self.message = excel.getMessage
-        excel.gettoken = self.sheet1
+        excel.gettoken = self.sheet0
         self.token = excel.gettoken
         # 获取行数
-        excel.getRows = self.sheet1
+        excel.getRows = self.sheet0
         self.row = excel.getRows
 
+    @property
     def test_LoginApi(self):
         TextResult = []
         for i in range(0, self.row - 1):
             if self.token[i] == 0:
                 api = testApi(self.method[i], self.url[i], self.data[i]).testApi
                 if api.status_code == 200:
-                    TextResult.append(api)
+                    TextResult.append(api.json())
                 else:
+                    TextResult.append({"status": api.status_code, "message": "fail"})
                     logging.info(self.method[i] + ',' + self.data[i])
         return TextResult
 
@@ -77,23 +79,20 @@ class testRoleApi:
             if self.token[i] == 0:
                 api = testApi(self.method[i], self.url[i], self.data[i]).testApi
                 if api.status_code == 200:
-                    TextResult.append(api)
+                    TextResult.append(api.json())
+                else:
+                    logging.info(self.method[i] + ',' + self.data[i])
+            else:
+                api = testApi(self.method[i], self.url[i], self.data[i], Cookies.Cookies).testApi
+                if api.status_code == 200:
+                    TextResult.append(api.json())
                 else:
                     logging.info(self.method[i] + ',' + self.data[i])
         return TextResult
-print(testLoginApi().test_LoginApi())
-print(testRoleApi().test_RoleApi())
 
-# apicode = api.getCode()
-# apijson = api.getJson()
-#     if apicode != int(code[i]) or apijson != massage[i]:
-#         print('{}、{}:测试失败.json数据为:{},{}'.format(i + 1, name[i], apicode, apijson))
-# else:
-#     api = testApi(method[i], url[i], data[i])
-#     apicode = api.getCode()
-#     apijson = api.getJson()
-#     if apicode != int(code[i]) or apijson != massage[i]:
-#         print('{}、{}:测试失败.json数据为:{},{}'.format(i + 1, name[i], apicode, apijson))
+
+# print(testLoginApi().test_LoginApi)
+# print(testRoleApi().test_RoleApi())
 
 
 # if __name__ == '__main__':
