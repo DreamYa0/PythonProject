@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
-from TestPython.api.POI_GEO import pois
 
-poi_id = str(pois.poisSuccess()['data'][0]['id'])
-poisUrl = "/api/v1/pois/"+poi_id
+poisUrl = "/api/v1/pois/524"
 type = "put"
 cookie = Mycookies.Cookies
 
@@ -16,7 +14,6 @@ def EditPOINocookie():
             "enter_alert": 1, "out_alert": 1, "tids": ["898602B12616C0613882"]}
     return ApiMethod.testMethod(poisUrl, type, data)
 
-print(EditPOINocookie())
 
 # 修改poi名称
 def EditPOINameSuccess():

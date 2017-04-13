@@ -89,10 +89,6 @@ class testRoleApi:
                     logging.info(self.method[i] + ',' + self.data[i])
         return TextResult
 
-
-# print(testLoginApi().test_LoginApi)
 # print(testRoleApi().test_RoleApi())
-
-
 # if __name__ == '__main__':
 #     unittest.main(verbosity=2)
