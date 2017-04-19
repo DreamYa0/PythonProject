@@ -2,22 +2,20 @@
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
 
-poisUrl = "/api/v1/pois/524"
+poisUrl = "/api/v1/pois/550"
 type = "put"
 cookie = Mycookies.Cookies
 
 
 # 无cookie
 def EditPOINocookie():
-    data = {"name": "111",
-            "avatar_path": "/static/icons/poi/default.png",
-            "enter_alert": 1, "out_alert": 1, "tids": ["898602B12616C0613882"]}
+    data = {"name": "111"}
     return ApiMethod.testMethod(poisUrl, type, data)
 
 
 # 修改poi名称
 def EditPOINameSuccess():
-    data = {"name": "222"}
+    data = {"name": "monica"}
     return ApiMethod.testMethod(poisUrl, type, data, cookie)
 
 

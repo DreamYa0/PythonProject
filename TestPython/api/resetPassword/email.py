@@ -7,7 +7,7 @@ type = "get"
 
 # 已注册未激活的邮箱
 def resetUnregistered():
-    data = {"email": "498194410@qq.com"}
+    data = {"email": "afewf@geawfw.com"}
     return ApiMethod.testMethod(resetUrl, type, data)
 
 
@@ -31,16 +31,16 @@ def resetInvalidFormat():
 
 # 未注册的邮箱
 def resetNotfound():
-    data = {"email": "952659830@qq.com"}
+    data = {"email": "zxcvb@qq.com"}
     return ApiMethod.testMethod(resetUrl, type, data)
 
 
-# 字段缺失
+# 字段缺失(不传参)
 def resetNoEmail():
     return ApiMethod.testMethod(resetUrl, type)
 
 
 # 正确的邮箱
 def resetSuccess():
-    data = {"email": "zhouyang@supeq.com"}
+    data = {"email": "3097944154@qq.com"}
     return ApiMethod.testMethod(resetUrl, type, data)

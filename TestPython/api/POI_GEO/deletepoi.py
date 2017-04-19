@@ -4,8 +4,7 @@ from TestPython.api import Mycookies
 from TestPython.api.POI_GEO import pois
 
 
-poi_id=str(pois.poisSuccess()['data'][0]['id'])
-poisUrl = "/api/v1/pois/"+poi_id
+poisUrl = "/api/v1/pois/560"
 type = "delete"
 cookie = Mycookies.Cookies
 

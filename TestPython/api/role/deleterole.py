@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
-from TestPython.api.role import userrole
 
-role_id=str(userrole.userroleSuccess()['data'][0]['id'])
-roleUrl = "/api/v1/roles/"+role_id
+roleUrl = "/api/v1/roles/1105"
 type = "delete"
 cookie = Mycookies.Cookies
 

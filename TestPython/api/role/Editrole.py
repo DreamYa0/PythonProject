@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
-from TestPython.api.role import userrole
 
-role_id = str(userrole.userroleSuccess()['data'][0]['id'])
-roleUrl = "/api/v1/roles/" + role_id
+
+roleUrl = "/api/v1/roles/1111"
 type = "put"
 cookie = Mycookies.Cookies
 
 
 # 无权限进行修改
 def roleNocookie():
-    data = {"name": "pro", "permissions": [6, 1, 4, 3, 5, 2]}
+    data = {"name": "bbb", "permissions": [6, 1, 4, 3, 5, 2]}
     return ApiMethod.testMethod(roleUrl, type, data)
 
 

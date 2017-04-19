@@ -10,7 +10,7 @@ cookie = Mycookies.Cookies
 # 无cookie
 def geoNocookie():
     data = {
-        'name': 'test',
+        'name': '无cookie',
         'shape': 0,
         'circle': {'radius': 156.20, 'latitude': 110199299.03028621, 'longitude': 374528575.6587982},
         'enter_alert': 1,
@@ -21,10 +21,10 @@ def geoNocookie():
     return ApiMethod.testMethod(geoUrl, type, data)
 
 
-# 修改圆形围栏
+# 创建圆形围栏
 def geoCircleSuccess():
     data = {
-        'name': 'test1',
+        'name': '创建圆形围栏1',
         'shape': 0,
         'circle': {'radius': 156.20, 'latitude': 110199299.03028621, 'longitude': 374528575.6587982},
         'enter_alert': 1,
@@ -35,10 +35,10 @@ def geoCircleSuccess():
     return ApiMethod.testMethod(geoUrl, type, data, cookie)
 
 
-# 修改多边形围栏
+# 创建多边形围栏
 def geoPolygonSuccess():
     data = {
-        'name': 'w02e1',
+        'name': '创建多边形围栏w02e1',
         'shape': 1,
         'polygon': [
             {'latitude': 80495565.29416555, 'longitude': 408793862.3428345},
@@ -57,7 +57,7 @@ def geoPolygonSuccess():
 # name名字重复
 def geoNameRepeat():
     data = {
-        'name': 'test1',
+        'name': '创建圆形围栏1',
         'shape': 0,
         'circle': {'radius': 156.20, 'latitude': 110199299.03028621, 'longitude': 374528575.6587982},
         'enter_alert': 1,
@@ -71,7 +71,7 @@ def geoNameRepeat():
 # 修改name为1位
 def geoNameMin():
     data = {
-        'name': 'Q',
+        'name': '1',
         'shape': 0,
         'circle': {'radius': 156.20, 'latitude': 110199299.03028621, 'longitude': 374528575.6587982},
         'enter_alert': 1,
@@ -168,7 +168,7 @@ def geoNameNo():
 # shape为不存在的值
 def geoShapeNoExist():
     data = {
-        'name': 'q5w1e1',
+        'name': 'shape为不存在的值',
         'shape': 2,
         'polygon': [
             {'latitude': 80495565.29416555, 'longitude': 408793862.3428345},
@@ -187,7 +187,7 @@ def geoShapeNoExist():
 # 修改shape为字符串
 def geoShapeStr():
     data = {
-        'name': 'wq51d5',
+        'name': '修改shape为字符串',
         'shape': '1',
         'polygon': [
             {'latitude': 80495565.29416555, 'longitude': 408793862.3428345},
@@ -225,7 +225,7 @@ def geoShapeEmpty():
 # 修改shape为None
 def geoShapeNone():
     data = {
-        'name': 'c1d51df',
+        'name': '修改shape为None',
         'shape': None,
         'polygon': [
             {'latitude': 80495565.29416555, 'longitude': 408793862.3428345},
@@ -244,7 +244,7 @@ def geoShapeNone():
 # shape和围栏类型不匹配
 def geoShapeIncorrect():
     data = {
-        'name': '8qwef1',
+        'name': 'shape和围栏类型不匹配',
         'shape': 0,
         'polygon': [
             {'latitude': 80495565.29416555, 'longitude': 408793862.3428345},
@@ -263,7 +263,7 @@ def geoShapeIncorrect():
 # 不传shape
 def geoShapeNo():
     data = {
-        'name': 'qw1e2',
+        'name': '不传shape',
         'polygon': [
             {'latitude': 80495565.29416555, 'longitude': 408793862.3428345},
             {'latitude': 80493779.30159469, 'longitude': 408795407.2952270},
@@ -281,7 +281,7 @@ def geoShapeNo():
 # 多边形围栏的值为空
 def geoPolygonEmpty():
     data = {
-        'name': '2d3g13df',
+        'name': '多边形围栏的值为空',
         'shape': 1,
         'polygon': [],
         'enter_alert': 1,
@@ -295,7 +295,7 @@ def geoPolygonEmpty():
 # 圆形围栏的值为空
 def geoCicleEmpty():
     data = {
-        'name': '5df31g5',
+        'name': '圆形围栏的值为空',
         'shape': 0,
         'circle': {},
         'enter_alert': 1,
@@ -309,7 +309,7 @@ def geoCicleEmpty():
 # 多边形围栏值为None
 def geoPolygonNone():
     data = {
-        'name': '1e5f15e',
+        'name': '多边形围栏值为None',
         'shape': 1,
         'polygon': None,
         'enter_alert': 1,
@@ -323,7 +323,7 @@ def geoPolygonNone():
 # 圆形围栏值为None
 def geoCicleNone():
     data = {
-        'name': 'qwe1r556',
+        'name': '圆形围栏值为None',
         'shape': 0,
         'circle': None,
         'enter_alert': 1,
@@ -351,7 +351,7 @@ def geoTypeInvalid():
 # 不传围栏类型
 def geoTypeNo():
     data = {
-        'name': '8e88f9',
+        'name': '不传围栏类型',
         'shape': 0,
         'enter_alert': 1,
         'out_alert': 1,

@@ -47,13 +47,13 @@ def visitSuccess():
 
 # 获取maintence报表车辆剩余保养距离/车辆剩余保养时间前7数据
 def maintenceSuccess():
-    data = {"r_type": 6}
+    data = {"r_type": 7}
     return ApiMethod.testMethod(reportUrl, type, data, cookie)
 
 
 # 获取IFTA Fuel Tax Mileage报表所有车辆在州行驶距离总和前7数据
 def IFIASuccess():
-    data = {"r_type": 7}
+    data = {"r_type": 8}
     return ApiMethod.testMethod(reportUrl, type, data, cookie)
 
 

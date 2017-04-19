@@ -2,7 +2,7 @@
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
 
-userUrl = "/api/v1/users/309794415@qq.com"
+userUrl = "/api/v1/users/22236514@qq.com"
 type = "delete"
 cookie = Mycookies.Cookies
 

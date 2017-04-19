@@ -13,13 +13,13 @@ def loginSuccess():
 
 # 用户名或密码错误
 def loginUserErrorOrPwdError():
-    data = {"username": "498194@qq.com", "password": "123456"}
+    data = {"username": "21gh23654@qq.com", "password": "123456"}
     return ApiMethod.testMethod(loginUrl, type, data)
 
 
 # 用户名未激活
 def loginNoActive():
-    data = {"username": "498194410@qq.com", "password": "123456"}
+    data = {"username": "wefaw@qqfq.com", "password": "123456"}
     return ApiMethod.testMethod(loginUrl, type, data)
 
 
