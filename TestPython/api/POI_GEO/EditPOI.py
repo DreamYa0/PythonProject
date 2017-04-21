@@ -111,13 +111,13 @@ def EditPOINameInt():
 
 # 修改进入提醒值为字符串
 def EditPOIEAStr():
-    data = {"enter_alert": "1"}
+    data = {"enter_alert": "dfg"}
     return ApiMethod.testMethod(poisUrl, type, data, cookie)
 
 
 # 修改离开提醒值为字符串
 def EditPOIOAStr():
-    data = {"out_alert": "1"}
+    data = {"out_alert": "fg"}
     return ApiMethod.testMethod(poisUrl, type, data, cookie)
 
 

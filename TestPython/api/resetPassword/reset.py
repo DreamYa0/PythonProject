@@ -11,10 +11,10 @@ def resetInvalid():
     return ApiMethod.testMethod(resetUrl, type, data)
 
 
-# 错误的激活码
-def resetWrongCF():
-    data = {"confirmation": "11rN09OGP", "password": "111111"}
-    return ApiMethod.testMethod(resetUrl, type, data)
+# # 错误的激活码
+# def resetWrongCF():
+#     data = {"confirmation": "11rN09OGP", "password": "111111"}
+#     return ApiMethod.testMethod(resetUrl, type, data)
 
 # # 密码包含特殊字符
 # def resetPwdIllegal():

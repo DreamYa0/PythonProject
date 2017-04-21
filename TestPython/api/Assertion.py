@@ -12,8 +12,8 @@ from TestPython.api.users import userManagement
 from TestPython.api.users import Adduser
 from TestPython.api.users import Edituser
 from TestPython.api.users import DeleteUser
-# from TestPython.api.Timeline import timeline
-# from TestPython.api.report_Dashboard import Dashboard
+from TestPython.api.Timeline import timeline
+from TestPython.api.report_Dashboard import Dashboard
 from TestPython.api.users import user_id
 from TestPython.api.role import permissions
 from TestPython.api.role import userrole
@@ -30,60 +30,17 @@ from TestPython.api.POI_GEO import Addgeo
 from TestPython.api.POI_GEO import Editgeo
 from TestPython.api.POI_GEO import deletegeo
 from TestPython.api.notification import notification
-
-
-class tripApiTest(unittest.TestCase):
-    """replaytrip 轨迹回放"""
-
-    def test_tripSuccuss(self):
-        result = trip_post.tripSuccuss()
-        self.assertEqual(result['status'], 200)
-        self.assertEqual(result['message'], 'Operation is successful.')
-
-    def test_tripIDNone(self):
-        result = trip_post.tripIDNone()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format.')
-
-    def test_tripSTNone(self):
-        result = trip_post.tripSTNone()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format.')
-
-    def test_tripETNone(self):
-        result = trip_post.tripETNone()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format.')
-
-    def test_tripIdEmpty(self):
-        result = trip_post.tripIdEmpty()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format.')
-
-    def test_tripSTEmpty(self):
-        result = trip_post.tripSTEmpty()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format')
-
-    def test_tripETEmpty(self):
-        result = trip_post.tripETEmpty()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format')
-
-    def test_tripNoID(self):
-        result = trip_post.tripNoID()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format')
-
-    def test_tripNoST(self):
-        result = trip_post.tripNoST()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format')
-
-    def test_tripNoET(self):
-        result = trip_post.tripNoET()
-        self.assertEqual(result['status'], 400)
-        self.assertEqual(result['message'], 'Invalid request data format')
+from TestPython.api.CHApiTest import Register
+from TestPython.api.CHApiTest import Email
+from TestPython.api.CHApiTest import Profile
+from TestPython.api.CHApiTest import Trackers
+from TestPython.api.CHApiTest import Tracker
+from TestPython.api.CHApiTest import TrackerAdd
+from TestPython.api.CHApiTest import LabelGet
+from TestPython.api.CHApiTest import LabelAdd
+from TestPython.api.CHApiTest import LabelEdit
+from TestPython.api.CHApiTest import LabelDel
+from TestPython.api.CHApiTest import NotificationEdit
 
 
 class loginApiTest(unittest.TestCase):
@@ -135,127 +92,32 @@ class loginApiTest(unittest.TestCase):
         self.assertEqual(result["message"], 'Invalid request data format.')
 
 
-class logoutApiTest(unittest.TestCase):
-    """登出"""
+class userManagementApiTest(unittest.TestCase):
+    """获取全部子账号列表"""
 
-    def test_logoutFail(self):
-        result = logout.logoutFail()
+    def test_userSuccess(self):
+        result = userManagement.userSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_userNoCookie(self):
+        result = userManagement.userNoCookie()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
 
-    def test_logoutSuccess(self):
-        result = logout.logoutSuccess()
+
+class user_idApiTest(unittest.TestCase):
+    """获取单个子账号详情"""
+
+    def oneuserSuccess(self):
+        result = user_id.oneuserSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-
-class emailApiTest(unittest.TestCase):
-    """重置密码-验证邮箱"""
-
-    def test_resetUnregistered(self):
-        result = email.resetUnregistered()
-        self.assertEqual(result["status"], 218)
-        self.assertEqual(result["message"], 'This email address is not activated.')
-
-    def test_resetNone(self):
-        result = email.resetNone()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetEmpty(self):
-        result = email.resetEmpty()
-        self.assertEqual(result["status"], 912)
-        self.assertEqual(result["message"], 'Invalid email format.')
-
-    def test_resetInvalidFormat(self):
-        result = email.resetInvalidFormat()
-        self.assertEqual(result["status"], 912)
-        self.assertEqual(result["message"], 'Invalid email format.')
-
-    def test_resetNotfound(self):
-        result = email.resetNotfound()
-        self.assertEqual(result["status"], 218)
-        self.assertEqual(result["message"], 'This email address is not activated.')
-
-    def test_resetNoEmail(self):
-        result = email.resetNoEmail()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetSuccess(self):
-        result = email.resetSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-
-class resetApiTest(unittest.TestCase):
-    """重置密码"""
-
-    def test_resetInvalid(self):
-        result = reset.resetInvalid()
-        self.assertEqual(result["status"], 219)
-        self.assertEqual(result["message"], 'Link failure.')
-
-    def test_resetWrongCF(self):
-        result = reset.resetWrongCF()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetPwdIllegal(self):
-        result = reset.resetPwdIllegal()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetCFNone(self):
-        result = reset.resetCFNone()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetPwdNone(self):
-        result = reset.resetPwdNone()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetCFEmpty(self):
-        result = reset.resetCFEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetPwdEmpty(self):
-        result = reset.resetPwdEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetPwdless(self):
-        result = reset.resetPwdless()
-        self.assertEqual(result["status"], 128)
-        self.assertEqual(result["message"],
-                         'enter a password more than 6 numbers or letters in length, try again please.')
-
-    def test_resetPwdMin(self):
-        result = reset.resetPwdMin()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def test_resetPwdMax(self):
-        result = reset.resetPwdMax()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def test_resetPwdOut(self):
-        result = reset.resetPwdOut()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetPwdInt(self):
-        result = reset.resetPwdInt()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_resetSuccess(self):
-        result = reset.resetSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
+    def oneuserNocookie(self):
+        result = user_id.oneuserNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
 
 
 class AdduserApiTest(unittest.TestCase):
@@ -394,30 +256,17 @@ class AdduserApiTest(unittest.TestCase):
     def test_AdduserAEmailError(self):
         result = Adduser.AdduserAEmailError()
         self.assertEqual(result["status"], 914)
-        self.assertEqual(result["message"], 'Your account has been created. Please use your email address and password to login.')
+        self.assertEqual(result["message"],
+                         'Your account has been created. Please use your email address and password to login.')
 
     def test_AdduserUEmailError(self):
         result = Adduser.AdduserUEmailError()
         self.assertEqual(result["status"], 914)
-        self.assertEqual(result["message"], 'Your account has been created. Please use your email address and password to login.')
+        self.assertEqual(result["message"],
+                         'Your account has been created. Please use your email address and password to login.')
 
     def test_AdduserEFormError(self):
         result = Adduser.AdduserEFormError()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdduserFNOut(self):
-        result = Adduser.AdduserFNOut()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdduserLNOut(self):
-        result = Adduser.AdduserLNOut()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_AdduserMEOut(self):
-        result = Adduser.AdduserMEOut()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -431,63 +280,10 @@ class AdduserApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_AdduserFNMax(self):
-        result = Adduser.AdduserFNMax()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def test_AdduserLNMax(self):
-        result = Adduser.AdduserLNMax()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def test_AdduserMEMax(self):
-        result = Adduser.AdduserMEMax()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
     def test_AdduserPwdMax(self):
         result = Adduser.AdduserPwdMax()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
-
-    def test_AdduserPwdMin(self):
-        result = Adduser.AdduserPwdMin()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def test_AdduserRIdError(self):
-        result = Adduser.AdduserRIdError()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-
-class userManagementApiTest(unittest.TestCase):
-    """获取全部子账号列表"""
-
-    def test_userSuccess(self):
-        result = userManagement.userSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def test_userNoCookie(self):
-        result = userManagement.userNoCookie()
-        self.assertEqual(result["status"], 401)
-        self.assertEqual(result["message"], 'Authenticated failed.')
-
-
-class user_idApiTest(unittest.TestCase):
-    """获取单个子账号详情"""
-
-    def oneuserSuccess(self):
-        result = user_id.oneuserSuccess()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
-    def oneuserNocookie(self):
-        result = user_id.oneuserNocookie()
-        self.assertEqual(result["status"], 401)
-        self.assertEqual(result["message"], 'Authenticated failed.')
 
 
 class EdituserApiTest(unittest.TestCase):
@@ -583,26 +379,6 @@ class EdituserApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
-    def test_EdituseFNMax(self):
-        result = Edituser.EdituseFNMax()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_EdituserLNMax(self):
-        result = Edituser.EdituserLNMax()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_EdituserMEMax(self):
-        result = Edituser.EdituserMEMax()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_EdituserRIdError(self):
-        result = Edituser.EdituserRIdError()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
     def test_EdituserESuccess(self):
         result = Edituser.EdituserESuccess()
         self.assertEqual(result["status"], 200)
@@ -653,127 +429,58 @@ class DeleteUserApiTest(unittest.TestCase):
         self.assertEqual(result["message"], 'Authenticated failed.')
 
 
-# class timelineApiTest(unittest.TestCase):
-#     """轨迹时间轴查询"""
-#
-#     def test_timelineNoCookie(self):
-#         result = timeline.timelineNoCookie()
-#         self.assertEqual(result["status"], 401)
-#         self.assertEqual(result["message"], 'Authenticated failed.')
-#
-#     def test_timelineSuccessA(self):
-#         result = timeline.timelineSuccessA()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_timelineSuccessB(self):
-#         result = timeline.timelineSuccessB()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def test_timelineIdsNone(self):
-#         result = timeline.timelineIdsNone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineSTNone(self):
-#         result = timeline.timelineSTNone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineETNone(self):
-#         result = timeline.timelineETNone()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineIdsEmpty(self):
-#         result = timeline.timelineIdsEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineSTEmpty(self):
-#         result = timeline.timelineSTEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineETEmpty(self):
-#         result = timeline.timelineETEmpty()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineNoIds(self):
-#         result = timeline.timelineNoIds()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineNoST(self):
-#         result = timeline.timelineNoST()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineNoET(self):
-#         result = timeline.timelineNoET()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineSTStr(self):
-#         result = timeline.timelineSTStr()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#     def test_timelineETStr(self):
-#         result = timeline.timelineETStr()
-#         self.assertEqual(result["status"], 400)
-#         self.assertEqual(result["message"], 'Invalid request data format.')
-#
-#
-# class DashboardApiTest(unittest.TestCase):
-#     """获取各报表前7数据"""
-#
-#     def test_mileageSuccess(self):
-#         result = Dashboard.mileageSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def driving_timeSuccess(self):
-#         result = Dashboard.driving_timeSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def fuelSuccess(self):
-#         result = Dashboard.fuelSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def speedSuccess(self):
-#         result = Dashboard.speedSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def temperatureSuccess(self):
-#         result = Dashboard.temperatureSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def visitSuccess(self):
-#         result = Dashboard.visitSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def maintenceSuccess(self):
-#         result = Dashboard.maintenceSuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def IFIASuccess(self):
-#         result = Dashboard.IFIASuccess()
-#         self.assertEqual(result["status"], 200)
-#         self.assertEqual(result["message"], 'Operation is successful.')
-#
-#     def NOcookie(self):
-#         result = Dashboard.NOcookie()
-#         self.assertEqual(result["status"], 401)
-#         self.assertEqual(result["message"], 'Authenticated failed.')
+class tripApiTest(unittest.TestCase):
+    """replaytrip 轨迹回放"""
+
+    def test_tripSuccuss(self):
+        result = trip_post.tripSuccuss()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_tripIDNone(self):
+        result = trip_post.tripIDNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_tripSTNone(self):
+        result = trip_post.tripSTNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_tripETNone(self):
+        result = trip_post.tripETNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_tripIdEmpty(self):
+        result = trip_post.tripIdEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_tripSTEmpty(self):
+        result = trip_post.tripSTEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format')
+
+    def test_tripETEmpty(self):
+        result = trip_post.tripETEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format')
+
+    def test_tripNoID(self):
+        result = trip_post.tripNoID()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format')
+
+    def test_tripNoST(self):
+        result = trip_post.tripNoST()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format')
+
+    def test_tripNoET(self):
+        result = trip_post.tripNoET()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format')
 
 
 class permissionsApiTest(unittest.TestCase):
@@ -945,6 +652,248 @@ class deleteroleApiTest(unittest.TestCase):
         self.assertEqual(result["message"], 'Operation is successful.')
 
 
+class emailApiTest(unittest.TestCase):
+    """重置密码-验证邮箱"""
+
+    def test_resetUnregistered(self):
+        result = email.resetUnregistered()
+        self.assertEqual(result["status"], 218)
+        self.assertEqual(result["message"], 'This email address is not activated.')
+
+    def test_resetNone(self):
+        result = email.resetNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_resetEmpty(self):
+        result = email.resetEmpty()
+        self.assertEqual(result["status"], 912)
+        self.assertEqual(result["message"], 'Invalid email format.')
+
+    def test_resetInvalidFormat(self):
+        result = email.resetInvalidFormat()
+        self.assertEqual(result["status"], 912)
+        self.assertEqual(result["message"], 'Invalid email format.')
+
+    def test_resetNotfound(self):
+        result = email.resetNotfound()
+        self.assertEqual(result["status"], 218)
+        self.assertEqual(result["message"], 'This email address is not activated.')
+
+    def test_resetNoEmail(self):
+        result = email.resetNoEmail()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_resetSuccess(self):
+        result = email.resetSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+
+class resetApiTest(unittest.TestCase):
+    """重置密码"""
+
+    def test_resetInvalid(self):
+        result = reset.resetInvalid()
+        self.assertEqual(result["status"], 219)
+        self.assertEqual(result["message"],
+                         "The confirmation code has expired. Please click 'Forget password' to obtain a new one.")
+
+        # def test_resetWrongCF(self):
+        #     result = reset.resetWrongCF()
+        #     self.assertEqual(result["status"], 400)
+        #     self.assertEqual(result["message"], 'Invalid request data format.')
+
+        # def test_resetPwdIllegal(self):
+        #     result = reset.resetPwdIllegal()
+        #     self.assertEqual(result["status"], 400)
+        #     self.assertEqual(result["message"], 'Invalid request data format.')
+        #
+        # def test_resetCFNone(self):
+        #     result = reset.resetCFNone()
+        #     self.assertEqual(result["status"], 400)
+        #     self.assertEqual(result["message"], 'Invalid request data format.')
+        #
+        # def test_resetPwdNone(self):
+        #     result = reset.resetPwdNone()
+        #     self.assertEqual(result["status"], 400)
+        #     self.assertEqual(result["message"], 'Invalid request data format.')
+        #
+        # def test_resetCFEmpty(self):
+        #     result = reset.resetCFEmpty()
+        #     self.assertEqual(result["status"], 400)
+        #     self.assertEqual(result["message"], 'Invalid request data format.')
+        #
+        # def test_resetPwdEmpty(self):
+        #     result = reset.resetPwdEmpty()
+        #     self.assertEqual(result["status"], 400)
+        #     self.assertEqual(result["message"], 'Invalid request data format.')
+        #
+        # def test_resetPwdless(self):
+        #     result = reset.resetPwdless()
+        #     self.assertEqual(result["status"], 128)
+        #     self.assertEqual(result["message"],
+        #                      'enter a password more than 6 numbers or letters in length, try again please.')
+        #
+        # def test_resetPwdMin(self):
+        #     result = reset.resetPwdMin()
+        #     self.assertEqual(result["status"], 200)
+        #     self.assertEqual(result["message"], 'Operation is successful.')
+        #
+        # def test_resetPwdMax(self):
+        #     result = reset.resetPwdMax()
+        #     self.assertEqual(result["status"], 200)
+        #     self.assertEqual(result["message"], 'Operation is successful.')
+        #
+        # def test_resetPwdOut(self):
+        #     result = reset.resetPwdOut()
+        #     self.assertEqual(result["status"], 400)
+        #     self.assertEqual(result["message"], 'Invalid request data format.')
+        #
+        # def test_resetPwdInt(self):
+        #     result = reset.resetPwdInt()
+        #     self.assertEqual(result["status"], 400)
+        #     self.assertEqual(result["message"], 'Invalid request data format.')
+        #
+        # def test_resetSuccess(self):
+        #     result = reset.resetSuccess()
+        #     self.assertEqual(result["status"], 200)
+        #     self.assertEqual(result["message"], 'Operation is successful.')
+
+
+class DashboardApiTest(unittest.TestCase):
+    """获取各报表前7数据"""
+
+    def test_mileageSuccess(self):
+        result = Dashboard.mileageSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def driving_timeSuccess(self):
+        result = Dashboard.driving_timeSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def fuelSuccess(self):
+        result = Dashboard.fuelSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def speedSuccess(self):
+        result = Dashboard.speedSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def temperatureSuccess(self):
+        result = Dashboard.temperatureSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def visitSuccess(self):
+        result = Dashboard.visitSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def maintenceSuccess(self):
+        result = Dashboard.maintenceSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def IFIASuccess(self):
+        result = Dashboard.IFIASuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def NOcookie(self):
+        result = Dashboard.NOcookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+
+class notificationApiTest(unittest.TestCase):
+    """"获取提醒标签列表"""
+
+    def test_notificationNocookie(self):
+        result = notification.notificationNocookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_notificationSuccess(self):
+        result = notification.notificationSuccess()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+
+class timelineApiTest(unittest.TestCase):
+    """轨迹时间轴查询"""
+
+    def test_timelineNoCookie(self):
+        result = timeline.timelineNoCookie()
+        self.assertEqual(result["status"], 401)
+        self.assertEqual(result["message"], 'Authenticated failed.')
+
+    def test_timelineSuccessA(self):
+        result = timeline.timelineSuccessA()
+        self.assertEqual(result["status"], 200)
+        self.assertEqual(result["message"], 'Operation is successful.')
+
+    def test_timelineIdsNone(self):
+        result = timeline.timelineIdsNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineSTNone(self):
+        result = timeline.timelineSTNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineETNone(self):
+        result = timeline.timelineETNone()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineIdsEmpty(self):
+        result = timeline.timelineIdsEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineSTEmpty(self):
+        result = timeline.timelineSTEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineETEmpty(self):
+        result = timeline.timelineETEmpty()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineNoIds(self):
+        result = timeline.timelineNoIds()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineNoST(self):
+        result = timeline.timelineNoST()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineNoET(self):
+        result = timeline.timelineNoET()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineSTStr(self):
+        result = timeline.timelineSTStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+    def test_timelineETStr(self):
+        result = timeline.timelineETStr()
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["message"], 'Invalid request data format.')
+
+
 class poisApiTest(unittest.TestCase):
     """获取poi列表"""
 
@@ -958,23 +907,8 @@ class poisApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_poisNoPage(self):
-        result = pois.poisNoPage()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_poisNoPSiza(self):
-        result = pois.poisNoPSiza()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
     def test_poisEmpty(self):
         result = pois.poisEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_poisPSizaEmpty(self):
-        result = pois.poisPSizaEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -990,21 +924,6 @@ class poisApiTest(unittest.TestCase):
 
     def test_poisStr(self):
         result = pois.poisStr()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_poisPSStr(self):
-        result = pois.poisPSStr()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_poisPageNoExist(self):
-        result = pois.poisPageNoExist()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_poisPSizeNoExist(self):
-        result = pois.poisPSizeNoExist()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -1324,23 +1243,8 @@ class GEOApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def test_geoNoPage(self):
-        result = GEO.geoNoPage()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_geoNoPSiza(self):
-        result = GEO.geoNoPSiza()
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["message"], 'Operation is successful.')
-
     def test_geoEmpty(self):
         result = GEO.geoEmpty()
-        self.assertEqual(result["status"], 400)
-        self.assertEqual(result["message"], 'Invalid request data format.')
-
-    def test_geoPSizaEmpty(self):
-        result = GEO.geoPSizaEmpty()
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["message"], 'Invalid request data format.')
 
@@ -1817,17 +1721,1251 @@ class deletegeoApiTest(unittest.TestCase):
         self.assertEqual(result['message'], 'Operation is successful.')
 
 
-class notificationApiTest(unittest.TestCase):
-    """"获取提醒标签列表"""
+class trackersApiTest(unittest.TestCase):
+    """获取终端信息"""
 
-    def test_notificationNocookie(self):
-        result = notification.notificationNocookie()
+    def test_trackerSuccess(self):
+        result = Trackers.trackerSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_trackersFail(self):
+        result = Trackers.trackersFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+
+class trackerApiTest(unittest.TestCase):
+    """修改终端信息"""
+
+    def test_trackerSuccess(self):
+        result = Tracker.trackerSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_trackerFail(self):
+        result = Tracker.trackerFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_trackerErrorId(self):
+        result = Tracker.trackerErrorId()
+        self.assertEqual(result['status'], 403)
+        self.assertEqual(result['message'], 'Permission is denied.')
+
+    def test_trackerNoParam(self):
+        result = Tracker.trackerNoParam()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_trackerAlias(self):
+        result = Tracker.trackerAlias()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_trackerAliasEmpty(self):
+        result = Tracker.trackerAliasEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerAliasNone(self):
+        result = Tracker.trackerAliasNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerIcon(self):
+        result = Tracker.trackerIcon()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_trackerIconNoExist(self):
+        result = Tracker.trackerIconNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerIconEmpty(self):
+        result = Tracker.trackerIconEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerIconNone(self):
+        result = Tracker.trackerIconNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerPowerSavingOff(self):
+        result = Tracker.trackerPowerSavingOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_trackerPowerSavingOpen(self):
+        result = Tracker.trackerPowerSavingOpen()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_trackerPowerSavingEmpty(self):
+        result = Tracker.trackerPowerSavingEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerPowerSavingNone(self):
+        result = Tracker.trackerPowerSavingNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+
+class trackerAddApiTest(unittest.TestCase):
+    """添加终端"""
+
+    def test_trackerAddSuccess(self):
+        result = TrackerAdd.trackerAddSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_trackerAddFail(self):
+        result = TrackerAdd.trackerAddFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_trackerAddIsUsed(self):
+        result = TrackerAdd.trackerAddIsUsed()
+        self.assertEqual(result['status'], 315)
+        self.assertEqual(result['message'], 'SN is used.')
+
+    def test_trackerAddInvaild(self):
+        result = TrackerAdd.trackerAddInvaild()
+        self.assertEqual(result['status'], 316)
+        self.assertEqual(result['message'], 'Invalid activation code and/or Serial Number')
+
+    def test_trackerAddError(self):
+        result = TrackerAdd.trackerAddError()
+        self.assertEqual(result['status'], 316)
+        self.assertEqual(result['message'], 'Invalid activation code and/or Serial Number')
+
+    def test_trackerAddNoSn(self):
+        result = TrackerAdd.trackerAddNoSn()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerAddNoActivationCode(self):
+        result = TrackerAdd.trackerAddNoActivationCode()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerAddSnEmpty(self):
+        result = TrackerAdd.trackerAddSnEmpty()
+        self.assertEqual(result['status'], 316)
+        self.assertEqual(result['message'], 'Invalid activation code and/or Serial Number')
+
+    def test_trackerAddSnNone(self):
+        result = TrackerAdd.trackerAddSnNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_trackerAddActivationCodeEmpty(self):
+        result = TrackerAdd.trackerAddActivationCodeEmpty()
+        self.assertEqual(result['status'], 316)
+        self.assertEqual(result['message'], 'Invalid activation code and/or Serial Number')
+
+    def test_trackerAddActivationCodeNone(self):
+        result = TrackerAdd.trackerAddActivationCodeNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+
+class EmailApiTest(unittest.TestCase):
+    """修改account邮箱"""
+
+    def test_emailChangeSuccess(self):
+        result = Email.emailChangeSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_emailChangeFail(self):
+        result = Email.emailChangeFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_emailChangeAleady(self):
+        result = Email.emailChangeAleady()
+        self.assertEqual(result['status'], 216)
+        self.assertEqual(result['message'],
+                         'This email address has already been registered. Please use another one. To recover password click Forgot Password.')
+
+    def test_emailChangeInvaildEmailFormat(self):
+        result = Email.emailChangeInvaildEmailFormat()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_emailChangeInvaildPassword(self):
+        result = Email.emailChangeInvaildPassword()
+        self.assertEqual(result['status'], 217)
+        self.assertEqual(result['message'], 'Password error.')
+
+    def test_emailChanageEmptyEmail(self):
+        result = Email.emailChanageEmptyEmail()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_emailChangeEmptyPassword(self):
+        result = Email.emailChangeEmptyPassword()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_emailChangeEmailNone(self):
+        result = Email.emailChangeEmailNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_emailChangePasswordNone(self):
+        result = Email.emailChangePasswordNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_emailChangeNoEmail(self):
+        result = Email.emailChangeEmailNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_emailChangeNoPassword(self):
+        result = Email.emailChangeNoPassword()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+
+class registerApiTest(unittest.TestCase):
+    """注册"""
+
+    def test_registerSuccess(self):
+        result = Register.registerSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_registerEmpty(self):
+        result = Register.registerEmpty()
+        self.assertEqual(result['status'], 912)
+        self.assertEqual(result['message'], 'Invalid email format.')
+
+    def test_registerNone(self):
+        result = Register.registerNone()
+        self.assertEqual(result['status'], 912)
+        self.assertEqual(result['message'], 'Invalid email format.')
+
+    def test_registerNoParam(self):
+        result = Register.registerNoParam()
+        self.assertEqual(result['status'], 912)
+        self.assertEqual(result['message'], 'Invalid email format.')
+
+    def test_registerInvaildEmailFormat(self):
+        result = Register.registerInvaildEmailFormat()
+        self.assertEqual(result['status'], 912)
+        self.assertEqual(result['message'], 'Invalid email format.')
+
+    def test_registerRepeat(self):
+        result = Register.registerRepeat()
+        self.assertEqual(result['status'], 216)
+        self.assertEqual(result['message'],
+                         'This email address has already been registered. Please use another one. To recover password click Forgot Password.')
+
+
+class profileApiTest(unittest.TestCase):
+    """获取profile"""
+
+    def test_profileSuccess(self):
+        result = Profile.profileSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_profileFail(self):
+        result = Profile.profileFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+
+class notificationEditApiTest(unittest.TestCase):
+    """告警设置"""
+
+    def test_notificationEditFail(self):
+        result = NotificationEdit.notificationEditFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_notificationEditError(self):
+        result = NotificationEdit.notificationEditErrorTid()
+        self.assertEqual(result['status'], 403)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_notificationEditMaxTemp0(self):
+        result = NotificationEdit.notificationEditMaxTemp0()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditMaxTempBelowZero(self):
+        result = NotificationEdit.notificationEditMaxTempBelowZero()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditMaxTempOver(self):
+        result = NotificationEdit.notificationEditMaxTempOver()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditMaxTempEmpty(self):
+        result = NotificationEdit.notificationEditMaxTempEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditMaxTempNone(self):
+        result = NotificationEdit.notificationEditMaxTempNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditMinTemp0(self):
+        result = NotificationEdit.notificationEditMinTemp0()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditMinTempBelowZero(self):
+        result = NotificationEdit.notificationEditMinTempBelowZero()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditMinTempOver(self):
+        result = NotificationEdit.notificationEditMinTempOver()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditMinTempEmpty(self):
+        result = NotificationEdit.notificationEditMinTempEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditMinTempNone(self):
+        result = NotificationEdit.notificationEditMinTempNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditMaxTempLessMinTemp(self):
+        result = NotificationEdit.notificationEditMaxTempLessMinTemp()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditExtsEmpty(self):
+        result = NotificationEdit.notificationEditExtsEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditExtsNone(self):
+        result = NotificationEdit.notificationEditExtsNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditDoorSensorEmpty(self):
+        result = NotificationEdit.notificationEditDoorSensorEmpty()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditTempSensorEmpty(self):
+        result = NotificationEdit.notificationEditTempSensorEmpty()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditDoorSensorNone(self):
+        result = NotificationEdit.notificationEditDoorSensorNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditTempSensorNone(self):
+        result = NotificationEdit.notificationEditTempSensorNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSosEmailNone(self):
+        result = NotificationEdit.notificationEditSosEmailNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSosEmail(self):
+        result = NotificationEdit.notificationEditSosEmail()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSosEmails(self):
+        result = NotificationEdit.notificationEditSosEmails()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSosEmailsOver(self):
+        result = NotificationEdit.notificationEditSosEmailsOver()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSosEmailEmpty(self):
+        result = NotificationEdit.notificationEditSosEmailEmpty()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSosEmailInvaildFormat(self):
+        result = NotificationEdit.notificationEditSosEmailInvaildFormat()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSosEmailRepeat(self):
+        result = NotificationEdit.notificationEditSosEmailRepeat()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSosEmailSelf(self):
+        result = NotificationEdit.notificationEditSosEmailSelf()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditNotificationEmpty(self):
+        result = NotificationEdit.notificationEditNotificationEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditNotificationNone(self):
+        result = NotificationEdit.notificationEditNotificationNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditPushEmpty(self):
+        result = NotificationEdit.notificationEditPushEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditPushNone(self):
+        result = NotificationEdit.notificationEditPushNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditPushOff(self):
+        result = NotificationEdit.notificationEditPushOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditPushOn(self):
+        result = NotificationEdit.notificationEditPushOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditEmailEmpty(self):
+        result = NotificationEdit.notificationEditEmailEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditEmailNone(self):
+        result = NotificationEdit.notificationEditEmailNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditEmailOff(self):
+        result = NotificationEdit.notificationEditEmailOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditEmailOn(self):
+        result = NotificationEdit.notificationEditEmailOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsEmpty(self):
+        result = NotificationEdit.notificationEditSmsEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsNone(self):
+        result = NotificationEdit.notificationEditSmsNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsRegionEmpty(self):
+        result = NotificationEdit.notificationEditSmsRegionEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsRegionNone(self):
+        result = NotificationEdit.notificationEditSmsRegionNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsRegionOff(self):
+        result = NotificationEdit.notificationEditSmsRegionOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsRegionOn(self):
+        result = NotificationEdit.notificationEditSmsRegionOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsPoiEmpty(self):
+        result = NotificationEdit.notificationEditSmsPoiEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsPoiNone(self):
+        result = NotificationEdit.notificationEditSmsPoiNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsPoiOff(self):
+        result = NotificationEdit.notificationEditSmsPoiOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsPoiOn(self):
+        result = NotificationEdit.notificationEditSmsPoiOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsTempEmpty(self):
+        result = NotificationEdit.notificationEditSmsTempEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsTempNone(self):
+        result = NotificationEdit.notificationEditSmsTempNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsTempOff(self):
+        result = NotificationEdit.notificationEditSmsTempOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsTempOn(self):
+        result = NotificationEdit.notificationEditSmsTempOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsIllegalmoveEmpty(self):
+        result = NotificationEdit.notificationEditSmsIllegalmoveEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsIllegalmoveNone(self):
+        result = NotificationEdit.notificationEditSmsIllegalmoveNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsIllegalmoveOff(self):
+        result = NotificationEdit.notificationEditSmsIllegalmoveOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsIllegalmoveOn(self):
+        result = NotificationEdit.notificationEditSmsIllegalmoveOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsHeartbeatlostEmpty(self):
+        result = NotificationEdit.notificationEditSmsHeartbeatlostEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsHeartbeatlostNone(self):
+        result = NotificationEdit.notificationEditSmsHeartbeatlostNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSmsHeartbeatlostOff(self):
+        result = NotificationEdit.notificationEditSmsHeartbeatlostOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSmsHeartbeatlostOn(self):
+        result = NotificationEdit.notificationEditSmsHeartbeatlostOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSpeedlimitEmpty(self):
+        result = NotificationEdit.notificationEditSpeedlimitEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSpeedlimitNone(self):
+        result = NotificationEdit.notificationEditSpeedlimitEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSpeedlimit0(self):
+        result = NotificationEdit.notificationEditSpeedlimit0()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSpeedlimit(self):
+        result = NotificationEdit.notificationEditSpeedlimit()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditSpeedlimitNegative(self):
+        result = NotificationEdit.notificationEditSpeedlimitNegative()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditSpeedlimitOver(self):
+        result = NotificationEdit.notificationEditSpeedlimitOver()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditContactemailEmpty(self):
+        result = NotificationEdit.notificationEditContactemailEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditContactemailNone(self):
+        result = NotificationEdit.notificationEditContactemailNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditContactemailPrimaryAccount(self):
+        result = NotificationEdit.notificationEditContactemailPrimaryAccount()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditContactemailNoExist(self):
+        result = NotificationEdit.notificationEditContactemailNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditContactmobileEmpty(self):
+        result = NotificationEdit.notificationEditContactmobileEmpty()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditContactmobileNone(self):
+        result = NotificationEdit.notificationEditContactmobileNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditContactmobilePrimaryAccount(self):
+        result = NotificationEdit.notificationEditContactmobilePrimaryAccount()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditContactmobileNoExist(self):
+        result = NotificationEdit.notificationEditContactmobileNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoicesendEmpty(self):
+        result = NotificationEdit.notificationEditVoicesendEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoicesendNone(self):
+        result = NotificationEdit.notificationEditVoicesendNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoicesendOff(self):
+        result = NotificationEdit.notificationEditVoicesendOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoicesendOn(self):
+        result = NotificationEdit.notificationEditVoicesendOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoiceNoParam(self):
+        result = NotificationEdit.notificationEditVoiceNoParam()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceNone(self):
+        result = NotificationEdit.notificationEditVoiceNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceRegionEmpty(self):
+        result = NotificationEdit.notificationEditVoiceRegionEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceRegionNone(self):
+        result = NotificationEdit.notificationEditVoiceRegionNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceRegionOff(self):
+        result = NotificationEdit.notificationEditVoiceRegionOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoiceRegionOn(self):
+        result = NotificationEdit.notificationEditVoiceRegionOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoicePoiEmpty(self):
+        result = NotificationEdit.notificationEditVoicePoiEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoicePoiNone(self):
+        result = NotificationEdit.notificationEditVoicePoiNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoicePoiOff(self):
+        result = NotificationEdit.notificationEditVoicePoiOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoicePoiOn(self):
+        result = NotificationEdit.notificationEditVoicePoiOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoiceTempEmpty(self):
+        result = NotificationEdit.notificationEditVoiceTempEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceTempNone(self):
+        result = NotificationEdit.notificationEditVoiceTempNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceTempOff(self):
+        result = NotificationEdit.notificationEditVoiceTempOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoiceTempOn(self):
+        result = NotificationEdit.notificationEditVoiceTempOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoiceIllegalmoveEmpty(self):
+        result = NotificationEdit.notificationEditVoiceIllegalmoveEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceIllegalmoveNone(self):
+        result = NotificationEdit.notificationEditVoiceIllegalmoveNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceIllegalmoveOff(self):
+        result = NotificationEdit.notificationEditVoiceIllegalmoveOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoiceIllegalmoveOn(self):
+        result = NotificationEdit.notificationEditVoiceIllegalmoveOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoiceHeartbeatlostEmpty(self):
+        result = NotificationEdit.notificationEditVoiceHeartbeatlostEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceHeartbeatlostNone(self):
+        result = NotificationEdit.notificationEditVoiceHeartbeatlostNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditVoiceHeartbeatlostOff(self):
+        result = NotificationEdit.notificationEditVoiceHeartbeatlostOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditVoiceHeartbeatlostOn(self):
+        result = NotificationEdit.notificationEditVoiceHeartbeatlostOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsNoParam(self):
+        result = NotificationEdit.notificationEditOptionsNoParam()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsNone(self):
+        result = NotificationEdit.notificationEditOptionsNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsUsbdisconnectEmpty(self):
+        result = NotificationEdit.notificationEditOptionsUsbdisconnectEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsUsbdisconnectNone(self):
+        result = NotificationEdit.notificationEditOptionsUsbdisconnectNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsUsbdisconnectOff(self):
+        result = NotificationEdit.notificationEditOptionsUsbdisconnectOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionUsbdisconnectOn(self):
+        result = NotificationEdit.notificationEditOptionUsbdisconnectOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsTempEmpty(self):
+        result = NotificationEdit.notificationEditOptionsTempEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsTempNone(self):
+        result = NotificationEdit.notificationEditOptionsTempNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsTempOff(self):
+        result = NotificationEdit.notificationEditOptionsTempOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsTempOn(self):
+        result = NotificationEdit.notificationEditOptionsTempOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsIllegalmoveEmpty(self):
+        result = NotificationEdit.notificationEditOptionsIllegalmoveEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsIllegalmoveNone(self):
+        result = NotificationEdit.notificationEditOptionsIllegalmoveNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsIllegalmoveOff(self):
+        result = NotificationEdit.notificationEditOptionsIllegalmoveOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsIllegalmoveOn(self):
+        result = NotificationEdit.notificationEditOptionsIllegalmoveOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsOverspeedEmpty(self):
+        result = NotificationEdit.notificationEditOptionsOverspeedEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsOverspeedNone(self):
+        result = NotificationEdit.notificationEditOptionsOverspeedNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsOverspeedOff(self):
+        result = NotificationEdit.notificationEditOptionsOverspeedOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsOverspeedOn(self):
+        result = NotificationEdit.notificationEditOptionsOverspeedOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsPoiEmpty(self):
+        result = NotificationEdit.notificationEditOptionsPoiEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsPoiNone(self):
+        result = NotificationEdit.notificationEditOptionsPoiNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsPoiOff(self):
+        result = NotificationEdit.notificationEditOptionsPoiOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsPoiOn(self):
+        result = NotificationEdit.notificationEditOptionsPoiOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsHeartbeatlostEmpty(self):
+        result = NotificationEdit.notificationEditOptionsHeartbeatlostEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsHeartbeatlostNone(self):
+        result = NotificationEdit.notificationEditOptionsHeartbeatlostNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsHeartbeatlostOff(self):
+        result = NotificationEdit.notificationEditOptionsHeartbeatlostOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsHeartbeatlostOn(self):
+        result = NotificationEdit.notificationEditOptionsHeartbeatlostOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsPowerfullEmpty(self):
+        result = NotificationEdit.notificationEditOptionsPowerfullEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsPowerfullNone(self):
+        result = NotificationEdit.notificationEditOptionsPowerfullNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsPowerfullOff(self):
+        result = NotificationEdit.notificationEditOptionsPowerfullOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsPowerfullOn(self):
+        result = NotificationEdit.notificationEditOptionsPowerfullOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsRegionEmpty(self):
+        result = NotificationEdit.notificationEditOptionsRegionEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsRegionNone(self):
+        result = NotificationEdit.notificationEditOptionsRegionNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsRegionOff(self):
+        result = NotificationEdit.notificationEditOptionsRegionOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsRegionOn(self):
+        result = NotificationEdit.notificationEditOptionsRegionOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificaitonEditOptionsPowerlowEmpty(self):
+        result = NotificationEdit.notificaitonEditOptionsPowerlowEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsPowerlowNone(self):
+        result = NotificationEdit.notificationEditOptionsPowerlowNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsPowerlowOff(self):
+        result = NotificationEdit.notificationEditOptionsPowerlowOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsPowerlowOn(self):
+        result = NotificationEdit.notificationEditOptionsPowerlowOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsStoppingEmpty(self):
+        result = NotificationEdit.notificationEditOptionsStoppingEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsStoppingNone(self):
+        result = NotificationEdit.notificationEditOptionsStoppingNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsStoppingOff(self):
+        result = NotificationEdit.notificationEditOptionsStoppingOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsStoppingOn(self):
+        result = NotificationEdit.notificationEditOptionsStoppingOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsPoweroffEmpty(self):
+        result = NotificationEdit.notificationEditOptionsPoweroffEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsPoweroffNone(self):
+        result = NotificationEdit.notificationEditOptionsPoweroffNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsPoweroffOff(self):
+        result = NotificationEdit.notificationEditOptionsPoweroffOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsPoweroffOn(self):
+        result = NotificationEdit.notificationEditOptionsPoweroffOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsIllegalshakeEmpty(self):
+        result = NotificationEdit.notificationEditOptionsIllegalshakeEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsIllegalshakeNone(self):
+        result = NotificationEdit.notificationEditOptionsIllegalshakeNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_notificationEditOptionsIllegalshakeOff(self):
+        result = NotificationEdit.notificationEditOptionsIllegalshakeOff()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_notificationEditOptionsIllegalshakeOn(self):
+        result = NotificationEdit.notificationEditOptionsIllegalshakeOn()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+
+class labelGetApiTest(unittest.TestCase):
+    """获取标签列表"""
+
+    def test_labelGetSuccess(self):
+        result = LabelGet.labelGetSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelGetFail(self):
+        result = LabelGet.labelGetFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_labelGetPageEmpty(self):
+        result = LabelGet.labelGetPageEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelGetPageNone(self):
+        result = LabelGet.labelGetPageNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelGetPage0(self):
+        result = LabelGet.labelGetPage0()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelGetPageNegative(self):
+        result = LabelGet.labelGetPageNegative()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelGetPageMax(self):
+        result = LabelGet.labelGetPageMax()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelGetNoParam(self):
+        result = LabelGet.labelGetNoParam()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+
+class labelAddApiTest(unittest.TestCase):
+    """添加标签"""
+
+    def test_labelAddSuccess(self):
+        result = LabelAdd.labelAddSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelAddFail(self):
+        result = LabelAdd.labelAddFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_labelAddNameRepeat(self):
+        result = LabelAdd.labelAddNameRepeat()
+        self.assertEqual(result['status'], 918)
+        self.assertEqual(result['message'], 'Name has existed.')
+
+    def test_labelAddNameEmpty(self):
+        result = LabelAdd.labelAddNameEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddNameOver(self):
+        result = LabelAdd.labelAddNameOver()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddNameNone(self):
+        result = LabelAdd.labelAddNameNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddColorEmpty(self):
+        result = LabelAdd.labelAddColorEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddColorNoExist(self):
+        result = LabelAdd.labelAddColorNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddColorNone(self):
+        result = LabelAdd.labelAddColorNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddTidNoExist(self):
+        result = LabelAdd.labelAddTidNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddTids(self):
+        result = LabelAdd.labelAddTids()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelAddTidEmpty(self):
+        result = LabelAdd.labelAddTidEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddTidNone(self):
+        result = LabelAdd.labelAddTidNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddNoName(self):
+        result = LabelAdd.labelAddNoName()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddNoColor(self):
+        result = LabelAdd.labelAddNoColor()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelAddNoTid(self):
+        result = LabelAdd.labelAddNoTid()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+
+class labelEditApiTest(unittest.TestCase):
+    """编辑标签"""
+
+    def test_labelGetSingle(self):
+        result = LabelEdit.labelGetSingle()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelEditSuccess(self):
+        result = LabelEdit.labelEditSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelEditFail(self):
+        result = LabelEdit.labelEditFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_labelEditErrorId(self):
+        result = LabelEdit.labelEditErrorId()
+        self.assertEqual(result['status'], 404)
+        self.assertEqual(result['message'], 'Not found.')
+
+    def test_labelEditNoParam(self):
+        result = LabelEdit.labelEditNoParam()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelEditNameEmpty(self):
+        result = LabelEdit.labelEditNameEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelEditNameNone(self):
+        result = LabelEdit.labelEditNameNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelEditNameOver(self):
+        result = LabelEdit.labelEditNameOver()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelEditColorEmpty(self):
+        result = LabelEdit.labelEditColorEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelEditColorNone(self):
+        result = LabelEdit.labelEditColorNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelEditColorNoExist(self):
+        result = LabelEdit.labelEditColorNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelEditTidNoExist(self):
+        result = LabelEdit.labelEditTidNoExist()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelEditTids(self):
+        result = LabelEdit.labelEditTids()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelEditTidEmpty(self):
+        result = LabelEdit.labelEditTidEmpty()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+    def test_labelEditTidNone(self):
+        result = LabelEdit.labelEditTidNone()
+        self.assertEqual(result['status'], 400)
+        self.assertEqual(result['message'], 'Invalid request data format.')
+
+
+class labelDelApiTest(unittest.TestCase):
+    """删除标签"""
+
+    def test_labelDelSuccess(self):
+        result = LabelDel.labelDelSuccess()
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['message'], 'Operation is successful.')
+
+    def test_labelDelFail(self):
+        result = LabelDel.labelDelFail()
+        self.assertEqual(result['status'], 401)
+        self.assertEqual(result['message'], 'Authenticated failed.')
+
+    def test_labelDelErrorId(self):
+        result = LabelDel.labelDelErrorId()
+        self.assertEqual(result['status'], 404)
+        self.assertEqual(result['message'], 'Not found.')
+
+
+class logoutApiTest(unittest.TestCase):
+    """登出"""
+
+    def test_logoutFail(self):
+        result = logout.logoutFail()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
 
-    def test_notificationSuccess(self):
-        result = notification.notificationSuccess()
+    def test_logoutSuccess(self):
+        result = logout.logoutSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
-
-

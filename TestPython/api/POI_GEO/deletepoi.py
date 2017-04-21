@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from TestPython.api import ApiMethod
 from TestPython.api import Mycookies
-from TestPython.api.POI_GEO import pois
 
 
 poisUrl = "/api/v1/pois/560"
