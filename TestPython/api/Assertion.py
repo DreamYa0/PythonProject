@@ -770,42 +770,42 @@ class DashboardApiTest(unittest.TestCase):
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def driving_timeSuccess(self):
+    def test_driving_timeSuccess(self):
         result = Dashboard.driving_timeSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def fuelSuccess(self):
+    def test_fuelSuccess(self):
         result = Dashboard.fuelSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def speedSuccess(self):
+    def test_speedSuccess(self):
         result = Dashboard.speedSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def temperatureSuccess(self):
+    def test_temperatureSuccess(self):
         result = Dashboard.temperatureSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def visitSuccess(self):
+    def test_visitSuccess(self):
         result = Dashboard.visitSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def maintenceSuccess(self):
+    def test_maintenceSuccess(self):
         result = Dashboard.maintenceSuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def IFIASuccess(self):
+    def test_IFIASuccess(self):
         result = Dashboard.IFIASuccess()
         self.assertEqual(result["status"], 200)
         self.assertEqual(result["message"], 'Operation is successful.')
 
-    def NOcookie(self):
+    def test_NOcookie(self):
         result = Dashboard.NOcookie()
         self.assertEqual(result["status"], 401)
         self.assertEqual(result["message"], 'Authenticated failed.')
@@ -2861,11 +2861,6 @@ class labelAddApiTest(unittest.TestCase):
 
 class labelEditApiTest(unittest.TestCase):
     """编辑标签"""
-
-    def test_labelGetSingle(self):
-        result = LabelEdit.labelGetSingle()
-        self.assertEqual(result['status'], 200)
-        self.assertEqual(result['message'], 'Operation is successful.')
 
     def test_labelEditSuccess(self):
         result = LabelEdit.labelEditSuccess()

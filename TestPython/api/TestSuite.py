@@ -9,17 +9,7 @@ from TestPython.api import Assertion
 
 def Suite():
     suite = unittest.TestSuite()
-    # suite.addTest(Assertion.tripApiTest("test_tripSuccuss"))
-    # suite.addTest(Assertion.tripApiTest("test_tripIDNone"))
-    # suite.addTest(Assertion.tripApiTest("test_tripSTNone"))
-    # suite.addTest(Assertion.tripApiTest("test_tripETNone"))
-    # suite.addTest(Assertion.tripApiTest("test_tripIdEmpty"))
-    # suite.addTest(Assertion.tripApiTest("test_tripSTEmpty"))
-    # suite.addTest(Assertion.tripApiTest("test_tripETEmpty"))
-    # suite.addTest(Assertion.tripApiTest("test_tripNoID"))
-    # suite.addTest(Assertion.tripApiTest("test_tripNoST"))
-    # suite.addTest(Assertion.tripApiTest("test_tripNoET"))
-
+    # 登录
     suite.addTest(Assertion.loginApiTest("test_loginSuccess"))
     suite.addTest(Assertion.loginApiTest("test_loginUserErrorOrPwdError"))
     suite.addTest(Assertion.loginApiTest("test_loginNoActive"))
@@ -30,32 +20,15 @@ def Suite():
     suite.addTest(Assertion.loginApiTest("test_loginUserEmpty"))
     suite.addTest(Assertion.loginApiTest("test_loginPwdEmpty"))
 
-    # suite.addTest(Assertion.logoutApiTest("test_logoutFail"))
-    # suite.addTest(Assertion.logoutApiTest("test_logoutSuccess"))
+    # 获取全部子账号列表
+    suite.addTest(Assertion.userManagementApiTest("test_userSuccess"))
+    suite.addTest(Assertion.userManagementApiTest("test_userNoCookie"))
 
-    # suite.addTest(Assertion.emailApiTest("test_resetUnregistered"))
-    # suite.addTest(Assertion.emailApiTest("test_resetNone"))
-    # suite.addTest(Assertion.emailApiTest("test_resetEmpty"))
-    # suite.addTest(Assertion.emailApiTest("test_resetInvalidFormat"))
-    # suite.addTest(Assertion.emailApiTest("test_resetNotfound"))
-    # suite.addTest(Assertion.emailApiTest("test_resetNoEmail"))
-    # suite.addTest(Assertion.emailApiTest("test_resetSuccess"))
+    # 获取单个子账号详情
+    suite.addTest(Assertion.user_idApiTest("test_oneuserSuccess"))
+    suite.addTest(Assertion.user_idApiTest("test_oneuserNocookie"))
 
-    # suite.addTest(Assertion.resetApiTest("test_resetInvalid"))
-    # suite.addTest(Assertion.resetApiTest("test_resetWrongCF"))
-    # suite.addTest(Assertion.resetApiTest("test_resetPwdIllegal"))
-    # suite.addTest(Assertion.resetApiTest("test_resetCFNone"))
-    # suite.addTest(Assertion.resetApiTest("test_resetPwdNone"))
-    # suite.addTest(Assertion.resetApiTest("test_resetCFEmpty"))
-    # suite.addTest(Assertion.resetApiTest("test_resetPwdEmpty"))
-    # suite.addTest(Assertion.resetApiTest("test_resetPwdless"))
-    # suite.addTest(Assertion.resetApiTest("test_resetPwdMin"))
-    # suite.addTest(Assertion.resetApiTest("test_resetPwdMax"))
-    # suite.addTest(Assertion.resetApiTest("test_resetPwdOut"))
-    # suite.addTest(Assertion.resetApiTest("test_resetPwdInt"))
-    # suite.addTest(Assertion.resetApiTest("test_resetSuccess"))
-
-
+    # 新增子账号
     suite.addTest(Assertion.AdduserApiTest("test_AdduserNoCookie"))
     suite.addTest(Assertion.AdduserApiTest("test_AdduserSuccess"))
     suite.addTest(Assertion.AdduserApiTest("test_AdduserENone"))
@@ -85,23 +58,11 @@ def Suite():
     suite.addTest(Assertion.AdduserApiTest("test_AdduserAEmailError"))
     suite.addTest(Assertion.AdduserApiTest("test_AdduserUEmailError"))
     suite.addTest(Assertion.AdduserApiTest("test_AdduserEFormError"))
-    suite.addTest(Assertion.AdduserApiTest("test_AdduserFNOut"))
-    suite.addTest(Assertion.AdduserApiTest("test_AdduserLNOut"))
-    suite.addTest(Assertion.AdduserApiTest("test_AdduserMEOut"))
     suite.addTest(Assertion.AdduserApiTest("test_AdduserPwdOut"))
     suite.addTest(Assertion.AdduserApiTest("test_AdduserPwdLess"))
-    suite.addTest(Assertion.AdduserApiTest("test_AdduserFNMax"))
-    suite.addTest(Assertion.AdduserApiTest("test_AdduserLNMax"))
-    suite.addTest(Assertion.AdduserApiTest("test_AdduserMEMax"))
     suite.addTest(Assertion.AdduserApiTest("test_AdduserPwdMax"))
-    suite.addTest(Assertion.AdduserApiTest("test_AdduserPwdMin"))
-    suite.addTest(Assertion.AdduserApiTest("test_AdduserRIdError"))
 
-    suite.addTest(Assertion.userManagementApiTest("test_userSuccess"))
-    suite.addTest(Assertion.userManagementApiTest("test_userNoCookie"))
-
-    suite.addTest(Assertion.user_idApiTest("oneuserSuccess"))
-    suite.addTest(Assertion.user_idApiTest("oneuserNocookie"))
+    # 修改子账号
 
     suite.addTest(Assertion.EdituserApiTest("test_EdituserNoCookie"))
     suite.addTest(Assertion.EdituserApiTest("test_EdituserENone"))
@@ -120,10 +81,6 @@ def Suite():
     suite.addTest(Assertion.EdituserApiTest("test_EdituserAEmailError"))
     suite.addTest(Assertion.EdituserApiTest("test_EdituserUEmailError"))
     suite.addTest(Assertion.EdituserApiTest("test_EdituserEFormError"))
-    suite.addTest(Assertion.EdituserApiTest("test_EdituseFNMax"))
-    suite.addTest(Assertion.EdituserApiTest("test_EdituserLNMax"))
-    suite.addTest(Assertion.EdituserApiTest("test_EdituserMEMax"))
-    suite.addTest(Assertion.EdituserApiTest("test_EdituserRIdError"))
     suite.addTest(Assertion.EdituserApiTest("test_EdituserESuccess"))
     suite.addTest(Assertion.EdituserApiTest("test_EdituserFNSuccess"))
     suite.addTest(Assertion.EdituserApiTest("test_EdituserLNSuccess"))
@@ -132,23 +89,35 @@ def Suite():
     suite.addTest(Assertion.EdituserApiTest("test_EdituserRIdSuccess"))
     suite.addTest(Assertion.EdituserApiTest("test_EdituserTidsSuccess"))
 
+    # 删除子账号
+
     suite.addTest(Assertion.DeleteUserApiTest("test_deleteUserSuccess"))
     suite.addTest(Assertion.DeleteUserApiTest("test_deleteUserNocookie"))
 
-    # suite.addTest(Assertion.timelineApiTest("test_timelineNoCookie"))
-    # suite.addTest(Assertion.timelineApiTest("test_timelineNoCookie"))
-    # suite.addTest(Assertion.timelineApiTest("test_timelineNoCookie"))
-    # suite.addTest(Assertion.timelineApiTest("test_timelineNoCookie"))
-    # suite.addTest(Assertion.timelineApiTest("test_timelineNoCookie"))
+    # 轨迹回放
 
-    # timeline没有写
-    # suite.addTest(Assertion.timelineApiTest("test_timelineNoCookie"))
+    suite.addTest(Assertion.tripApiTest("test_tripSuccuss"))
+    suite.addTest(Assertion.tripApiTest("test_tripIDNone"))
+    suite.addTest(Assertion.tripApiTest("test_tripSTNone"))
+    suite.addTest(Assertion.tripApiTest("test_tripETNone"))
+    suite.addTest(Assertion.tripApiTest("test_tripIdEmpty"))
+    suite.addTest(Assertion.tripApiTest("test_tripSTEmpty"))
+    suite.addTest(Assertion.tripApiTest("test_tripETEmpty"))
+    suite.addTest(Assertion.tripApiTest("test_tripNoID"))
+    suite.addTest(Assertion.tripApiTest("test_tripNoST"))
+    suite.addTest(Assertion.tripApiTest("test_tripNoET"))
+
+    # 获取角色所有权限
 
     suite.addTest(Assertion.permissionsApiTest("test_roleSuccess"))
     suite.addTest(Assertion.permissionsApiTest("test_roleNocookie"))
 
+    # 获取权限子账号信息
+
     suite.addTest(Assertion.userroleApiTest("test_userroleSuccess"))
     suite.addTest(Assertion.userroleApiTest("test_userroleNocookie"))
+
+    # 创建子角色
 
     suite.addTest(Assertion.AddroleApiTest("test_addroleSuccess"))
     suite.addTest(Assertion.AddroleApiTest("test_addroleNocookie"))
@@ -162,8 +131,12 @@ def Suite():
     suite.addTest(Assertion.AddroleApiTest("test_addroleNMInt"))
     suite.addTest(Assertion.AddroleApiTest("test_addrolePMSStr"))
 
+    # 获取单个子角色信息
+
     suite.addTest(Assertion.role_idApiTest("test_oneroleSuccess"))
     suite.addTest(Assertion.role_idApiTest("test_oneroleNocookie"))
+
+    # 修改子角色
 
     suite.addTest(Assertion.EditroleApiTest("test_roleNocookie"))
     suite.addTest(Assertion.EditroleApiTest("test_rolenameSuccess"))
@@ -176,21 +149,80 @@ def Suite():
     suite.addTest(Assertion.EditroleApiTest("test_rolenameInt"))
     suite.addTest(Assertion.EditroleApiTest("test_rolePMSStr"))
 
+    # 删除子角色
+
     suite.addTest(Assertion.deleteroleApiTest("test_roleNocookie"))
     suite.addTest(Assertion.deleteroleApiTest("test_roleDeleteSuccess"))
 
+    # 重置密码-验证邮箱
+
+    suite.addTest(Assertion.emailApiTest("test_resetUnregistered"))
+    suite.addTest(Assertion.emailApiTest("test_resetNone"))
+    suite.addTest(Assertion.emailApiTest("test_resetEmpty"))
+    suite.addTest(Assertion.emailApiTest("test_resetInvalidFormat"))
+    suite.addTest(Assertion.emailApiTest("test_resetNotfound"))
+    suite.addTest(Assertion.emailApiTest("test_resetNoEmail"))
+    suite.addTest(Assertion.emailApiTest("test_resetSuccess"))
+
+    # 重置密码
+
+    suite.addTest(Assertion.resetApiTest("test_resetInvalid"))
+    # suite.addTest(Assertion.resetApiTest("test_resetWrongCF"))
+    # suite.addTest(Assertion.resetApiTest("test_resetPwdIllegal"))
+    # suite.addTest(Assertion.resetApiTest("test_resetCFNone"))
+    # suite.addTest(Assertion.resetApiTest("test_resetPwdNone"))
+    # suite.addTest(Assertion.resetApiTest("test_resetCFEmpty"))
+    # suite.addTest(Assertion.resetApiTest("test_resetPwdEmpty"))
+    # suite.addTest(Assertion.resetApiTest("test_resetPwdless"))
+    # suite.addTest(Assertion.resetApiTest("test_resetPwdMin"))
+    # suite.addTest(Assertion.resetApiTest("test_resetPwdMax"))
+    # suite.addTest(Assertion.resetApiTest("test_resetPwdOut"))
+    # suite.addTest(Assertion.resetApiTest("test_resetPwdInt"))
+    # suite.addTest(Assertion.resetApiTest("test_resetSuccess"))
+
+    # 获取各报表前7数据
+
+    suite.addTest(Assertion.DashboardApiTest("test_mileageSuccess"))
+    suite.addTest(Assertion.DashboardApiTest("test_driving_timeSuccess"))
+    suite.addTest(Assertion.DashboardApiTest("test_fuelSuccess"))
+    suite.addTest(Assertion.DashboardApiTest("test_speedSuccess"))
+    suite.addTest(Assertion.DashboardApiTest("test_temperatureSuccess"))
+    suite.addTest(Assertion.DashboardApiTest("test_visitSuccess"))
+    suite.addTest(Assertion.DashboardApiTest("test_maintenceSuccess"))
+    suite.addTest(Assertion.DashboardApiTest("test_IFIASuccess"))
+    suite.addTest(Assertion.DashboardApiTest("test_NOcookie"))
+
+    # 获取提醒标签列表
+
+    suite.addTest(Assertion.notificationApiTest("test_notificationNocookie"))
+    suite.addTest(Assertion.notificationApiTest("test_notificationSuccess"))
+
+    # 轨迹时间轴查询
+
+    suite.addTest(Assertion.timelineApiTest("test_timelineNoCookie"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineSuccessA"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineIdsNone"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineSTNone"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineETNone"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineIdsEmpty"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineSTEmpty"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineETEmpty"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineNoIds"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineNoST"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineNoET"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineSTStr"))
+    suite.addTest(Assertion.timelineApiTest("test_timelineETStr"))
+
+    # 获取poi列表
+
     suite.addTest(Assertion.poisApiTest("test_poisNocookie"))
     suite.addTest(Assertion.poisApiTest("test_poisSuccess"))
-    suite.addTest(Assertion.poisApiTest("test_poisNoPage"))
-    suite.addTest(Assertion.poisApiTest("test_poisNoPSiza"))
     suite.addTest(Assertion.poisApiTest("test_poisEmpty"))
-    suite.addTest(Assertion.poisApiTest("test_poisPSizaEmpty"))
     suite.addTest(Assertion.poisApiTest("test_poisNone"))
     suite.addTest(Assertion.poisApiTest("test_poisPSizaNone"))
     suite.addTest(Assertion.poisApiTest("test_poisStr"))
-    suite.addTest(Assertion.poisApiTest("test_poisPSStr"))
-    suite.addTest(Assertion.poisApiTest("test_poisPageNoExist"))
-    suite.addTest(Assertion.poisApiTest("test_poisPSizeNoExist"))
+
+    # 添加poi
 
     suite.addTest(Assertion.AddpoiApiTest("test_AddpoiNocookie"))
     suite.addTest(Assertion.AddpoiApiTest("test_AddpoiSuccess"))
@@ -229,6 +261,8 @@ def Suite():
     suite.addTest(Assertion.AddpoiApiTest("test_AddpoiEAStr"))
     suite.addTest(Assertion.AddpoiApiTest("test_AddpoiOAStr"))
 
+    # 修改poi
+
     suite.addTest(Assertion.EditPOIApiTest("test_EditPOINocookie"))
     suite.addTest(Assertion.EditPOIApiTest("test_EditPOINameSuccess"))
     suite.addTest(Assertion.EditPOIApiTest("test_EditPOIAPSuccess"))
@@ -248,22 +282,24 @@ def Suite():
     suite.addTest(Assertion.EditPOIApiTest("test_EditPOINameInt"))
     suite.addTest(Assertion.EditPOIApiTest("test_EditPOIEAStr"))
     suite.addTest(Assertion.EditPOIApiTest("test_EditPOIOAStr"))
+    suite.addTest(Assertion.EditPOIApiTest("test_EditPOITidsNoExist"))
 
     # 删除poi
+
     suite.addTest(Assertion.deletepoiApiTest("test_deletePoiNocookie"))
     suite.addTest(Assertion.deletepoiApiTest("test_deletePoiSuccess"))
 
     # 获取围栏列表
+
     suite.addTest(Assertion.GEOApiTest("test_geoNocookie"))
     suite.addTest(Assertion.GEOApiTest("test_geoSuccess"))
-    suite.addTest(Assertion.GEOApiTest("test_geoNoPage"))
-    suite.addTest(Assertion.GEOApiTest("test_geoNoPSiza"))
     suite.addTest(Assertion.GEOApiTest("test_geoEmpty"))
-    suite.addTest(Assertion.GEOApiTest("test_geoPSizaEmpty"))
     suite.addTest(Assertion.GEOApiTest("test_geoNone"))
     suite.addTest(Assertion.GEOApiTest("test_geoPSizaNone"))
     suite.addTest(Assertion.GEOApiTest("test_geoStr"))
     suite.addTest(Assertion.GEOApiTest("test_geoPSStr"))
+
+    # 新增围栏
 
     suite.addTest(Assertion.AddgeoApiTest("test_geoNocookie"))
     suite.addTest(Assertion.AddgeoApiTest("test_geoCircleSuccess"))
@@ -271,6 +307,7 @@ def Suite():
     suite.addTest(Assertion.AddgeoApiTest("test_geoNameRepeat"))
     suite.addTest(Assertion.AddgeoApiTest("test_geoNameMin"))
     suite.addTest(Assertion.AddgeoApiTest("test_geoNameMax"))
+    suite.addTest(Assertion.AddgeoApiTest("test_geoNameOut"))
     suite.addTest(Assertion.AddgeoApiTest("test_geoNameEmpty"))
     suite.addTest(Assertion.AddgeoApiTest("test_geoNameNone"))
     suite.addTest(Assertion.AddgeoApiTest("test_geoNameInt"))
@@ -312,6 +349,8 @@ def Suite():
     suite.addTest(Assertion.AddgeoApiTest("test_geoTidNone"))
     suite.addTest(Assertion.AddgeoApiTest("test_geoTidNo"))
 
+    # 编辑围栏
+
     suite.addTest(Assertion.EditgeoApiTest("test_regionEditFail"))
     suite.addTest(Assertion.EditgeoApiTest("test_regionEditNoParam"))
     suite.addTest(Assertion.EditgeoApiTest("test_regionEditNameMin"))
@@ -352,9 +391,274 @@ def Suite():
     suite.addTest(Assertion.EditgeoApiTest("test_regionEditTidNoExist"))
     suite.addTest(Assertion.EditgeoApiTest("test_regionEditTidNone"))
 
+    # 删除围栏
+
     suite.addTest(Assertion.deletegeoApiTest("test_deletegeoNocookie"))
     suite.addTest(Assertion.deletegeoApiTest("test_deletegeoSuccess"))
 
-    suite.addTest(Assertion.notificationApiTest("test_notificationNocookie"))
-    suite.addTest(Assertion.notificationApiTest("test_notificationSuccess"))
+    # 获取终端信息
+    suite.addTest(Assertion.trackersApiTest("test_trackerSuccess"))
+    suite.addTest(Assertion.trackersApiTest("test_trackersFail"))
+    # 修改终端信息
+    suite.addTest(Assertion.trackerApiTest("test_trackerSuccess"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerFail"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerErrorId"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerNoParam"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerAlias"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerAliasEmpty"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerAliasNone"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerIcon"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerIconNoExist"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerIconEmpty"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerIconNone"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerPowerSavingOff"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerPowerSavingOpen"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerPowerSavingEmpty"))
+    suite.addTest(Assertion.trackerApiTest("test_trackerPowerSavingNone"))
+
+    # 添加终端
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddSuccess"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddFail"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddIsUsed"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddInvaild"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddError"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddNoSn"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddNoActivationCode"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddSnEmpty"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddSnNone"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddActivationCodeEmpty"))
+    suite.addTest(Assertion.trackerAddApiTest("test_trackerAddActivationCodeNone"))
+
+    # 修改account邮箱
+    suite.addTest(Assertion.emailApiTest("test_emailChangeSuccess"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangeFail"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangeAleady"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangeInvaildEmailFormat"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangeInvaildPassword"))
+    suite.addTest(Assertion.emailApiTest("test_emailChanageEmptyEmail"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangeEmptyPassword"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangeEmailNone"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangePasswordNone"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangeNoEmail"))
+    suite.addTest(Assertion.emailApiTest("test_emailChangeNoPassword"))
+
+    # 注册
+    suite.addTest(Assertion.registerApiTest("test_registerSuccess"))
+    suite.addTest(Assertion.registerApiTest("test_registerEmpty"))
+    suite.addTest(Assertion.registerApiTest("test_registerNone"))
+    suite.addTest(Assertion.registerApiTest("test_registerNoParam"))
+    suite.addTest(Assertion.registerApiTest("test_registerInvaildEmailFormat"))
+    suite.addTest(Assertion.registerApiTest("test_registerRepeat"))
+
+    # 获取profile
+    suite.addTest(Assertion.profileApiTest("test_profileSuccess"))
+    suite.addTest(Assertion.profileApiTest("test_profileFail"))
+
+    # 告警设置
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditFail"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditError"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMaxTemp0"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMaxTempBelowZero"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMaxTempOver"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMaxTempEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMaxTempNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMinTemp0"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMinTempBelowZero"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMinTempOver"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMinTempEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMinTempNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditMaxTempLessMinTemp"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditExtsEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditExtsNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditDoorSensorEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditTempSensorEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditDoorSensorNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditTempSensorNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSosEmailNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSosEmail"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSosEmails"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSosEmailsOver"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSosEmailEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSosEmailInvaildFormat"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSosEmailRepeat"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSosEmailSelf"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditNotificationEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditNotificationNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditPushEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditPushNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditPushOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditPushOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditEmailEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditEmailNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditEmailOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditEmailOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsRegionEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsRegionNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsRegionOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsRegionOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsPoiEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsPoiNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsPoiOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsPoiOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsTempEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsTempNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsTempOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsTempOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsIllegalmoveEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsIllegalmoveNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsIllegalmoveOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsIllegalmoveOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsHeartbeatlostEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsHeartbeatlostNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsHeartbeatlostOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSmsHeartbeatlostOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSpeedlimitEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSpeedlimitNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSpeedlimit0"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSpeedlimit"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSpeedlimitNegative"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditSpeedlimitOver"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditContactemailEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditContactemailNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditContactemailPrimaryAccount"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditContactemailNoExist"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditContactmobileEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditContactmobileNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditContactmobilePrimaryAccount"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditContactmobileNoExist"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoicesendEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoicesendNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoicesendOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoicesendOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceNoParam"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceRegionEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceRegionNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceRegionOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceRegionOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoicePoiEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoicePoiNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoicePoiOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoicePoiOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceTempEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceTempNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceTempOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceTempOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceIllegalmoveEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceIllegalmoveNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceIllegalmoveOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceIllegalmoveOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceHeartbeatlostEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceHeartbeatlostNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceHeartbeatlostOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditVoiceHeartbeatlostOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsNoParam"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsUsbdisconnectEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsUsbdisconnectNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsUsbdisconnectOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionUsbdisconnectOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsTempEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsTempNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsTempOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsTempOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsIllegalmoveEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsIllegalmoveNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsIllegalmoveOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsIllegalmoveOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsOverspeedEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsOverspeedNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsOverspeedOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsOverspeedOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPoiEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPoiNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPoiOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPoiOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsHeartbeatlostEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsHeartbeatlostNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsHeartbeatlostOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsHeartbeatlostOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPowerfullEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPowerfullNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPowerfullOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPowerfullOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsRegionEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsRegionNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsRegionOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsRegionOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificaitonEditOptionsPowerlowEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPowerlowNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPowerlowOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPowerlowOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsStoppingEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsStoppingNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsStoppingOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsStoppingOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPoweroffEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPoweroffNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPoweroffOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsPoweroffOn"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsIllegalshakeEmpty"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsIllegalshakeNone"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsIllegalshakeOff"))
+    suite.addTest(Assertion.notificationEditApiTest("test_notificationEditOptionsIllegalshakeOn"))
+
+    # 获取标签列表
+
+    suite.addTest(Assertion.labelGetApiTest("test_labelGetSuccess"))
+    suite.addTest(Assertion.labelGetApiTest("test_labelGetFail"))
+    suite.addTest(Assertion.labelGetApiTest("test_labelGetPageEmpty"))
+    suite.addTest(Assertion.labelGetApiTest("test_labelGetPageNone"))
+    suite.addTest(Assertion.labelGetApiTest("test_labelGetPage0"))
+    suite.addTest(Assertion.labelGetApiTest("test_labelGetPageNegative"))
+    suite.addTest(Assertion.labelGetApiTest("test_labelGetPageMax"))
+    suite.addTest(Assertion.labelGetApiTest("test_labelGetNoParam"))
+
+    # 添加标签
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddSuccess"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddFail"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddNameRepeat"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddNameEmpty"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddNameOver"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddNameNone"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddColorEmpty"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddColorNoExist"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddColorNone"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddTidNoExist"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddTids"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddTidEmpty"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddTidNone"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddNoName"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddNoColor"))
+    suite.addTest(Assertion.labelAddApiTest("test_labelAddNoTid"))
+
+    # 编辑标签
+
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditSuccess"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditFail"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditErrorId"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditNoParam"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditNameEmpty"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditNameNone"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditNameOver"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditColorEmpty"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditColorNone"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditColorNoExist"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditTidNoExist"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditTids"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditTidEmpty"))
+    suite.addTest(Assertion.labelEditApiTest("test_labelEditTidNone"))
+
+    # 删除标签
+    suite.addTest(Assertion.labelDelApiTest("test_labelDelSuccess"))
+    suite.addTest(Assertion.labelDelApiTest("test_labelDelFail"))
+    suite.addTest(Assertion.labelDelApiTest("test_labelDelErrorId"))
+
+    # 退出
+
+    suite.addTest(Assertion.logoutApiTest("test_logoutFail"))
+    suite.addTest(Assertion.logoutApiTest("test_logoutSuccess"))
+
     return suite

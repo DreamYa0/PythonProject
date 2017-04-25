@@ -7,7 +7,7 @@ import requests
 import json
 
 # 定义地址变量
-base_url = "http://192.168.3.67:8000"
+base_url = "http://www-alpha.mycloudhawk.com"
 
 
 # 根据type来判断调用哪种请求方法
